@@ -1,0 +1,1 @@
+<div class="p-4 sm:ml-64 bg-gray-50 sm:flex sm:justify-center">
