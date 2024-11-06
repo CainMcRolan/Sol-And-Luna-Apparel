@@ -1,11 +1,9 @@
 <?php
 
 // Index Redirect
-$router->get('/', 'login/index.php')->only('guest');
+$router->get('/', 'home/index.php');
 
-//Login
-$router->get('/login', 'login/index.php')->only('guest');
-$router->post('/login', 'login/verify.php')->only('guest');
+// Home Page
+$router->get('/home', 'home/index.php');
 
-//Logout
-$router->delete('/logout', 'login/logout.php')->only('user');
+

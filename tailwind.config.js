@@ -17,10 +17,7 @@ module.exports = {
                     "800": "#1e40af",
                     "900": "#1e3a8a",
                     "950": "#172554",
-                    'icons': "#A1A1AA",
-                    "orange": "#D97706",
-                    "orange-2": "#FFFBEB",
-                    'contrast': "#E4E4E7",
+                    'main': "#1d1d1d",
                 }
             }
         },
