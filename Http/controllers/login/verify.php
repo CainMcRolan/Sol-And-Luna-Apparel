@@ -14,5 +14,5 @@ if (!$signed_in) {
     $form->error('body', 'Invalid Credentials.')->throw();
 }
 
-redirect('/dashboard');
+redirect('/home');
 

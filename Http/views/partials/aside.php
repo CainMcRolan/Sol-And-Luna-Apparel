@@ -1,4 +1,4 @@
-<aside x-data="{categories:['My Account', 'New & Featured🔥', 'Men', 'Women', 'Kids', 'Shoes', 'Gifts', 'Jewelry']}" id="logo-sidebar"
+<aside x-data="{categories:['New & Featured🔥', 'Men', 'Women', 'Kids', 'Shoes', 'Gifts', 'Jewelry']}" id="logo-sidebar"
        class="fixed top-0 sm:hidden left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0"
        aria-label="Sidebar">
     <div class="w-full flex justify-start text-gray-50 bg-[#1d1d1d] p-4 mb-2">
@@ -8,9 +8,16 @@
         </svg>
     </div>
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white flex flex-col gap-y-4">
+        <a href="/profile" class="<?= $user ? 'flex' : 'hidden' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">My Account</a>
+        <a href="/login" class="<?= $user ? 'hidden' : 'flex' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Register | Login</a>
         <template x-for="category in categories">
             <a href="#" x-text="category" class="font-semibold text-md flex gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]"></a>
         </template>
+
+        <form action="/logout" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="<?= $user ? 'flex' : 'hidden' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Logout</button>
+        </form>
 
         <div class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex gap-x-1 items-center ml-1">
             <svg width="20px" height="20px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"

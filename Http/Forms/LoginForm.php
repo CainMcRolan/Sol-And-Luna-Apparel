@@ -10,11 +10,11 @@ class LoginForm extends Form
     {
         $this->attributes = $attributes;
         if (!Validator::string($this->attributes['password'])) {
-            $this->errors['password'] = "enter a valid password";
+            $this->errors['password'] = "Please enter a valid password";
         }
 
         if (!Validator::email($this->attributes['email'])) {
-            $this->errors['email'] = "enter a valid email address.";
+            $this->errors['email'] = "Please enter a valid email address.";
         }
     }
 }

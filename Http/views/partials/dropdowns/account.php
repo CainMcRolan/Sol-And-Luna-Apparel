@@ -13,7 +13,10 @@
             <a href="" class="text-xs hover:underline">Payment Methods</a>
             <a href="" class="text-xs hover:underline">Addresses</a>
             <a href="" class="text-xs hover:underline">Saved Items</a>
-            <a href="" class="text-xs hover:underline">Log Out</a>
+            <form action="/logout" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="text-xs hover:underline">Log Out</button>
+            </form>
         </div>
     </div>
 </div>
