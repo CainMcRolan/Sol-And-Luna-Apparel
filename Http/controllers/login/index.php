@@ -6,4 +6,4 @@ $errors = Session::get('errors') ?? [];
 $success = Session::get('success') ?? '';
 $email = old('email');
 
-require base_path('Http/views/login.view.php');
+require base_path('Http/views/login/index.php');

@@ -27,7 +27,7 @@
         </button>
         <?php require base_path('Http/views/partials/dropdowns/country.php')?>
         <p class="hover:underline cursor-pointer text-xs">English</p>
-        <?php if ($user) : ?>
+        <?php if ($user ?? false) : ?>
             <?php require base_path('Http/views/partials/dropdowns/account.php')?>
             <button x-ref="accountButton" @click="accountExpanded = !accountExpanded" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
                 <p>My Account</p>

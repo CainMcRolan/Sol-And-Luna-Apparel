@@ -23,26 +23,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'selector',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        barlow: ['"Barlow Condensed"', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            AOS.init({
-                duration: 1000,
-                once: true
-            });
-        });
-    </script>
+    <script src="/public/scripts/init.js"></script>
     <title>Sol & Luna Official Store | Shoes, Jewelry, Clothing, Makeup, Dresses</title>
 </head>
 <body class="flex flex-col items-center">
