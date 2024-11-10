@@ -1,6 +1,6 @@
 <!--Navigation-->
 <nav id="header-top"
-     class="h-[60px] text-xs grid grid-cols-[11%_11%_75%] text-white bg-[#1d1d1d] border-b border-white sm:justify-items-center sm:items-center sm:grid-cols-[20%_55%_20%] md:grid-cols-[20%_40%_20%] 2xl:grid-cols-[30%_30%_30%] md:text-sm sm:justify-around">
+     class="h-[60px]  w-full text-xs flex justify-center gap-x-4 text-white bg-[#1d1d1d] border-b border-white sm:grid sm:justify-items-center sm:items-center sm:grid-cols-[20%_55%_20%] md:grid-cols-[20%_40%_20%] 2xl:grid-cols-[30%_30%_30%] md:text-sm sm:justify-around">
     <!--    Aside Choices (Mobile View)-->
     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
             type="button"
@@ -12,7 +12,7 @@
     </button>
     <!--        Logo-->
     <div class="flex items-center">
-        <img src="/public/images/logo-white.svg" class="w-10 h-10 sm:w-12 sm:h-12" alt="">
+        <a href="/home"><img src="/public/images/logo-white.svg" class="w-10 h-10 sm:w-12 sm:h-12" alt=""></a>
     </div>
     <!--        Choices (Desktop View)-->
     <div class="hidden sm:flex gap-x-6">

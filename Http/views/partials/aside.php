@@ -1,4 +1,4 @@
-<aside x-data="{categories:['New & Featured🔥', 'Men', 'Women', 'Kids', 'Shoes', 'Gifts', 'Jewelry']}" id="logo-sidebar"
+<aside x-data="{categories:['My Account', 'New & Featured🔥', 'Men', 'Women', 'Kids', 'Shoes', 'Gifts', 'Jewelry']}" id="logo-sidebar"
        class="fixed top-0 sm:hidden left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0"
        aria-label="Sidebar">
     <div class="w-full flex justify-start text-gray-50 bg-[#1d1d1d] p-4 mb-2">

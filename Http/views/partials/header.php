@@ -1,10 +1,10 @@
 <!--Header-->
-<header id="header-top" class="h-[40px] text-xs grid text-white bg-[#1d1d1d] border-b border-white justify-items-center sm:items-center sm:grid-cols-3 md:text-sm sm:justify-around">
+<header x-data="{countryExpanded:false, accountExpanded:false}" id="header-top" class="h-[40px] w-full text-xs grid text-white bg-[#1d1d1d] border-b border-white justify-items-center sm:items-center sm:grid-cols-3 md:text-sm sm:justify-around">
     <div></div>
     <a href="#" class="underline text-center hover:no-underline">FREE P.H Standard Shipping Orders ₱75+ & FREE Returns</a>
     <div class="hidden items-center sm:flex gap-x-4">
         <a class="hover:underline cursor-pointer text-xs" href="">Need Help?</a>
-        <div class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex gap-x-1 items-center ml-1">
+        <button x-ref="countryButton" @click="countryExpanded = !countryExpanded" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex gap-x-1 items-center ml-1">
             <svg width="14px" height="14px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
                  class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet" fill="#000000">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -24,14 +24,28 @@
                 <path d="M10.6656 13.5559L14.5131 9.70923C14.5715 9.65095 14.6113 9.57664 14.6274 9.49572C14.6436 9.41479 14.6353 9.3309 14.6037 9.25467C14.5721 9.17845 14.5186 9.11332 14.45 9.06754C14.3813 9.02177 14.3006 8.99741 14.2181 8.99756H6.22975C6.1473 8.99758 6.06672 9.02205 5.99819 9.06789C5.92966 9.11373 5.87627 9.17886 5.84477 9.25506C5.81328 9.33125 5.80509 9.41508 5.82126 9.49592C5.83742 9.57677 5.87721 9.651 5.93558 9.70923L9.78225 13.5559C9.89944 13.6729 10.0583 13.7387 10.2239 13.7387C10.3895 13.7387 10.5484 13.6729 10.6656 13.5559Z"
                       fill="#647175"/>
             </svg>
-        </div>
+        </button>
+        <?php require base_path('Http/views/partials/dropdowns/country.php')?>
         <p class="hover:underline cursor-pointer text-xs">English</p>
-        <div class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
-            <p>My Account</p>
-            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.6656 13.5559L14.5131 9.70923C14.5715 9.65095 14.6113 9.57664 14.6274 9.49572C14.6436 9.41479 14.6353 9.3309 14.6037 9.25467C14.5721 9.17845 14.5186 9.11332 14.45 9.06754C14.3813 9.02177 14.3006 8.99741 14.2181 8.99756H6.22975C6.1473 8.99758 6.06672 9.02205 5.99819 9.06789C5.92966 9.11373 5.87627 9.17886 5.84477 9.25506C5.81328 9.33125 5.80509 9.41508 5.82126 9.49592C5.83742 9.57677 5.87721 9.651 5.93558 9.70923L9.78225 13.5559C9.89944 13.6729 10.0583 13.7387 10.2239 13.7387C10.3895 13.7387 10.5484 13.6729 10.6656 13.5559Z"
-                      fill="#647175"/>
-            </svg>
-        </div>
+        <?php if ($user) : ?>
+            <?php require base_path('Http/views/partials/dropdowns/account.php')?>
+            <button x-ref="accountButton" @click="accountExpanded = !accountExpanded" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
+                <p>My Account</p>
+                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.6656 13.5559L14.5131 9.70923C14.5715 9.65095 14.6113 9.57664 14.6274 9.49572C14.6436 9.41479 14.6353 9.3309 14.6037 9.25467C14.5721 9.17845 14.5186 9.11332 14.45 9.06754C14.3813 9.02177 14.3006 8.99741 14.2181 8.99756H6.22975C6.1473 8.99758 6.06672 9.02205 5.99819 9.06789C5.92966 9.11373 5.87627 9.17886 5.84477 9.25506C5.81328 9.33125 5.80509 9.41508 5.82126 9.49592C5.83742 9.57677 5.87721 9.651 5.93558 9.70923L9.78225 13.5559C9.89944 13.6729 10.0583 13.7387 10.2239 13.7387C10.3895 13.7387 10.5484 13.6729 10.6656 13.5559Z"
+                          fill="#647175"/>
+                </svg>
+            </button>
+        <?php else: ?>
+            <div class="flex gap-x-1">
+                <a href="/register" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
+                    <p>Register</p>
+                </a>
+                <p>|</p>
+                <a href="/login" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
+                    <p>Login</p>
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 </header>
