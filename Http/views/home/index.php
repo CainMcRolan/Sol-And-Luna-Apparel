@@ -13,8 +13,8 @@ require base_path("Http/views/partials/aside.php");
             <h1 class="text-4xl font-barlow sm:text-6xl">WE KNOW ATHLETES</h1>
             <p class="mt-4 text-sm sm:text-md sm:my-8 sm:font-semibold sm:text-gray-900 lg:my-4 2xl:my-8">Performance solution for every athlete in your list.</p>
             <div class="mt-6 flex flex-col gap-y-4 text-sm sm:mt-0 sm:flex-row sm:gap-x-4">
-                <button class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Shop Now</button>
-                <button class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Explore Top Gifts</button>
+                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Shop Now</a>
+                <a href="/gifts" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Explore Top Gifts</a>
             </div>
         </div>
     </div>
@@ -25,19 +25,19 @@ require base_path("Http/views/partials/aside.php");
         <div class="mt-4 grid grid-cols-2 gap-4 gap-y-6 sm:grid-cols-4">
             <div class="h-full w-full cursor-pointer gap-y-4 grid-rows-[70%_20%]">
                 <img src="/public/images/shop-men.avif" alt="">
-                <a href="#" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Men</a>
+                <a href="/men" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Men</a>
             </div>
             <div class="h-full w-full cursor-pointer gap-y-4 grid-rows-[70%_20%]">
                 <img src="/public/images/shop-women.avif" alt="">
-                <a href="#" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Women</a>
+                <a href="/women" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Women</a>
             </div>
             <div class="h-full w-full cursor-pointer gap-y-4 grid-rows-[70%_20%]">
                 <img src="/public/images/shop-boys.avif" alt="">
-                <a href="#" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Boys</a>
+                <a href="/boys" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Boys</a>
             </div>
             <div class="h-full w-full cursor-pointer gap-y-4 grid-rows-[70%_20%]">
                 <img src="/public/images/shop-girls.avif" alt="">
-                <a href="#" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Girls</a>
+                <a href="/girls" class="py-2 pb-2 text-sm font-semibold text-gray-500 underline hover:border-gray-800 hover:text-gray-800">Shop Girls</a>
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@ require base_path("Http/views/partials/aside.php");
             <p class="mt-4 text-center text-sm">Order worth ₱5000 to enter for a chance to win an all-expenses-paid trip to Maryland on 12/14 to see The Army-Navy Game presented by USAA, including a
                 full weekend full of special experiences. </p>
             <div class="mt-6 flex flex-col gap-y-4 text-sm">
-                <button class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black">Shop Now</button>
+                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black">Shop Now</a>
             </div>
         </div>
     </div>

@@ -16,13 +16,13 @@
     </div>
     <!--        Choices (Desktop View)-->
     <div class="hidden sm:flex gap-x-6">
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">New & Featured🔥</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Men</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Women</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Kids</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Shoes</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Gifts</a>
-        <a href="#" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Jewelry</a>
+        <a href="/new" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">New & Featured🔥</a>
+        <a href="/men" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Men</a>
+        <a href="/women" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Women</a>
+        <a href="/kids" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Kids</a>
+        <a href="/shoes" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Shoes</a>
+        <a href="/gifts" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Gifts</a>
+        <a href="/jewelry" class="font-semibold hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Jewelry</a>
     </div>
     <!--        Search Bar n Shit-->
     <form class="flex items-center gap-x-4">

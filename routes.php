@@ -16,3 +16,6 @@ $router->post('/login', 'login/verify.php')->only('guest');
 
 //Logout
 $router->delete('/logout', 'login/logout.php')->only('user');
+
+//Products Page
+$router->get('/new', 'products/index.php');
