@@ -19,3 +19,9 @@ $router->delete('/logout', 'login/logout.php')->only('user');
 
 //Products Page
 $router->get('/new', 'products/index.php');
+$router->get('/men', 'products/index.php');
+$router->get('/women', 'products/index.php');
+$router->get('/kids', 'products/index.php');
+$router->get('/shoes', 'products/index.php');
+$router->get('/gifts', 'products/index.php');
+$router->get('/jewelry', 'products/index.php');

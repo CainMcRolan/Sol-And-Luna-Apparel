@@ -122,34 +122,6 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <h6 class="mb-2 text-sm font-medium text-black dark:text-white">Condition</h6>
-
-                                <ul class="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-                                    <li class="w-full border-r border-gray-200 dark:border-gray-600">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-all" type="radio" value="" name="list-radio" checked
-                                                   class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"/>
-                                            <label for="condition-all" class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"> All </label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full border-r border-gray-200 dark:border-gray-600">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-new" type="radio" value="" name="list-radio"
-                                                   class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"/>
-                                            <label for="condition-new" class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"> New </label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-used" type="radio" value="" name="list-radio"
-                                                   class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600"/>
-                                            <label for="condition-used" class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Used </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
                             <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
                                 <div>
                                     <h6 class="mb-2 text-sm font-medium text-black dark:text-white">Colour</h6>
@@ -393,42 +365,12 @@
 
                                 <ul class="grid grid-cols-2 gap-4">
                                     <li>
-                                        <input type="radio" id="delivery-usa" name="delivery" value="delivery-usa" class="peer hidden" checked/>
-                                        <label for="delivery-usa"
-                                               class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5">
-                                            <div class="block">
-                                                <div class="w-full text-lg font-semibold">USA</div>
-                                                <div class="w-full">Delivery only for USA</div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="delivery-europe" name="delivery" value="delivery-europe" class="peer hidden"/>
-                                        <label for="delivery-europe"
-                                               class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5">
-                                            <div class="block">
-                                                <div class="w-full text-lg font-semibold">Europe</div>
-                                                <div class="w-full">Delivery only for USA</div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li>
                                         <input type="radio" id="delivery-asia" name="delivery" value="delivery-asia" class="peer hidden" checked/>
                                         <label for="delivery-asia"
                                                class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5">
                                             <div class="block">
                                                 <div class="w-full text-lg font-semibold">Asia</div>
                                                 <div class="w-full">Delivery only for Asia</div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="delivery-australia" name="delivery" value="delivery-australia" class="peer hidden"/>
-                                        <label for="delivery-australia"
-                                               class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5">
-                                            <div class="block">
-                                                <div class="w-full text-lg font-semibold">Australia</div>
-                                                <div class="w-full">Delivery only for Australia</div>
                                             </div>
                                         </label>
                                     </li>
@@ -440,7 +382,7 @@
                     <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
                         <button type="submit"
                                 class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">
-                            Show 50 results
+                            Show results
                         </button>
                         <button type="reset"
                                 class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
