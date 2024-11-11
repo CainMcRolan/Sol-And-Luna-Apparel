@@ -11,7 +11,7 @@
         <a href="/profile" class="<?= $user ? 'flex' : 'hidden' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">My Account</a>
         <a href="/login" class="<?= $user ? 'hidden' : 'flex' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Register | Login</a>
         <template x-for="category in categories">
-            <a href="#" x-text="category" class="font-semibold text-md flex gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]"></a>
+            <a :href=`/new`  x-text="category" class="font-semibold text-md flex gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]"></a>
         </template>
 
         <form action="/logout" method="POST">

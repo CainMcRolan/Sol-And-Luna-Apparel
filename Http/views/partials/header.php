@@ -1,7 +1,11 @@
 <!--Header-->
-<header x-data="{countryExpanded:false, accountExpanded:false}" id="header-top" class="h-[40px] w-full text-xs grid text-white bg-[#1d1d1d] border-b border-white justify-items-center sm:items-center sm:grid-cols-3 md:text-sm sm:justify-around">
+<?php
+    $user = \Core\Session::get('user');
+?>
+<header x-data="{countryExpanded:false, accountExpanded:false}" id="header-top"
+        class="h-[40px] w-full text-xs grid text-white bg-[#1d1d1d] border-b border-white justify-items-center sm:items-center sm:grid-cols-3 md:text-sm sm:justify-around">
     <div></div>
-    <a href="#" class="underline text-center hover:no-underline">FREE P.H Standard Shipping Orders ₱75+ & FREE Returns</a>
+    <a href="#" class="underline text-center hover:no-underline">FREE P.H Standard Shipping Orders ₱1,111+ & FREE Returns</a>
     <div class="hidden items-center sm:flex gap-x-4">
         <a class="hover:underline cursor-pointer text-xs" href="">Need Help?</a>
         <button x-ref="countryButton" @click="countryExpanded = !countryExpanded" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex gap-x-1 items-center ml-1">
@@ -25,10 +29,10 @@
                       fill="#647175"/>
             </svg>
         </button>
-        <?php require base_path('Http/views/partials/dropdowns/country.php')?>
+        <?php require base_path('Http/views/partials/dropdowns/country.php') ?>
         <p class="hover:underline cursor-pointer text-xs">English</p>
         <?php if ($user ?? false) : ?>
-            <?php require base_path('Http/views/partials/dropdowns/account.php')?>
+            <?php require base_path('Http/views/partials/dropdowns/account.php') ?>
             <button x-ref="accountButton" @click="accountExpanded = !accountExpanded" class="hover:border-2 hover:border-blue-500 cursor-pointer text-xs flex items-center">
                 <p>My Account</p>
                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">

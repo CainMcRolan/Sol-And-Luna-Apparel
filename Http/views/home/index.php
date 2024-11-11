@@ -13,7 +13,7 @@ require base_path("Http/views/partials/aside.php");
             <h1 class="text-4xl font-barlow sm:text-6xl">WE KNOW ATHLETES</h1>
             <p class="mt-4 text-sm sm:text-md sm:my-8 sm:font-semibold sm:text-gray-900 lg:my-4 2xl:my-8">Performance solution for every athlete in your list.</p>
             <div class="mt-6 flex flex-col gap-y-4 text-sm sm:mt-0 sm:flex-row sm:gap-x-4">
-                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Shop Now</a>
+                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15 text-center">Shop Now</a>
                 <a href="/gifts" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black sm:px-15">Explore Top Gifts</a>
             </div>
         </div>
@@ -104,7 +104,7 @@ require base_path("Http/views/partials/aside.php");
             <p class="mt-4 text-center text-sm">Order worth ₱5000 to enter for a chance to win an all-expenses-paid trip to Maryland on 12/14 to see The Army-Navy Game presented by USAA, including a
                 full weekend full of special experiences. </p>
             <div class="mt-6 flex flex-col gap-y-4 text-sm">
-                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black">Shop Now</a>
+                <a href="/new" class="rounded-md bg-neutral-900 px-20 py-3 font-semibold text-white hover:bg-black text-center">Shop Now</a>
             </div>
         </div>
     </div>

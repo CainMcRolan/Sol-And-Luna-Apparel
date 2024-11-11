@@ -41,6 +41,11 @@ function url_is($url, $extra_url = null, $extra_extra_url = null): bool
             PHP_URL_PATH) === $extra_extra_url;
 }
 
+function get_url(): array
+{
+    return ['name' => ucfirst(substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1)), 'url' => parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)];
+}
+
 function url($url): bool
 {
     return $_SERVER['REQUEST_URI'] === $url;
@@ -77,7 +82,7 @@ function order_status(array $order, string $status): bool
     return strtolower($order['status']) === $status;
 }
 
-function previous_url() : string
+function previous_url(): string
 {
     $prev = parse_url($_SERVER['HTTP_REFERER']);
     return $prev['path'] . '?' . $prev['query'];
