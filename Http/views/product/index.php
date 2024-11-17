@@ -6,8 +6,8 @@ require base_path("Http/views/partials/aside.php");
 ?>
     <!--    Individual Product Page-->
     <section class="relative mt-8 lg:my-8">
-        <div class="mx-auto w-full lg:w-[80%] 2xl:w-[70%] px-4 sm:px-6 lg:px-0">
-            <div class="mx-auto grid grid-cols-1 lg:gap-8 2xl:gap-4 max-md:px-2 lg:grid-cols-2">
+        <div class="mx-auto w-full lg:w-[70%] 2xl:w-[60%] px-4 sm:px-6 lg:px-0">
+            <div class="mx-auto grid grid-cols-1 lg:gap-8 2xl:gap-10 max-md:px-2 lg:grid-cols-2">
                 <!-- Image Display-->
                 <div class="">
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
@@ -15,7 +15,7 @@ require base_path("Http/views/partials/aside.php");
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img src="https://pagedone.io/asset/uploads/1700471851.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover shadow-none">
+                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
                             </div>
                             <div class="swiper-slide">
                                 <img src="https://pagedone.io/asset/uploads/1711514857.png"
@@ -138,7 +138,7 @@ require base_path("Http/views/partials/aside.php");
                             </div>
 
                         </div>
-                        <p class="mb-5 text-base font-normal text-gray-500">
+                        <p class="mb-5 text-sm font-normal text-gray-500">
                             Introducing our vibrant Basic Yellow Tropical Printed Shirt - a celebration of style and
                             sunshine! Embrace the essence of summer wherever you go with this eye-catching piece that
                             effortlessly blends comfort and tropical flair. <a href="#"
@@ -153,7 +153,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-base font-normal text-gray-900">Branded shirt</span>
+                                <span class="text-sm font-normal text-gray-900">Branded shirt</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -163,7 +163,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-base font-normal text-gray-900">3 color shirt</span>
+                                <span class="text-sm font-normal text-gray-900">3 color shirt</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -173,7 +173,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-base font-normal text-gray-900">Pure Cotton Shirt with 60% as
+                                <span class="text-sm font-normal text-gray-900">Pure Cotton Shirt with 60% as
                                     40%</span>
                             </li>
                             <li class="flex items-center gap-3">
@@ -184,30 +184,30 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-base font-normal text-gray-900">all size is available</span>
+                                <span class="text-sm font-normal text-gray-900">All size is available</span>
                             </li>
                         </ul>
-                        <p class="mb-4 text-lg font-medium leading-8 text-gray-900">Size</p>
-                        <div class="w-full flex-wrap border-b border-gray-100 pb-8">
+                        <p class="mb-4 text-base font-medium leading-8 text-gray-900">Size</p>
+                        <div class="w-full flex-wrap border-b border-gray-100 pb-4">
                             <div class="grid max-w-md grid-cols-3 gap-3 min-[400px]:grid-cols-5">
                                 <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-lg font-semibold leading-8 text-gray-900 transition-all duration-300 py-1.5 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
+                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
                                     S
                                 </button>
                                 <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-lg font-semibold leading-8 text-gray-900 transition-all duration-300 py-1.5 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
+                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
                                     M
                                 </button>
                                 <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-lg font-semibold leading-8 text-gray-900 transition-all duration-300 py-1.5 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
+                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
                                     L
                                 </button>
                                 <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-lg font-semibold leading-8 text-gray-900 transition-all duration-300 py-1.5 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
+                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
                                     XL
                                 </button>
                                 <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-lg font-semibold leading-8 text-gray-900 transition-all duration-300 py-1.5 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
+                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
                                     XXL
                                 </button>
 
@@ -215,10 +215,10 @@ require base_path("Http/views/partials/aside.php");
 
                         </div>
 
-                        <div class="grid grid-cols-1 gap-3 py-8 sm:grid-cols-2">
+                        <div class="grid grid-cols-1 gap-3 py-6 sm:grid-cols-2">
                             <div class="flex w-full sm:items-center sm:justify-center">
                                 <button
-                                        class="rounded-l-full border border-gray-400 bg-white px-6 py-4 transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
+                                        class="rounded-l-full border border-gray-400 bg-white px-6 py-[14px] transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
                                     <svg class="stroke-gray-900 group-hover:stroke-black" width="22" height="22"
                                          viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.5 11H5.5" stroke="" stroke-width="1.6" stroke-linecap="round"/>
@@ -229,10 +229,10 @@ require base_path("Http/views/partials/aside.php");
                                     </svg>
                                 </button>
                                 <input type="text"
-                                       class="w-full cursor-pointer border-y border-gray-400 bg-transparent px-6 text-center text-lg font-semibold text-gray-900 placeholder:text-gray-900 outline-0 py-[13px] hover:bg-gray-50 sm:max-w-[118px]"
+                                       class="w-full cursor-pointer border-y border-gray-400 bg-transparent px-6 text-center text-base font-semibold text-gray-900 placeholder:text-gray-900 outline-0 py-[13px] hover:bg-gray-50 sm:max-w-[118px]"
                                        placeholder="1">
                                 <button
-                                        class="rounded-r-full border border-gray-400 bg-white px-6 py-4 transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
+                                        class="rounded-r-full border border-gray-400 bg-white px-6 py-[14px] transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
                                     <svg class="stroke-gray-900 group-hover:stroke-black" width="22" height="22"
                                          viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 5.5V16.5M16.5 11H5.5" stroke="#9CA3AF" stroke-width="1.6"
@@ -244,8 +244,7 @@ require base_path("Http/views/partials/aside.php");
                                     </svg>
                                 </button>
                             </div>
-                            <button
-                                    class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-lg font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
+                            <button class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-base font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
                                 <svg class="stroke-orange-600" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -268,7 +267,7 @@ require base_path("Http/views/partials/aside.php");
 
                             </button>
                             <button
-                                    class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-lg font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
+                                    class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-base font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
                                 Buy Now
                             </button>
                         </div>
@@ -279,7 +278,7 @@ require base_path("Http/views/partials/aside.php");
     </section>
 
     <!--    Reviews-->
-    <section class="mb-8 lg:w-[80%] 2xl:w-[70%] p-6 font-[sans-serif] rounded-md">
+    <section class="mb-8 lg:w-[70%] 2xl:w-[60%] p-6 font-[sans-serif] rounded-md">
         <h1 class="font-bold text-2xl mb-4">Product Ratings</h1>
         <!--        Ratings List-->
         <div class="grid lg:flex lg:justify-center lg:gap-x-8 items-center gap-">
@@ -386,7 +385,8 @@ require base_path("Http/views/partials/aside.php");
                             </svg>
                             <p class="text-gray-500 text-xs !ml-2 font-semibold">2 mins ago</p>
                         </div>
-                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
+                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the
+                            delivery was
                             impressively prompt.</p>
                     </div>
                 </div>
@@ -422,7 +422,8 @@ require base_path("Http/views/partials/aside.php");
                             </svg>
                             <p class="text-gray-500 text-xs !ml-2 font-semibold">30 mins ago</p>
                         </div>
-                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
+                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the
+                            delivery was
                             impressively prompt.</p>
                     </div>
                 </div>
@@ -431,7 +432,7 @@ require base_path("Http/views/partials/aside.php");
     </section>
 
     <!--    Shop Trending / Hot Apparel-->
-    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 lg:mb-4 w-full bg-white px-4 lg:w-[80%] 2xl:w-[70%]">
+    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 lg:mb-4 w-full bg-white px-4 lg:w-[70%] 2xl:w-[60%]">
         <button @click="$refs.scrollContainer.scrollLeft = Math.max(0, $refs.scrollContainer.scrollLeft + 200); scrollLeft = $refs.scrollContainer.scrollLeft"
                 class="absolute top-1/2 right-6 cursor-pointer rounded-full bg-white px-4 py-2 font-extrabold hover:bg-gray-300"> >
         </button>
@@ -482,7 +483,7 @@ require base_path("Http/views/partials/aside.php");
         var swiper2 = new Swiper(".product-prev", {
             loop: true,
             spaceBetween: 1,
-            effect: "cube",
+            effect: "coverflow",
             thumbs: {
                 swiper: swiper,
             },
