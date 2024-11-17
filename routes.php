@@ -25,3 +25,7 @@ $router->get('/kids', 'products/index.php');
 $router->get('/shoes', 'products/index.php');
 $router->get('/gifts', 'products/index.php');
 $router->get('/jewelry', 'products/index.php');
+
+//Individual Product Page
+$router->get('/product', 'product/index.php')->params('products');
+

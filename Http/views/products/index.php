@@ -39,7 +39,7 @@ require base_path("Http/views/partials/aside.php");
 
                     <!-- Products Section -->
                     <div x-data class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-1.avif" alt=""/>
                             </div>
@@ -131,7 +131,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-2.avif" alt=""/>
                             </div>
@@ -229,7 +229,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-1.avif" alt=""/>
                             </div>
@@ -321,7 +321,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-2.avif" alt=""/>
                             </div>
@@ -419,7 +419,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-1.avif" alt=""/>
                             </div>
@@ -511,7 +511,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-2.avif" alt=""/>
                             </div>
@@ -609,7 +609,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-1.avif" alt=""/>
                             </div>
@@ -701,7 +701,7 @@ require base_path("Http/views/partials/aside.php");
                                 </div>
                             </div>
                         </div>
-                        <div @click="window.location.href = '#'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="w-full">
                                 <img class="h-full w-full" src="/public/images/product-2.avif" alt=""/>
                             </div>
