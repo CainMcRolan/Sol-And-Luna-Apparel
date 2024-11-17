@@ -19,8 +19,8 @@ jobs:
           
       - name: Install Composer dependencies
         run: |
-          curl -sS https://getcomposer.org/installer | php  # Install Composer if not already present
-          php composer.phar install --no-interaction --prefer-dist  # Install vendor dependencies
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install --no-interaction --prefer-dist 
 
       - name: Upload .env file
         run: echo "$ENV_FILE" > .env  
@@ -29,15 +29,15 @@ jobs:
 
       - name: Set up FTP deployment
         run: |
-          sudo apt-get install lftp  # Install lftp for FTP deployment
+          sudo apt-get install lftp 
           
       - name: Deploy to InfinityFree via FTP
         run: |
           lftp -f "
           open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER:$FTP_PORT
-          lcd ./  # Local directory to upload (current directory in the repo)
-          cd $FTP_DIRECTORY  # Remote directory on InfinityFree
-          mirror -R ./ ./  # Upload all files recursively, including vendor and .env
+          lcd ./  
+          cd /solapparel.live/htdocs 
+          mirror -R ./ ./  
           bye
           "
         env:
