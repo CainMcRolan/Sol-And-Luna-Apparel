@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
 
 -- Dumping data for table luna.addresses: ~2 rows (approximately)
 INSERT INTO `addresses` (`address_id`, `user_id`, `street_address`, `city`, `province`, `zip_code`, `country`, `is_default`) VALUES
-	(1, 7, '163 Rizal Street', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1),
+	(1, 7, '163 Rizal Street', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 0),
 	(2, 10, 'Calingatan', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1);
 
 -- Dumping structure for table luna.cart_items
