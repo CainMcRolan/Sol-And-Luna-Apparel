@@ -17,7 +17,7 @@
         </span>
     </li>
 
-    <li @click="window.location.href= '/summary'" class="cursor-pointer hover:text-orange-600 <?= url_is('/summary') ? 'text-primary-700' : '' ?>flex shrink-0 items-center ">
+    <li @click="window.location.href= '/summary'" class="cursor-pointer hover:text-orange-600 <?= url_is('/summary') ? 'text-primary-700' : '' ?> flex shrink-0 items-center ">
         <svg class="h-4 w-4 me-2 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
         </svg>
