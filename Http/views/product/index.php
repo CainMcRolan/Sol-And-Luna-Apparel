@@ -15,7 +15,7 @@ require base_path("Http/views/partials/aside.php");
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img src="https://pagedone.io/asset/uploads/1700471851.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
+                                     alt="Yellow Travel Bag image" class="mx-auto object-cover shadow-none">
                             </div>
                             <div class="swiper-slide">
                                 <img src="https://pagedone.io/asset/uploads/1711514857.png"
@@ -431,7 +431,7 @@ require base_path("Http/views/partials/aside.php");
     </section>
 
     <!--    Shop Trending / Hot Apparel-->
-    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 w-full bg-white px-4 lg:w-[80%] 2xl:w-[70%]">
+    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 lg:mb-4 w-full bg-white px-4 lg:w-[80%] 2xl:w-[70%]">
         <button @click="$refs.scrollContainer.scrollLeft = Math.max(0, $refs.scrollContainer.scrollLeft + 200); scrollLeft = $refs.scrollContainer.scrollLeft"
                 class="absolute top-1/2 right-6 cursor-pointer rounded-full bg-white px-4 py-2 font-extrabold hover:bg-gray-300"> >
         </button>
@@ -482,11 +482,14 @@ require base_path("Http/views/partials/aside.php");
         var swiper2 = new Swiper(".product-prev", {
             loop: true,
             spaceBetween: 1,
-            effect: "coverflow",
+            effect: "cube",
             thumbs: {
                 swiper: swiper,
             },
-
+            cubeEffect: {
+                shadow: false,
+                slideShadows: false
+            }
         });
     </script>
 <?php
