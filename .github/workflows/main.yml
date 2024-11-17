@@ -1,18 +1,58 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Deploy PHP to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  
+
 jobs:
-  Explore-GitHub-Actions:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.12' 
+          
+      - name: Install Composer dependencies
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          curl -sS https://getcomposer.org/installer | php  # Install Composer if not already present
+          php composer.phar install --no-interaction --prefer-dist  # Install vendor dependencies
+
+      - name: Upload .env file
+        run: echo "$ENV_FILE" > .env  
+        env:
+          ENV_FILE: ${{ secrets.ENV_FILE }}  
+
+      - name: Set up FTP deployment
+        run: |
+          sudo apt-get install lftp  # Install lftp for FTP deployment
+          
+      - name: Deploy to InfinityFree via FTP
+        run: |
+          lftp -f "
+          open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER:$FTP_PORT
+          lcd ./  # Local directory to upload (current directory in the repo)
+          cd $FTP_DIRECTORY  # Remote directory on InfinityFree
+          mirror -R ./ ./  # Upload all files recursively, including vendor and .env
+          bye
+          "
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_DIRECTORY: ${{ secrets.FTP_DIRECTORY }}
+          DATABASE_HOSTNAME: ${{ secrets.DATABASE_HOSTNAME }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_CHARSET: ${{ secrets.DATABASE_CHARSET }}
+
+      - name: Confirm deployment
+        run: |
+          echo "Deployment to InfinityFree completed!"
