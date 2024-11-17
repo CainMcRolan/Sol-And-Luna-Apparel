@@ -1,5 +1,5 @@
 <!--Navigation-->
-<nav id="header-top"
+<nav x-data id="header-top"
      class="h-[60px]  w-full text-xs flex justify-center gap-x-4 text-white bg-[#1d1d1d] border-b border-white sm:grid sm:justify-items-center sm:items-center sm:grid-cols-[20%_55%_20%] md:grid-cols-[20%_40%_20%] 2xl:grid-cols-[30%_30%_30%] md:text-sm sm:justify-around">
     <!--    Aside Choices (Mobile View)-->
     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
@@ -47,7 +47,7 @@
             </g>
         </svg>
         <!--            Cart SVG-->
-        <svg class="cursor-pointer hover:fill-white" width="26px" height="26x" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg @click="window.location.href = '/cart'" class="cursor-pointer hover:fill-white" width="26px" height="26x" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
