@@ -32,3 +32,5 @@ $router->get('/product', 'product/index.php')->params('home');
 //Shopping Cart - Subject to Change (Add User Authorization and Params)
 $router->get('/cart', 'cart/index.php')->only('user');
 
+//Order Checkout - Subject to Change (Add User Authorization and Params)
+$router->get('/checkout', 'checkout/index.php')->only('user');
