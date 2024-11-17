@@ -64,7 +64,7 @@ require base_path("Http/views/partials/aside.php");
                         <div class="mb-6 flex flex-col sm:flex-row sm:items-center">
                             <h6
                                     class="mr-5 border-gray-200 pr-5 text-2xl font-semibold leading-9 text-gray-900 font-manrope sm:border-r">
-                                $220</h6>
+                                ₱220</h6>
                             <div class="flex items-center gap-2">
                                 <div class="flex items-center gap-1">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -268,7 +268,7 @@ require base_path("Http/views/partials/aside.php");
 
                             </button>
                             <button
-                                    class="flex w-full items-center justify-center bg-orange-600 px-5 py-4 text-center text-lg font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
+                                    class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-lg font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
                                 Buy Now
                             </button>
                         </div>
@@ -282,8 +282,8 @@ require base_path("Http/views/partials/aside.php");
     <section class="mb-8 lg:w-[80%] 2xl:w-[70%] p-6 font-[sans-serif] rounded-md">
         <h1 class="font-bold text-2xl mb-4">Product Ratings</h1>
         <!--        Ratings List-->
-        <div class="grid lg:flex lg:justify-center items-center gap-4">
-            <div class="flex flex-col items-center justify-center max-sm:mb-2">
+        <div class="grid lg:flex lg:justify-center lg:gap-x-8 items-center gap-">
+            <div class="flex flex-col items-center justify-center max-sm:mb-2 my-4">
                 <h3 class="font-extrabold text-4xl">3.0</h3>
                 <div class="mt-4 text-center">
                     <div class="flex items-center gap-1">
@@ -308,7 +308,7 @@ require base_path("Http/views/partials/aside.php");
                                     d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
                         </svg>
                     </div>
-                    <p class="mt-1.5 text-gray-500 text-xs">5,456,852</p>
+                    <p class="mt-1.5 text-gray-500 text-xs">1,624</p>
                 </div>
             </div>
             <div class="space-y-1 lg:w-[50%]">
@@ -353,7 +353,7 @@ require base_path("Http/views/partials/aside.php");
         <!--        Reviews List-->
         <div class="">
             <h3 class="font-bold text-base">All Reviews(2)</h3>
-            <div class="mt-6 space-y-4">
+            <div class="mt-6 space-y-8">
                 <div class="flex items-start">
                     <img src="https://readymadeui.com/team-2.webp" class="w-12 h-12 rounded-full border-2 border-white"/>
                     <div class="ml-3">
@@ -386,7 +386,7 @@ require base_path("Http/views/partials/aside.php");
                             </svg>
                             <p class="text-gray-500 text-xs !ml-2 font-semibold">2 mins ago</p>
                         </div>
-                        <p class="text-xs text-gray-500 mt-3">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
+                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
                             impressively prompt.</p>
                     </div>
                 </div>
@@ -422,7 +422,7 @@ require base_path("Http/views/partials/aside.php");
                             </svg>
                             <p class="text-gray-500 text-xs !ml-2 font-semibold">30 mins ago</p>
                         </div>
-                        <p class="text-xs text-gray-500 mt-3">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
+                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was
                             impressively prompt.</p>
                     </div>
                 </div>
@@ -431,7 +431,7 @@ require base_path("Http/views/partials/aside.php");
     </section>
 
     <!--    Shop Trending / Hot Apparel-->
-    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 w-full bg-white px-4 lg:w-[80%] 2xl:w-[70%]" data-aos="fade-left" data-aos-duration="1000">
+    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 w-full bg-white px-4 lg:w-[80%] 2xl:w-[70%]">
         <button @click="$refs.scrollContainer.scrollLeft = Math.max(0, $refs.scrollContainer.scrollLeft + 200); scrollLeft = $refs.scrollContainer.scrollLeft"
                 class="absolute top-1/2 right-6 cursor-pointer rounded-full bg-white px-4 py-2 font-extrabold hover:bg-gray-300"> >
         </button>
