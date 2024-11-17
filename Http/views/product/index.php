@@ -5,7 +5,7 @@ require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
     <!--    Individual Product Page-->
-    <section class="relative mt-8 lg:my-8">
+    <section x-data class="relative mt-8 lg:my-8">
         <div class="mx-auto w-full lg:w-[70%] 2xl:w-[60%] px-4 sm:px-6 lg:px-0">
             <div class="mx-auto grid grid-cols-1 lg:gap-8 2xl:gap-10 max-md:px-2 lg:grid-cols-2">
                 <!-- Image Display-->
@@ -244,7 +244,7 @@ require base_path("Http/views/partials/aside.php");
                                     </svg>
                                 </button>
                             </div>
-                            <button class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-base font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
+                            <button @click="window.location.href = '/cart'"  class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-base font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
                                 <svg class="stroke-orange-600" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path

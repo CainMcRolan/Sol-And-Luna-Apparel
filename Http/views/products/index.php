@@ -4,7 +4,7 @@ require base_path("Http/views/partials/header.php");
 require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
-    <div x-data="{sortExpanded:false, filterExpanded:false}" class="w-full flex flex-col justify-center items-center p-6 md:p-12 gap-y-3">
+    <section x-data="{sortExpanded:false, filterExpanded:false}" class="w-full flex flex-col justify-center items-center p-6 md:p-12 gap-y-3">
         <header class="w-full max-w-screen-2xl ">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -821,7 +821,7 @@ require base_path("Http/views/partials/aside.php");
                 <?php require base_path('Http/views/products/filter.php') ?>
             </section>
         </article>
-    </div>
+    </section>
 <?php
 require base_path("Http/views/partials/footer.php");
 ?>

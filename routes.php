@@ -27,8 +27,8 @@ $router->get('/gifts', 'products/index.php');
 $router->get('/jewelry', 'products/index.php');
 
 //Individual Product Page
-$router->get('/product', 'product/index.php')->params('products');
+$router->get('/product', 'product/index.php')->params('home');
 
 //Shopping Cart - Subject to Change (Add User Authorization and Params)
-$router->get('/cart', 'cart/index.php');
+$router->get('/cart', 'cart/index.php')->only('user');
 
