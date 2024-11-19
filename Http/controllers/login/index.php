@@ -3,7 +3,7 @@
 use Core\Session;
 
 $errors = Session::get('errors') ?? [];
-$success = Session::get('success') ?? '';
+$login_notice = Session::get('login') ?? '';
 $email = old('email');
 
 require base_path('Http/views/login/index.php');
