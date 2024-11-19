@@ -7,7 +7,7 @@
     <div class="text-sm text-black flex flex-col items-center mb-4">
         <div class="flex flex-col gap-y-2 gap-x-1 my-2 mx-4 text-neutral-700">
             <p class="block py-2 font-bold">My Account</p>
-            <a href="" class="text-xs hover:underline">My Dashboard</a>
+            <a href="/profile/dashboard" class="text-xs hover:underline">My Dashboard</a>
             <a href="" class="text-xs hover:underline">Order History</a>
             <a href="" class="text-xs hover:underline">Profile</a>
             <a href="" class="text-xs hover:underline">Payment Methods</a>

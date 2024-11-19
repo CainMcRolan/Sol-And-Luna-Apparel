@@ -37,3 +37,6 @@ $router->get('/checkout', 'checkout/index.php')->only('user');
 
 //Order Summary - Subject to Change (Add User Authorization and Params)
 $router->get('/summary', 'summary/index.php')->only('user');
+
+//Profile Page
+$router->get('/profile/dashboard', 'dashboard/index.php')->only('user');
