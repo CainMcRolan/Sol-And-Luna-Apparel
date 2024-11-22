@@ -365,12 +365,12 @@
 
                                 <ul class="grid grid-cols-2 gap-4">
                                     <li>
-                                        <input type="radio" id="delivery-asia" name="delivery" value="delivery-asia" class="peer hidden" checked/>
-                                        <label for="delivery-asia"
+                                        <input type="radio" id="delivery-philippines" name="delivery" value="delivery-philippines" class="peer hidden" checked/>
+                                        <label for="delivery-philippines"
                                                class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold">Asia</div>
-                                                <div class="w-full">Delivery only for Asia</div>
+                                                <div class="w-full text-base font-semibold">Philippines</div>
+                                                <div class="w-full text-sm">Delivery only for Philippines</div>
                                             </div>
                                         </label>
                                     </li>

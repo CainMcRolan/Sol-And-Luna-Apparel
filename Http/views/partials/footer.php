@@ -1,3 +1,5 @@
+<?php require base_path("Http/views/messages/index.php")?>
+
 <footer class="w-full bg-[#f0f0f0] flex justify-center">
     <div class="w-full bg-[#f0f0f0] p-4 flex flex-col lg:grid lg:grid-cols-[30%_60%] gap-y-4 mt-12 2xl:w-3/5">
         <div class="flex flex-col gap-y-4">

@@ -46,3 +46,9 @@ $router->get('/order-history', 'orders/index.php')->only('user');
 
 //Payment Methods
 $router->get('/payment-methods', 'payment/index.php')->only('user');
+
+//Addresses
+$router->get('/addresses', 'addresses/index.php')->only('user');
+
+//Wishlist
+$router->get('/wishlist', 'wishlist/index.php')->only('user');

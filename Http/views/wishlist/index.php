@@ -4,180 +4,123 @@ require base_path("Http/views/partials/header.php");
 require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
-    <section x-data="{filterExpanded:false, sortExpanded:false}" class="w-full flex flex-col justify-center items-center md:p-12 gap-y-3 mb-12">
+    <section class="mb-6 w-full flex flex-col justify-center items-center md:p-12 gap-y-3">
         <?php require base_path("Http/views/partials/profile/nav.php") ?>
         <article class="flex gap-x-16 w-full md:w-[80%] 2xl:w-[60%]">
             <aside class="hidden lg:block pt-16">
                 <?php require base_path('Http/views/partials/profile/aside.php') ?>
             </aside>
             <section class="antialiased w-full dark:bg-gray-900">
-                <div class="mx-auto w-full px-4 2xl:px-0">
-                    <h1 class="hidden lg:block font-semibold text-2xl"><?= get_page_title() ?></h1>
+                <div class="mx-auto w-full  px-4 2xl:px-0">
+                    <h1 class="hidden lg:block font-semibold text-2xl"><?= get_page_title() ?> (2 items)</h1>
                     <div class="mx-auto mt-6 space-y-4">
-                        <!-- Search and Filter Header -->
-                        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4">
-                            <div class="flex gap-2">
-                                <label>
-                                    <input type="text" placeholder="Search by Order ID" class="px-3 py-2 text-sm border border-neutral-300 rounded-md w-64">
-                                </label>
-                                <button class="bg-neutral-800 text-white px-4 py-2 text-sm rounded-md hover:bg-neutral-700">Search</button>
-                            </div>
-                            <div class="flex gap-4 justify-between">
-                                <button @click="filterExpanded=!filterExpanded" x-ref="filterButton" type="button"
-                                        class="text-nowrap flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-                                    <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"></path>
-                                    </svg>
-                                    Filter By
-                                    <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                    </svg>
-                                </button>
-                                <?php require base_path("Http/views/orders/filter.php") ?>
-                                <button @click="sortExpanded=!sortExpanded" x-ref="sortButton" type="button"
-                                        class="text-nowrap flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-                                    <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4"/>
-                                    </svg>
-                                    Sort
-                                    <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                    </svg>
-                                </button>
-                                <?php require base_path("Http/views/orders/sort.php") ?>
+                        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                            <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                <a href="#" class="shrink-0 md:order-1">
+                                    <img class="w-28 h-28 rounded-md" src="/public/images/product-1.avif" alt="imac image"/>
+                                </a>
+                                <div class="flex items-center justify-between md:order-3 md:justify-end">
+                                    <div class="flex items-center">
+                                        <label for=""></label>
+                                        <select name="" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                            <option value="" class="cursor-pointer">1</option>
+                                            <option value="" class="cursor-pointer">2</option>
+                                            <option value="" class="cursor-pointer">3</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-end md:order-4 md:w-32">
+                                        <p class="text-base font-bold text-gray-900 dark:text-white">₱1,499</p>
+                                    </div>
+                                </div>
+                                <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                    <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">Curry 12 'Wardell Mode' Basketball Shoes</a>
+                                    <p class="text-neutral-500 text-xs">What's Wardell Mode? It's that look in #30's eyes when he's going off. Curry 12 'Wardell Mode' combines UA Flow's grip with the
+                                        black and gray storm that his fierce competitiveness brings. Take cover—the daggers about to drop.</p>
+                                    <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
+                                        <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
+                                        </svg>
+                                        Fast Delivery
+                                    </p>
+                                    <div class="flex items-center gap-4">
+                                        <button type="button"
+                                                class="group inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                            <svg class="me-1.5 h-5 w-5 group-hover:fill-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+                                            </svg>
+                                            Remove from Favorites
+                                        </button>
+
+                                        <button type="button" class="group inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                                            <svg class="cursor-pointer me-1.5 group-hover:fill-red-600" stroke="currentColor" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="currentColor" stroke-width="1.104" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </g>
+                                            </svg>
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Order Cards -->
-                        <div class="space-y-4">
-                            <!-- Pre-order Card -->
-                            <div class="border rounded-lg p-4 space-y-4 bg-white">
-                                <div class="flex flex-col sm:flex-row justify-between gap-4">
-                                    <div class="space-y-1">
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-gray-600">Order ID:</span>
-                                            <span class="font-medium">#FWB1273643</span>
-                                            <span class="bg-blue-100 text-blue-800 text-sm px-2 py-0.5 rounded">New</span>
-                                        </div>
-                                        <a href="#" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                            </svg>
-                                            Download invoice
-                                        </a>
-                                    </div>
-                                    <div class="flex gap-2 h-12 lg:h-10">
-                                        <button class=" text-sm px-4 py-1 bg-red-600 text-white rounded hover:bg-red-800">Cancel order</button>
-                                        <button class=" text-sm px-4 py-1 border rounded hover:bg-gray-50">Track order</button>
-                                        <button class=" text-sm px-4 py-1 border rounded hover:bg-gray-50">Order details</button>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                                    <div>
-                                        <span class="text-gray-600">Order date:</span>
-                                        <span class="ml-2">24 January 2024</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-gray-600">Email:</span>
-                                        <span class="ml-2">name@example.com</span>
-                                    </div>
+                        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                            <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                <a href="#" class="shrink-0 md:order-1">
+                                    <img class="w-28 h-28 rounded-md" src="/public/images/product-2.avif" alt="imac image"/>
+                                </a>
+                                <div class="flex items-center justify-between md:order-3 md:justify-end">
                                     <div class="flex items-center">
-                                        <span class="text-gray-600">Payment method:</span>
-                                        <div class="ml-2 w-8 h-5 bg-[#FF5F00] rounded"></div>
+                                        <label for=""></label>
+                                        <select name="" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                            <option value="" class="cursor-pointer">1</option>
+                                            <option value="" class="cursor-pointer">2</option>
+                                            <option value="" class="cursor-pointer">3</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-end md:order-4 md:w-32">
+                                        <p class="text-base font-bold text-gray-900 dark:text-white">₱1,499</p>
                                     </div>
                                 </div>
-                                <div class="text-sm text-orange-700 bg-orange-50 p-3 rounded-md flex items-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    Expected delivery on Monday 16 Jul 2024
-                                </div>
-                            </div>
-
-                            <!-- In Transit Card -->
-                            <div class="border rounded-lg p-4 space-y-4 bg-white">
-                                <div class="flex flex-col sm:flex-row justify-between gap-4">
-                                    <div class="space-y-1">
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-gray-600">Order ID:</span>
-                                            <span class="font-medium">#FWB1273722</span>
-                                            <span class="bg-yellow-100 text-yellow-800 text-sm px-2 py-0.5 rounded">Processing</span>
-                                        </div>
-                                        <a href="#" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                    <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">Curry 12 'Wardell Mode' Basketball Shoes</a>
+                                    <p class="text-neutral-500 text-xs">What's Wardell Mode? It's that look in #30's eyes when he's going off. Curry 12 'Wardell Mode' combines UA Flow's grip with the
+                                        black and gray storm that his fierce competitiveness brings. Take cover—the daggers about to drop.</p>
+                                    <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
+                                        <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
+                                        </svg>
+                                        Fast Delivery
+                                    </p>
+                                    <div class="flex items-center gap-4">
+                                        <button type="button"
+                                                class="group inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                            <svg class="me-1.5 h-5 w-5 group-hover:fill-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
                                             </svg>
-                                            Download invoice
-                                        </a>
-                                    </div>
-                                    <div class="flex gap-2 h-12 lg:h-10">
-                                        <button class="text-sm px-4 py-1 bg-red-600 text-white rounded hover:bg-red-800">Cancel order</button>
-                                        <button class="text-sm px-4 py-1 border rounded hover:bg-gray-50">Track order</button>
-                                        <button class="text-sm px-4 py-1 border rounded hover:bg-gray-50">Order details</button>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                                    <div>
-                                        <span class="text-gray-600">Order date:</span>
-                                        <span class="ml-2">01 May 2024</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-gray-600">Email:</span>
-                                        <span class="ml-2">name@example.com</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-gray-600">Payment method:</span>
-                                        <div class="ml-2 w-8 h-5 bg-[#1A1F71] rounded"></div>
-                                    </div>
-                                </div>
-                                <div class="text-sm text-orange-700 bg-orange-50 p-3 rounded-md flex items-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    Expected delivery Today
-                                </div>
-                            </div>
+                                            Remove from Favorites
+                                        </button>
 
-                            <!-- Completed Card -->
-                            <div class="border rounded-lg p-4 space-y-4 bg-white">
-                                <div class="flex flex-col sm:flex-row justify-between gap-4">
-                                    <div class="space-y-1">
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-gray-600">Order ID:</span>
-                                            <span class="font-medium">#FWB1273756</span>
-                                            <span class="bg-green-100 text-green-800 text-sm px-2 py-0.5 rounded">Delivered</span>
-                                        </div>
-                                        <a href="#" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                        <button type="button" class="group inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                                            <svg class="cursor-pointer me-1.5 group-hover:fill-red-600" stroke="currentColor" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="currentColor" stroke-width="1.104" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </g>
                                             </svg>
-                                            Download invoice
-                                        </a>
+                                            Add to Cart
+                                        </button>
                                     </div>
-                                    <div class="flex gap-2 h-12 lg:h-10">
-                                        <button class="text-sm px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Order again</button>
-                                        <button class="text-sm px-4 py-1 border rounded hover:bg-gray-50">Order details</button>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                                    <div>
-                                        <span class="text-gray-600">Order date:</span>
-                                        <span class="ml-2">01 May 2024</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-gray-600">Email:</span>
-                                        <span class="ml-2">name@example.com</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-gray-600">Payment method:</span>
-                                        <div class="ml-2 w-8 h-5 bg-[#1A1F71] rounded"></div>
-                                    </div>
-                                </div>
-                                <div class="text-sm text-green-700 bg-green-50 p-3 rounded-md flex items-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    Delivered on Friday 04 May 2024
                                 </div>
                             </div>
                         </div>
