@@ -39,4 +39,10 @@ $router->get('/checkout', 'checkout/index.php')->only('user');
 $router->get('/summary', 'summary/index.php')->only('user');
 
 //Profile Page
-$router->get('/profile/dashboard', 'dashboard/index.php')->only('user');
+$router->get('/dashboard', 'dashboard/index.php')->only('user');
+
+//Order History
+$router->get('/order-history', 'orders/index.php')->only('user');
+
+//User Profile
+$router->get('/profile', 'profile/index.php')->only('user');

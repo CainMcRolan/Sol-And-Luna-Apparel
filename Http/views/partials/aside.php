@@ -8,7 +8,7 @@
         </svg>
     </div>
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white flex flex-col gap-y-4">
-        <a href="/profile/dashboard" class="<?= $user ? 'flex' : 'hidden' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">My Account</a>
+        <a href="/dashboard" class="<?= $user ? 'flex' : 'hidden' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">My Account</a>
         <a href="/login" class="<?= $user ? 'hidden' : 'flex' ?> font-semibold text-md gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">Register | Login</a>
         <a href="/new" class="font-semibold text-md flex gap-x-2 items-center justify-between  hover:border-b-2 hover:border-white cursor-pointer transition text-md md:text-[1rem]">New & Featured🔥</a>
         <template x-for="category in categories">

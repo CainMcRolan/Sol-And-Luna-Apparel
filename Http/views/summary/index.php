@@ -24,7 +24,7 @@ require base_path("Http/views/partials/aside.php");
                                 <p class="font-semibold text-base leading-7 text-black mt-4">Order Payment : <span class="text-neutral-600 font-medium">Nov. 18, 2024</span></p>
                             </div>
                             <a href="/myorders"
-                               class="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-orange-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-orange-700 hover:shadow-orange-400">
+                               class="text-center rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-orange-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-orange-700 hover:shadow-orange-400">
                                 Track
                                 Your Order
                             </a>

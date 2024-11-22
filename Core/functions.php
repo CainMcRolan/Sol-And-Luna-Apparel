@@ -46,6 +46,11 @@ function get_url(): array
     return ['name' => ucfirst(substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1)), 'url' => parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)];
 }
 
+function get_page_title(): string
+{
+    return str_replace('-',' ',ucfirst(substr($_SERVER['REQUEST_URI'], 1)));
+}
+
 function url($url): bool
 {
     return $_SERVER['REQUEST_URI'] === $url;
