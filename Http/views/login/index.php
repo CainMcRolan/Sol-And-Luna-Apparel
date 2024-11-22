@@ -6,7 +6,7 @@ require base_path("Http/views/partials/aside.php");
 ?>
     <!--   Login -->
     <div class="w-full h-fit">
-        <form x-data="{isVisible:false}" method="POST" action="/login" class=" w-full flex flex-col">
+        <form x-data="{isVisible:false}" method="POST" action="/login" class=" w-full items-center flex flex-col">
             <?php if ($login_notice) : ?>
                 <?php require base_path("Http/views/login/notice.php") ?>
             <?php endif; ?>

@@ -9,7 +9,7 @@
         <div class="flex items-center ">
             <div class="flex-shrink-0">
                 <img class="w-10 h-10 rounded-full"
-                     src="/public/images/customer-service.svg ?>"
+                     src="/public/images/customer-service.svg"
                      alt="">
             </div>
             <div class="flex-1 min-w-0 ms-4">
@@ -27,8 +27,7 @@
         <!--                Chat Mate Message-->
         <div class="flex items-start gap-2.5">
             <img class="w-8 h-8 rounded-full"
-                 src="/public/images/customer-service.svg
-                         ?>" alt="">
+                 src="/public/images/customer-service.svg" alt="">
             <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
                 <div class="flex items-center space-x-2 rtl:space-x-reverse">
                     <span class="text-sm font-semibold text-gray-900 dark:text-white">Customer Service</span>

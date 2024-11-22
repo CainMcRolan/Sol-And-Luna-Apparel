@@ -55,4 +55,4 @@ jobs:
 
       - name: Confirm deployment
         run: |
-          echo "Deployment to InfinityFree completed!"
+          echo "Deployment to InfinityFree completed!" 
