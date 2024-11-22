@@ -6,12 +6,12 @@ require base_path("Http/views/partials/aside.php");
 ?>
     <!--   Login -->
     <div class="w-full h-fit">
-        <form x-data="{isVisible:false}" method="POST" action="/login" class="w-full flex items-center flex-col">
+        <form x-data="{isVisible:false}" method="POST" action="/login" class=" w-full flex flex-col">
             <?php if ($login_notice) : ?>
                 <?php require base_path("Http/views/login/notice.php") ?>
             <?php endif; ?>
             <!-- Left side - Login Form -->
-            <div class="w-full py-8 flex items-center justify-center">
+            <div class="w-full p-8 flex items-center justify-center">
                 <div class="w-full max-w-md">
                     <!-- Logo -->
                     <div class="flex items-center gap-2 mb-8">
