@@ -23,7 +23,7 @@ require base_path("Http/views/partials/aside.php");
                                 <p class="font-semibold text-base leading-7 text-black">Order Id: <span class="text-orange-600 font-medium">#10234987</span></p>
                                 <p class="font-semibold text-base leading-7 text-black mt-4">Order Payment : <span class="text-neutral-600 font-medium">Nov. 18, 2024</span></p>
                             </div>
-                            <a href="/myorders"
+                            <a href="/order-history"
                                class="text-center rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-orange-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-orange-700 hover:shadow-orange-400">
                                 Track
                                 Your Order
@@ -82,8 +82,8 @@ require base_path("Http/views/partials/aside.php");
 
                         </div>
                         <div class="w-full border-t border-gray-200 px-6 flex flex-col lg:flex-row items-center justify-between ">
-                            <div class="flex flex-col sm:flex-row items-center max-lg:border-b border-gray-200">
-                                <button
+                            <div x-data class="flex flex-col sm:flex-row items-center max-lg:border-b border-gray-200">
+                                <button @click="window.location.href = '/order-history'"
                                         class="flex outline-0 py-6 sm:pr-6  sm:border-r border-gray-200 whitespace-nowrap gap-2 items-center justify-center font-semibold group text-base text-black bg-white transition-all duration-500 hover:text-orange-600">
                                     <svg class="stroke-black transition-all duration-500 group-hover:stroke-orange-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22"
                                          fill="none">

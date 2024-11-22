@@ -38,11 +38,11 @@ $router->get('/checkout', 'checkout/index.php')->only('user');
 //Order Summary - Subject to Change (Add User Authorization and Params)
 $router->get('/summary', 'summary/index.php')->only('user');
 
-//Profile Page
-$router->get('/dashboard', 'dashboard/index.php')->only('user');
+//User Profile
+$router->get('/profile', 'profile/index.php')->only('user');
 
 //Order History
 $router->get('/order-history', 'orders/index.php')->only('user');
 
-//User Profile
-$router->get('/profile', 'profile/index.php')->only('user');
+//Payment Methods
+$router->get('/payment-methods', 'payment/index.php')->only('user');
