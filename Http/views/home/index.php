@@ -5,7 +5,9 @@ require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
     <!--    Section 1 - Introduction-->
-    <h1><?= "Welcome Back " . $_SESSION['user']['first_name'] ?></h1>
+    <?php if ($_SESSION['user'] ?? false) : ?>
+        <h1 class="text-xs bg-[#1d1d1d] py-1 text-white w-full text-center"><?= "Welcome Back " . $_SESSION['user']['first_name'] ?></h1>
+    <?php endif; ?>
     <div class="w-full h-[calc(100svh-100px)] sm:h-fit mb-8 sm:mb-16">
         <img src="/public/images/homepage.avif" alt="" class="sm:hidden">
         <img src="/public/images/homepage-2.avif" alt="" class="hidden sm:block">
@@ -45,7 +47,7 @@ require base_path("Http/views/partials/aside.php");
 
     <!--    Advertisement Parallax-->
     <div class="mt-12 mb-8 w-full bg-white 2xl:w-[70%]">
-        <img src="/public/images/coldgear.avif" alt="" class="sm:hidden" >
+        <img src="/public/images/coldgear.avif" alt="" class="sm:hidden">
         <img src="/public/images/coldgear-sm.avif" alt="" class="hidden sm:block">
         <div class="flex w-full flex-col items-center justify-center p-4 sm:my-8">
             <h1 class="text-center text-4xl font-barlow sm:text-6xl">UA COLDGEAR® BASELAYER</h1>
