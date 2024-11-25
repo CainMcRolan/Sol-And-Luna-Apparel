@@ -13,6 +13,12 @@ $router->post('/register', 'register/create.php')->only('guest');
 //Login
 $router->get('/login', 'login/index.php')->only('guest');
 $router->post('/login', 'login/verify.php')->only('guest');
+//Facebook Authentication
+$router->get('/facebook', 'login/Authentication/facebook.php')->only('guest');
+$router->post('/facebook', 'login/Authentication/facebook.php')->only('guest');
+//Google Authentication
+$router->get('/google', 'login/Authentication/google.php')->only('guest');
+$router->post('/google', 'login/Authentication/google.php')->only('guest');
 
 //Logout
 $router->delete('/logout', 'login/logout.php')->only('user');
@@ -52,3 +58,4 @@ $router->get('/addresses', 'addresses/index.php')->only('user');
 
 //Wishlist
 $router->get('/wishlist', 'wishlist/index.php')->only('user');
+

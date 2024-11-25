@@ -155,15 +155,17 @@ require base_path("Http/views/partials/aside.php");
 
                         <!-- Social Login Buttons -->
                         <div class="grid grid-cols-3 gap-4">
-                            <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <!-- Facebook-->
+                            <a href="/facebook" class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex justify-center">
                                     <svg class="w-5 h-5 text-blue-600" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                                     </svg>
                                 </div>
-                            </button>
-                            <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            </a>
+                            <!-- Google-->
+                            <a href="/google" class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex justify-center">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24">
                                         <path fill="#4285F4"
@@ -176,14 +178,15 @@ require base_path("Http/views/partials/aside.php");
                                               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                                     </svg>
                                 </div>
-                            </button>
-                            <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            </a>
+                            <!-- Undecided -->
+                            <a href="#" class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex justify-center">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24">
                                         <path d="M17.05 20.28c-.98.95-2.05.88-3.08.54-1.07-.36-2.06-.35-3.17 0-1.4.44-2.13.37-3.02-.53C4.26 16.89 3.85 12.47 6.56 9.9c1.58-1.5 3.24-1.05 4.83-.5 1.5.52 2.23.52 3.73 0 1.76-.61 3.13-.49 4.46.69l-3.23 3.12c-1.69-1.93-4.34-1.45-5.42.47-1.34 2.37.06 5.02 2.79 5.58 2.08.43 3.85-.71 4.98-2.98h-4.72v-4.14h8.62c-.06.89-.15 1.75-.35 2.71-.63 3.05-2.38 5.02-5.2 5.43zm0 0"/>
                                     </svg>
                                 </div>
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Login Link -->
