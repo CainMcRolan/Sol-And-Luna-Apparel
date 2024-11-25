@@ -5,6 +5,7 @@ require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
     <!--    Section 1 - Introduction-->
+    <h1><?= "Welcome Back " . $_SESSION['user']['first_name'] ?></h1>
     <div class="w-full h-[calc(100svh-100px)] sm:h-fit mb-8 sm:mb-16">
         <img src="/public/images/homepage.avif" alt="" class="sm:hidden">
         <img src="/public/images/homepage-2.avif" alt="" class="hidden sm:block">
