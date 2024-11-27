@@ -1,9 +1,9 @@
-name: Deploy PHP to InfinityFree
+name: Deploy Dashboard to InfinityFree
 
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   deploy:
@@ -15,28 +15,28 @@ jobs:
       - name: Set up PHP and Composer
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3.12' 
-          
+          php-version: '8.3.12'
+
       - name: Install Composer dependencies
         run: |
           curl -sS https://getcomposer.org/installer | php
           php composer.phar install --no-interaction --prefer-dist 
 
       - name: Upload .env file
-        run: echo "$ENV_FILE" > .env  
+        run: echo "$ENV_FILE" > .env
         env:
-          ENV_FILE: ${{ secrets.ENV_FILE }}  
+          ENV_FILE: ${{ secrets.ENV_FILE }}
 
       - name: Set up FTP deployment
         run: |
           sudo apt-get install lftp 
-          
+
       - name: Deploy to InfinityFree via FTP
         run: |
           lftp -f "
           open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER:$FTP_PORT
           lcd ./  
-          cd /solapparel.live/htdocs 
+          cd /admin.solapparel.live/htdocs 
           mirror -R ./ ./  
           bye
           "
@@ -45,14 +45,7 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
-          FTP_DIRECTORY: ${{ secrets.FTP_DIRECTORY }}
-          DATABASE_HOSTNAME: ${{ secrets.DATABASE_HOSTNAME }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_CHARSET: ${{ secrets.DATABASE_CHARSET }}
 
       - name: Confirm deployment
         run: |
-          echo "Deployment to InfinityFree completed!" 
+          echo "Deployment completed!"
