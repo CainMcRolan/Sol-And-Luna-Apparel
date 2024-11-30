@@ -48,7 +48,7 @@ function get_url(): array
 
 function get_page_title(): string
 {
-    return str_replace('-',' ',ucfirst(substr($_SERVER['REQUEST_URI'], 1)));
+    return str_replace('-', ' ', ucfirst(substr($_SERVER['REQUEST_URI'], 1)));
 }
 
 function url($url): bool
@@ -96,4 +96,9 @@ function previous_url(): string
 function generateUniqueId(): string
 {
     return uniqid(rand(), true);
+}
+
+function image_path(): string
+{
+    return dirname(BASE_PATH, 3) . "/Luna-Dashboard/public/uploads/";
 }
