@@ -4,6 +4,7 @@ namespace Core\Authentication;
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use JetBrains\PhpStorm\NoReturn;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\Facebook;
@@ -86,5 +87,6 @@ class FacebookAuth
         }
         //If user exists, just add session and redirect to home.
         $_SESSION['user'] = $fetched_user;
+        Session::flash('success', 'Welcome Back');
     }
 }

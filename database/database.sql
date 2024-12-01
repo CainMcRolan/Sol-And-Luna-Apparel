@@ -33,6 +33,24 @@ INSERT INTO `addresses` (`address_id`, `user_id`, `street_address`, `city`, `pro
 	(1, 7, '163 Rizal Street', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1),
 	(2, 10, 'Calingatan', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1);
 
+-- Dumping structure for table luna.bookings
+CREATE TABLE IF NOT EXISTS `bookings` (
+  `booking_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `table_number` int NOT NULL,
+  `menu_id` bigint NOT NULL,
+  `first_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `booking_date` date NOT NULL,
+  `booking_time` time NOT NULL,
+  `additional_notes` text COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table luna.bookings: ~0 rows (approximately)
+
 -- Dumping structure for table luna.cart_items
 CREATE TABLE IF NOT EXISTS `cart_items` (
   `cart_item_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -58,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `category_id` (`category_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.categories: ~35 rows (approximately)
+-- Dumping data for table luna.categories: ~36 rows (approximately)
 INSERT INTO `categories` (`category_id`, `name`, `description`, `visibility`, `parent_category_id`, `created_at`) VALUES
 	(1, 'unisex', 'Clothing for all kind of people.', 1, 0, '2024-11-27 06:51:41'),
 	(2, 'men', 'Discover stylish and versatile clothing for every occasion, from casual essentials to sharp, sophisticated looks. Our men’s collection has everything you need to stay comfortable and confident.', 1, 0, '2024-11-01 02:20:38'),
@@ -96,7 +114,8 @@ INSERT INTO `categories` (`category_id`, `name`, `description`, `visibility`, `p
 	(53, 'necklaces', 'A versatile category that includes various types of jewelry worn around the neck. Necklaces come in different lengths, from chokers to long chains, and may feature pendants, gemstones, or intricate designs.', 1, 6, '2024-11-27 09:26:39'),
 	(54, 'bracelets', 'Jewelry worn around the wrist, including bangles, cuffs, and charm bracelets. Bracelets can be simple or adorned with gemstones, metals, or personalized charms.', 1, 6, '2024-11-27 09:26:48'),
 	(55, 'rings', 'Circular pieces of jewelry worn on the fingers. This category includes engagement rings, wedding bands, fashion rings, and statement rings, often featuring diamonds or other precious stones.', 1, 6, '2024-11-27 09:27:14'),
-	(56, 'earrings', 'Jewelry worn on the ears, available in many styles like studs, hoops, drop earrings, and ear cuffs. They can be made from a variety of materials such as gold, silver, or gemstones.', 1, 6, '2024-11-27 09:27:29');
+	(56, 'earrings', 'Jewelry worn on the ears, available in many styles like studs, hoops, drop earrings, and ear cuffs. They can be made from a variety of materials such as gold, silver, or gemstones.', 1, 6, '2024-11-27 09:27:29'),
+	(57, 'tshirt', 'Clothing for all sexes. Tshirts are nice t-shaped shirts that look nice on everyone.', 1, 1, '2024-12-01 13:05:35');
 
 -- Dumping structure for table luna.messages
 CREATE TABLE IF NOT EXISTS `messages` (
@@ -162,18 +181,18 @@ CREATE TABLE IF NOT EXISTS `order_items` (
 
 -- Dumping data for table luna.order_items: ~12 rows (approximately)
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`, `price_at_time`) VALUES
-	(1, 1, 47, 3, 4992.73),
-	(2, 1, 47, 25, 4992.73),
-	(3, 2, 47, 7, 4992.73),
-	(4, 2, 47, 18, 4992.73),
-	(5, 1, 47, 6, 4992.73),
-	(6, 2, 47, 2, 4992.73),
-	(7, 2, 47, 4, 4992.73),
-	(34, 3, 47, 6, 4992.73),
-	(35, 3, 47, 10, 4992.73),
-	(36, 3, 47, 9, 4992.73),
-	(37, 3, 47, 2, 4992.73),
-	(38, 1, 47, 1, 4992.73);
+	(1, 1, 236, 3, 4992.73),
+	(2, 1, 236, 25, 4992.73),
+	(3, 2, 236, 7, 4992.73),
+	(4, 2, 236, 18, 4992.73),
+	(5, 1, 236, 6, 4992.73),
+	(6, 2, 236, 2, 4992.73),
+	(7, 2, 236, 4, 4992.73),
+	(34, 3, 236, 6, 4992.73),
+	(35, 3, 236, 10, 4992.73),
+	(36, 3, 236, 9, 4992.73),
+	(37, 3, 236, 2, 4992.73),
+	(38, 1, 236, 1, 4992.73);
 
 -- Dumping structure for table luna.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -186,20 +205,20 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`product_id`),
   UNIQUE KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table luna.products: ~10 rows (approximately)
 INSERT INTO `products` (`product_id`, `name`, `description`, `visibility`, `price`, `stock_quantity`, `created_at`) VALUES
-	(47, 'Launch Elite Cold Weather Balaclava Hoodie', '                                                                                                                                                                                                                                <p>Stay warm and protected with the Launch Elite Cold Weather Balaclava Hoodie. Designed for extreme conditions, this all-in-one hoodie features a built-in balaclava for full face coverage, shielding you from cold winds and rain. Made with thermal-regulating, moisture-wicking fabric, it keeps you dry and comfortable during intense activities. </p><p><br></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Integrated balaclava and hoodie</strong> for full coverage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Thermal-regulating fabric</strong> for warmth and breathability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Windproof & water-resistant</strong> protection</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Adjustable hood & face mask</strong> for a custom fit</li></ol><p><br></p>                                                                                                                                ', 1, 4992.73, 100, '2024-11-27 09:35:17'),
-	(48, 'Women\'s Rival Fleece Crop Full-Zip', '<p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Soft Fleece Fabric:</strong> Provides warmth and comfort for all-day wear.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Cropped Design:</strong> Modern, flattering fit that pairs well with high-waisted pants.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Full-Zip Closure:</strong> Easy to wear and adjust for comfort.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Adjustable Hood:</strong> Extra coverage for cooler days.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Ribbed Cuffs:</strong> Secure fit that keeps sleeves in place.</li></ol><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>', 1, 3524.28, 100, '2024-11-27 10:06:45'),
-	(49, 'HeatGear® Sleeveless', '<p>The HeatGear® Sleeveless top is designed to keep you cool and comfortable during intense workouts. Made with lightweight, moisture-wicking fabric, it pulls sweat away from your skin to help you stay dry. The sleeveless design allows for maximum freedom of movement, making it ideal for training, running, or layering. Whether you\'re hitting the gym or going for a run, the HeatGear® Sleeveless offers breathable, lightweight performance to help you push your limits.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Moisture-Wicking Fabric:</strong> Draws sweat away from the body to keep you dry.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Breathable &amp; Lightweight:</strong> Ensures comfort and ventilation during intense activities.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Full Range of Motion:</strong> Sleeveless design for unrestricted movement.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Durable Construction:</strong> Built to withstand tough workouts.</li></ol><p>Stay cool and perform at your best with the HeatGear® Sleeveless.</p><p><br></p>', 1, 1762.14, 100, '2024-11-27 09:56:37'),
-	(50, 'Men\'s Base 2.0 Crew', '<p>The Men\'s Base 2.0 Crew is a versatile, performance-driven base layer designed to keep you warm and dry in cold conditions. Made with moisture-wicking, heat-retaining fabric, it traps warmth while pulling sweat away from the skin. The crew neck and fitted design provide a comfortable, snug fit, making it perfect for layering under outerwear or wearing alone during active outdoor activities. Whether you\'re hiking, skiing, or just need extra warmth, the Men\'s Base 2.0 Crew ensures all-day comfort and performance.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Moisture-Wicking Fabric:</strong> Keeps you dry by pulling sweat away from the skin.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Heat-Retaining Technology:</strong> Traps body heat to keep you warm in cold weather.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Comfortable Fit:</strong> Fitted design for a snug, supportive feel.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Breathable &amp; Lightweight:</strong> Ideal for layering or wearing on its own.</li></ol><p>Stay warm and comfortable with the Men\'s Base 2.0 Crew—your essential layer for cold-weather adventures.</p>', 1, 3524.28, 100, '2024-11-27 10:00:20'),
-	(51, 'Men\'s Unstoppable Tapered Pants', '<p>The Men\'s Unstoppable Tapered Pants are built for active comfort and everyday versatility. Featuring a sleek, tapered fit that provides a modern silhouette, these pants offer maximum mobility without sacrificing style. Crafted from a durable, stretchy fabric, they move with you through workouts, runs, or casual outings. The elastic waistband ensures a secure, adjustable fit, while side pockets add convenience for carrying essentials. Whether you\'re hitting the gym or relaxing at home, the Unstoppable Tapered Pants deliver on both comfort and performance.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Tapered Fit:</strong> Modern design with a slim, streamlined silhouette.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Stretchy &amp; Durable Fabric:</strong> Offers flexibility and long-lasting wear.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Elastic Waistband:</strong> Provides a comfortable, adjustable fit.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Convenient Side Pockets:</strong> Ideal for carrying small essentials.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Versatile:</strong> Perfect for training, lounging, or casual wear.</li></ol><p>Stay comfortable and stylish, no matter the activity, with the Men\'s Unstoppable Tapered Pants.</p>', 1, 5286.42, 100, '2024-11-27 10:03:29'),
-	(52, 'Infinite Pro Running Shoes', '<p>The Infinite Pro Running Shoes offer unparalleled performance and comfort for every runner. With cutting-edge technology and a sleek design, these shoes are built to enhance your running experience.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Lightweight &amp; Breathable Upper:</strong> Keeps your feet cool and dry with a breathable mesh material.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Responsive Cushioning:</strong> Provides a soft, cushioned feel with every step while maintaining energy return.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Durable Outsole:</strong> Features a high-traction, rubber outsole for exceptional grip on various surfaces.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Enhanced Stability:</strong> Offers a secure fit and support to reduce foot fatigue during long runs.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Versatile Design:</strong> Perfect for road running, trail running, and everyday training.</li></ol><p>Elevate your performance with the Infinite Pro Running Shoes, designed to help you go the distance with comfort and style.</p>', 1, 7635.94, 100, '2024-11-27 09:53:35'),
-	(223, 'Women\'s Limitless Down Puffer Jacket', '<p>The Women\'s Limitless Down Puffer Jacket is designed to keep you warm, stylish, and protected against the cold. Filled with premium down insulation, this jacket offers exceptional warmth without the bulk, making it perfect for both outdoor adventures and everyday wear. The sleek, fitted design enhances mobility while maintaining a flattering silhouette. With a durable, water-resistant outer shell and cozy, insulated hood, the Limitless Down Puffer ensures you\'re ready for whatever winter throws your way.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Premium Down Insulation:</strong> Provides lightweight warmth and superior heat retention.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Water-Resistant Outer Shell:</strong> Keeps you dry and protected in light rain or snow.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Fitted Design:</strong> Sleek, flattering fit that allows for full range of movement.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Insulated Hood:</strong> Added warmth and coverage for colder days.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Zip Pockets:</strong> Convenient storage for essentials.</li></ol><p>Stay warm and stylish in any weather with the Women\'s Limitless Down Puffer Jacket.</p>', 1, 17915.08, 100, '2024-11-27 10:09:51'),
-	(224, 'Women\'s ColdGear® Leggings', '<p>The Women\'s ColdGear® Leggings are designed to provide superior warmth and comfort during cold-weather activities. Made with advanced ColdGear® fabric, these leggings trap body heat while remaining breathable, ensuring you stay dry and warm throughout your workout or outdoor adventure. </p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>ColdGear® Fabric:</strong> Traps heat while allowing for breathability to keep you warm without overheating.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Moisture-Wicking:</strong> Draws sweat away from the skin to keep you dry.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Stretchy, Snug Fit:</strong> Offers full range of motion and a comfortable, supportive feel.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Versatile:</strong> Ideal for outdoor activities, workouts, or layering for added warmth.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Soft &amp; Comfortable:</strong> Perfect for all-day wear in colder weather.</li></ol><p>Stay warm, dry, and comfortable with the Women\'s ColdGear® Leggings, your go-to layer for cold-weather performance.</p>', 1, 3230.59, 100, '2024-11-27 10:11:40'),
-	(225, 'Men\'s Curry 1 Golf Shoes', '                                                        <p>The Men\'s Curry 1 Golf Shoes combine cutting-edge performance with sleek style to elevate your game on the course. Featuring a lightweight, durable design, these shoes offer superior traction and stability for every swing. The advanced cushioning provides all-day comfort, while the water-resistant upper keeps your feet dry in various weather conditions.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Advanced Cushioning:</strong> Delivers comfort and support for long hours on the course.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Durable & Water-Resistant Upper:</strong> Protects against the elements while maintaining breathability.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Superior Traction:</strong> Equipped with a high-performance outsole for maximum grip and stability.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Sleek Design:</strong> Modern, stylish look inspired by Stephen Curry’s personal brand.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Lightweight Construction:</strong> Keeps your feet light and agile throughout your game.</li></ol><p>Take your performance to the next level with the Men\'s Curry 1 Golf Shoes, where style meets functionality.</p>                                ', 1, 8810.70, 100, '2024-11-27 10:13:46'),
-	(226, 'Kids Cozy Fur Hoodie', '<p>The Girls\' Cozy Fur Hoodie is the perfect combination of warmth and style. Made with ultra-soft faux fur, this hoodie provides a plush feel that keeps her cozy on chilly days. The relaxed fit and hooded design offer added comfort, while the front pockets provide a convenient place to keep hands warm or store small essentials. Whether for lounging at home or layering up for outdoor adventures, this hoodie is a must-have for any wardrobe.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Ultra-Soft Faux Fur:</strong> Provides a luxurious, cozy feel against the skin.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Hooded Design:</strong> Adds extra warmth and coverage.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Front Pockets:</strong> Perfect for keeping hands warm or carrying small items.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Relaxed Fit:</strong> Offers comfort and room for movement.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Versatile:</strong> Great for casual wear, lounging, or layering in cooler weather.</li></ol><p>Keep her warm and stylish with the Girls\' Cozy Fur Hoodie, a comfy essential for cooler days.</p>', 1, 4405.35, 100, '2024-11-27 10:15:30');
+	(236, 'Women\'s Rival Fleece Crop Full-Zip', '<p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p>Key Features:</p><p>Soft Fleece Fabric: Provides warmth and comfort for all-day wear.</p><p>Cropped Design: Modern, flattering fit that pairs well with high-waisted pants.</p><p>Full-Zip Closure: Easy to wear and adjust for comfort.</p><p>Adjustable Hood: Extra coverage for cooler days.</p><p>Ribbed Cuffs: Secure fit that keeps sleeves in place.</p><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>', 1, 3524.28, 100, '2024-11-30 05:54:53'),
+	(237, 'Men\'s Unstoppable Insulated Bomber Jacket', '<p>Stay warm and stylish in any weather with the Men\'s Unstoppable Insulated Bomber Jacket. Designed for both comfort and durability, this jacket features advanced insulation technology to keep you cozy in cold temperatures, while its sleek bomber style adds a touch of modern flair to your winter wardrobe.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium insulation for superior warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable water-resistant fabric</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic bomber silhouette with ribbed cuffs and hem</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front closure for easy layering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Multiple pockets for storage and convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Windproof design for protection in harsh conditions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight yet incredibly warm</li></ol>', 1, 9376.24, 100, '2024-12-01 13:03:13'),
+	(238, 'Men\'s Fast Left Chest T-Shirt', '<p>The Men\'s Fast Left Chest T-Shirt combines casual comfort with a sleek, athletic look. Featuring a subtle logo on the left chest, this tee is perfect for both everyday wear and active moments. Made from soft, breathable fabric, it ensures all-day comfort whether you\'re working out or hanging out.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable cotton blend for comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Left chest logo for a minimalist, athletic touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight and versatile for layering or wearing alone</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Machine washable for easy care</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple color options</li></ol><p><br></p>', 1, 1054.83, 100, '2024-12-01 13:06:46'),
+	(239, 'Men\'s Command Warm-Up Full-Zip', '<p>The Men\'s Command Warm-Up Full-Zip is the ultimate blend of comfort and performance. Perfect for pre-game warm-ups or casual wear, this jacket features a full-zip front and adjustable design, ensuring flexibility and ease of movement. Its soft, warm fabric keeps you cozy while you stay active.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front for easy on and off</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, warm fabric for enhanced comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Athletic fit for freedom of movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for storage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing alone during warm-ups or workouts</li></ol><p><br></p>', 1, 2344.06, 100, '2024-12-01 13:10:49'),
+	(240, 'Women\'s Icon Heavyweight Fleece Oversized Crew', '<p>The Women\'s Icon Heavyweight Fleece Oversized Crew is your go-to for cozy, laid-back style. Made with thick, plush fleece, this oversized crewneck sweater offers warmth and comfort in a relaxed fit. Perfect for layering or lounging, it’s a versatile wardrobe staple with a stylish, casual look.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, heavyweight fleece for warmth and comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Relaxed, oversized fit for ultimate coziness</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Iconic branding for a bold, stylish touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo on chilly days</li></ol><p><br></p>', 1, 6446.16, 100, '2024-12-01 13:13:26'),
+	(241, 'Women\'s Premier Pleated Dress', '<p>The Women\'s Premier Pleated Dress is an elegant and timeless piece, designed to elevate your wardrobe. With its flowing pleats and flattering silhouette, this dress offers both sophistication and comfort. Perfect for special occasions or a stylish day out, it adds a touch of class to any event.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, flowing fabric for a graceful drape</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Pleated design for a flattering, feminine look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic round neckline</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flattering fit-and-flare silhouette</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for both casual and formal occasions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple colors for varied styling options</li></ol><p><br></p>', 1, 8790.23, 100, '2024-12-01 13:15:29'),
+	(242, 'Girls Rival Fleece Oversized Crew', '<p>The Girls Rival Fleece Oversized Crew combines comfort and style in one cozy package. Made from soft fleece, this relaxed-fit crewneck sweater is perfect for everyday wear. Whether she\'s lounging at home or out with friends, it offers warmth and a trendy look that’s both comfortable and fashionable.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, cozy fleece fabric for warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Oversized, relaxed fit for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a snug fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stylish and versatile for casual outfits</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors and sizes</li></ol><p><br></p>', 1, 2051.05, 100, '2024-12-01 13:17:53'),
+	(243, 'Boys\' Armour Fleece® Pro Joggers', '<p>The Boys\' Armour Fleece® Pro Joggers are built for active kids who need comfort and performance. Made from lightweight, breathable Armour Fleece® fabric, these joggers offer warmth and flexibility, perfect for sports, outdoor activities, or everyday wear. The stretchy waistband ensures a secure fit, while the tapered leg design adds a modern touch.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Armour Fleece® fabric for lightweight warmth and flexibility</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stretchy waistband with internal drawcord for an adjustable fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Tapered leg design for a modern, athletic look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable material for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for active use or casual wear</li></ol><p><br></p>', 1, 2637.07, 100, '2024-12-01 13:20:27'),
+	(244, 'Men\'s Surge 4 Running Shoes', '<p>The Men\'s Surge 4 Running Shoes are designed for optimal performance and comfort on every run. Featuring a lightweight, breathable mesh upper and responsive cushioning, these shoes provide support and flexibility for all types of runners. Whether you\'re hitting the pavement or the trails, the Surge 4 offers a sleek, high-performance design.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight, breathable mesh upper for enhanced ventilation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Responsive cushioning for added comfort and support</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and stability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flexible design for natural movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, modern look with a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for running, training, and everyday wear</li></ol><p><br></p>', 1, 3809.10, 100, '2024-12-01 13:23:00'),
+	(245, 'Unisex Apparition Shoes', '<p>The Unisex Apparition Shoes offer a stylish and versatile design for any occasion. Featuring a sleek, minimalist silhouette, these shoes are crafted with premium materials for comfort and durability. Whether you\'re dressing up or down, the Apparition shoes provide both a modern aesthetic and reliable performance.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, minimalist design for a stylish look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium materials for enhanced comfort and durability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for casual or semi-formal wear</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cushioned insole for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and grip</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors for easy styling</li></ol><p><br></p>', 1, 6446.16, 100, '2024-12-01 13:26:01');
 
 -- Dumping structure for table luna.product_categories
 CREATE TABLE IF NOT EXISTS `product_categories` (
@@ -211,76 +230,79 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
   CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.product_categories: ~12 rows (approximately)
+-- Dumping data for table luna.product_categories: ~14 rows (approximately)
 INSERT INTO `product_categories` (`product_id`, `category_id`) VALUES
-	(223, 30),
-	(226, 30),
-	(51, 31),
-	(50, 33),
-	(224, 37),
-	(47, 39),
-	(223, 39),
-	(226, 39),
-	(48, 41),
-	(49, 42),
-	(52, 43),
-	(225, 43);
+	(236, 30),
+	(237, 30),
+	(239, 30),
+	(240, 30),
+	(242, 30),
+	(239, 33),
+	(241, 34),
+	(240, 41),
+	(243, 41),
+	(244, 43),
+	(245, 43),
+	(243, 45),
+	(242, 46),
+	(238, 57);
 
 -- Dumping structure for table luna.product_images
 CREATE TABLE IF NOT EXISTS `product_images` (
   `image_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `product_id` bigint unsigned NOT NULL DEFAULT '0',
   `image_url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `cloud_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `is_primary` tinyint(1) DEFAULT '0',
   `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`image_id`),
   UNIQUE KEY `image_id` (`image_id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table luna.product_images: ~40 rows (approximately)
-INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `is_primary`, `name`) VALUES
-	(92, 47, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/14112465816746eb7d643837.21192764V5-1386675-625_BC.avif', 0, '14112465816746eb7d643837.21192764V5-1386675-625_BC.avif'),
-	(93, 47, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/650669156746eb7d648699.61950868V5-1386675-625_FC.avif', 0, '650669156746eb7d648699.61950868V5-1386675-625_FC.avif'),
-	(94, 47, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/13558806496746eb7d64f600.25189376V5-1386675-001_FC.avif', 1, '13558806496746eb7d64f600.25189376V5-1386675-001_FC.avif'),
-	(95, 47, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/21285661896746eb7d654699.36406942V5-1386675-025_FC.avif', 0, '21285661896746eb7d654699.36406942V5-1386675-025_FC.avif'),
-	(96, 52, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/8005809316746ec1f58b412.692640103027200-100_PAIR.avif', 0, '8005809316746ec1f58b412.692640103027200-100_PAIR.avif'),
-	(97, 52, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/12394425686746ec1f58f953.362815573027200-100_TOE.avif', 0, '12394425686746ec1f58f953.362815573027200-100_TOE.avif'),
-	(98, 52, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/12878628196746ec1f593ec4.931501863027200-100_A.avif', 0, '12878628196746ec1f593ec4.931501863027200-100_A.avif'),
-	(99, 52, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/3780842486746ec1f599036.663796903027200-100_DEFAULT.avif', 1, '3780842486746ec1f599036.663796903027200-100_DEFAULT.avif'),
-	(100, 49, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/11327685066746ecd56ebe18.15442555V5-1361522-410_BCKDET.avif', 0, '11327685066746ecd56ebe18.15442555V5-1361522-410_BCKDET.avif'),
-	(101, 49, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/18799890366746ecd56f1898.21638731V5-1361522-410_FSF.avif', 0, '18799890366746ecd56f1898.21638731V5-1361522-410_FSF.avif'),
-	(102, 49, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/17544335016746ecd56f70a4.57087811V5-1361522-410_BC.avif', 0, '17544335016746ecd56f70a4.57087811V5-1361522-410_BC.avif'),
-	(103, 49, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/2047213456746ecd56fc7d5.57424018V5-1361522-410_FC.avif', 1, '2047213456746ecd56fc7d5.57424018V5-1361522-410_FC.avif'),
-	(104, 50, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/11389832296746edb798dd83.28914742V5-1343244-001_SIDEDET.avif', 0, '11389832296746edb798dd83.28914742V5-1343244-001_SIDEDET.avif'),
-	(105, 50, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/4414109606746edba085af4.53432815V5-1343244-001_FSF.avif', 0, '4414109606746edba085af4.53432815V5-1343244-001_FSF.avif'),
-	(106, 50, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/19738878086746edbb7e5f17.42750366V5-1343244-001_BC.avif', 0, '19738878086746edbb7e5f17.42750366V5-1343244-001_BC.avif'),
-	(107, 50, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/946159266746edbd308914.41084300V5-1343244-001_FC.avif', 1, '946159266746edbd308914.41084300V5-1343244-001_FC.avif'),
-	(108, 51, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/11541993236746ee71ace8e7.97003712V5-1352028-025_SIDEDET.avif', 0, '11541993236746ee71ace8e7.97003712V5-1352028-025_SIDEDET.avif'),
-	(109, 51, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/5586298966746ee71ad2f39.76607102V5-1352028-025_FSF.avif', 0, '5586298966746ee71ad2f39.76607102V5-1352028-025_FSF.avif'),
-	(110, 51, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/3497266846746ee71ad82e2.00157858V5-1352028-025_BC.avif', 0, '3497266846746ee71ad82e2.00157858V5-1352028-025_BC.avif'),
-	(111, 51, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/12919752046746ee71add674.00592659V5-1352028-025_FC.avif', 1, '12919752046746ee71add674.00592659V5-1352028-025_FC.avif'),
-	(112, 48, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/12713486476746ef35504d70.98440542PS1385890-001_HF.avif', 0, '12713486476746ef35504d70.98440542PS1385890-001_HF.avif'),
-	(113, 48, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/3995221866746ef35512c93.47984074V5-1385890-001_SIDEDET.avif', 0, '3995221866746ef35512c93.47984074V5-1385890-001_SIDEDET.avif'),
-	(114, 48, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/6255190296746ef3551aa43.28182311V5-1385890-001_BC.avif', 0, '6255190296746ef3551aa43.28182311V5-1385890-001_BC.avif'),
-	(115, 48, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/11024918726746ef35522579.20272638V5-1385890-001_FC.avif', 1, '11024918726746ef35522579.20272638V5-1385890-001_FC.avif'),
-	(116, 223, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/12763901756746efefaa7bf0.27555213V5-1384648-625_SIDEDET.avif', 0, '12763901756746efefaa7bf0.27555213V5-1384648-625_SIDEDET.avif'),
-	(117, 223, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/7071189076746efefaac593.56920044V5-1384648-625_FSF.avif', 0, '7071189076746efefaac593.56920044V5-1384648-625_FSF.avif'),
-	(118, 223, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/3228199666746efefab1014.83588274V5-1384648-625_BC.avif', 0, '3228199666746efefab1014.83588274V5-1384648-625_BC.avif'),
-	(119, 223, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/20287631256746efefabc104.42681939V5-1384648-625_FC.avif', 1, '20287631256746efefabc104.42681939V5-1384648-625_FC.avif'),
-	(120, 224, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/4292599356746f05c7473f4.04413921V5-1368700-001_FSFADD.avif', 0, '4292599356746f05c7473f4.04413921V5-1368700-001_FSFADD.avif'),
-	(121, 224, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/9899028726746f05c74bcf0.91262254V5-1368700-001_FSF.avif', 0, '9899028726746f05c74bcf0.91262254V5-1368700-001_FSF.avif'),
-	(122, 224, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/6265665726746f05c750343.02096771V5-1368700-001_BC.avif', 0, '6265665726746f05c750343.02096771V5-1368700-001_BC.avif'),
-	(123, 224, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/11445303406746f05c754600.45471110V5-1368700-001_FC.avif', 1, '11445303406746f05c754600.45471110V5-1368700-001_FC.avif'),
-	(124, 225, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/15904803656746f0dabfba53.838938373027378-001_PAIR.avif', 1, '15904803656746f0dabfba53.838938373027378-001_PAIR.avif'),
-	(125, 225, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/4228471196746f0dac00155.461112533027378-001_TOE.avif', 0, '4228471196746f0dac00155.461112533027378-001_TOE.avif'),
-	(126, 225, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1155555296746f0dac08782.581749343027378-001_A.avif', 0, '1155555296746f0dac08782.581749343027378-001_A.avif'),
-	(127, 225, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/9228918086746f0dac0dbc8.066732213027378-001_DEFAULT.avif', 0, '9228918086746f0dac0dbc8.066732213027378-001_DEFAULT.avif'),
-	(128, 226, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/9430382746746f142694633.15152112PS6004355-650_F.avif', 1, '9430382746746f142694633.15152112PS6004355-650_F.avif'),
-	(129, 226, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/21063453356746f142698a18.51825057PS6004355-001_F.avif', 0, '21063453356746f142698a18.51825057PS6004355-001_F.avif'),
-	(130, 226, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/3860509526746f14269ca03.86456295PS6004355-535_F1.avif', 0, '3860509526746f14269ca03.86456295PS6004355-535_F1.avif'),
-	(131, 226, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/2835771826746f1426a0c30.81707700PS6004355-535_F.avif', 0, '2835771826746f1426a0c30.81707700PS6004355-535_F.avif');
+INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `cloud_url`, `is_primary`, `name`) VALUES
+	(132, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg', 'https://i.ibb.co/mScbCQZ/450025f52536.jpg', 1, '1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg'),
+	(133, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg', 'https://i.ibb.co/7QH12Y0/a8abe0a162d8.jpg', 0, '601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg'),
+	(134, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1982537954674aa8b1ebb225.12883033V5-1385890-001_SIDEDET.jpg', 'https://i.ibb.co/7V1K9bg/dbdb14d4b701.jpg', 0, '1982537954674aa8b1ebb225.12883033V5-1385890-001_SIDEDET.jpg'),
+	(135, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/319045308674aa8b56cf487.31400659PS1385890-001_HF.jpg', 'https://i.ibb.co/KmttzNp/a48b271599af.jpg', 0, '319045308674aa8b56cf487.31400659PS1385890-001_HF.jpg'),
+	(136, 237, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1530903564674c5e912aa6b9.83726768V5-1388903-001_BC.jpg', 'https://i.ibb.co/fx08Fg5/9776d1f01ab7.jpg', 0, '1530903564674c5e912aa6b9.83726768V5-1388903-001_BC.jpg'),
+	(137, 237, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1284256712674c5e96d903c4.52701624V5-1388903-001_FC.jpg', 'https://i.ibb.co/2cqjfb4/070f9b0ee2e8.jpg', 1, '1284256712674c5e96d903c4.52701624V5-1388903-001_FC.jpg'),
+	(138, 237, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1495897892674c5e99ba5703.74695063V5-1388903-001_FSF.jpg', 'https://i.ibb.co/6bmV627/ac6ea04a055f.jpg', 0, '1495897892674c5e99ba5703.74695063V5-1388903-001_FSF.jpg'),
+	(139, 237, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/395251320674c5e9c125928.79936571V5-1388903-001_COLLAR.jpg', 'https://i.ibb.co/sgKctQF/c998bf94ad93.jpg', 0, '395251320674c5e9c125928.79936571V5-1388903-001_COLLAR.jpg'),
+	(140, 238, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1276607149674c5f66bea140.51613535V5-1370954-012_BC.jpg', 'https://i.ibb.co/rxXP7vk/c4acafde21c8.jpg', 0, '1276607149674c5f66bea140.51613535V5-1370954-012_BC.jpg'),
+	(141, 238, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1128957388674c5f6998b4a5.58000021V5-1370954-012_FC.jpg', 'https://i.ibb.co/5WRV48R/f5b32bdabe73.jpg', 1, '1128957388674c5f6998b4a5.58000021V5-1370954-012_FC.jpg'),
+	(142, 238, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/94661805674c5f6ce9fa11.65717605PS1370954-012_HF.jpg', 'https://i.ibb.co/Fw3hmt6/abacdfa18710.jpg', 0, '94661805674c5f6ce9fa11.65717605PS1370954-012_HF.jpg'),
+	(143, 238, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1079138348674c5f7030fc65.70393102PS1370954-012_HB.jpg', 'https://i.ibb.co/K0m3N5v/e1e74f968b74.jpg', 0, '1079138348674c5f7030fc65.70393102PS1370954-012_HB.jpg'),
+	(144, 239, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1350133444674c6059b34087.03434301V5-1360713-001_FC.jpg', 'https://i.ibb.co/LJLrCRK/0d0be437352d.jpg', 1, '1350133444674c6059b34087.03434301V5-1360713-001_FC.jpg'),
+	(145, 239, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1616040084674c605c5887d5.22032743V5-1360713-001_BC.jpg', 'https://i.ibb.co/xKndBLX/dc30fea92a75.jpg', 0, '1616040084674c605c5887d5.22032743V5-1360713-001_BC.jpg'),
+	(146, 239, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/166496884674c605ef29a00.79873219V5-1360713-001_COLLAR.jpg', 'https://i.ibb.co/BB9Ps4q/4054340593df.jpg', 0, '166496884674c605ef29a00.79873219V5-1360713-001_COLLAR.jpg'),
+	(147, 239, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/343586295674c6062ac7359.58895530V5-1360713-001_FSF.jpg', 'https://i.ibb.co/M2vyrLK/fc9bc44235b0.jpg', 0, '343586295674c6062ac7359.58895530V5-1360713-001_FSF.jpg'),
+	(148, 240, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/154078041674c60f6198163.20662809V5-1386486-263_FC.jpg', 'https://i.ibb.co/30pMcfH/ec04cab48db3.jpg', 1, '154078041674c60f6198163.20662809V5-1386486-263_FC.jpg'),
+	(149, 240, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1844478648674c60f9960856.27819759V5-1386486-263_BC.jpg', 'https://i.ibb.co/PmrwHJx/5fc425357cc2.jpg', 0, '1844478648674c60f9960856.27819759V5-1386486-263_BC.jpg'),
+	(150, 240, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1838637428674c60fd807fe3.21152869V5-1386486-263_FSF.jpg', 'https://i.ibb.co/5npWH8H/598a4c602020.jpg', 0, '1838637428674c60fd807fe3.21152869V5-1386486-263_FSF.jpg'),
+	(151, 240, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/88431361674c61005608b1.21515916V5-1386486-263_SIDEDET.jpg', 'https://i.ibb.co/hZcxTvc/4a30e76d3004.jpg', 0, '88431361674c61005608b1.21515916V5-1386486-263_SIDEDET.jpg'),
+	(152, 241, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/24385627674c61723822b8.79092113V5-1388702-100_FC.jpg', 'https://i.ibb.co/g4tvKbh/00f10a5829c6.jpg', 1, '24385627674c61723822b8.79092113V5-1388702-100_FC.jpg'),
+	(153, 241, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1765022038674c6176262d67.43703163V5-1388702-100_BC.jpg', 'https://i.ibb.co/xgfFRty/c9ba5200ca49.jpg', 0, '1765022038674c6176262d67.43703163V5-1388702-100_BC.jpg'),
+	(154, 241, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/759614738674c617a568ad3.94727813V5-1388702-100_FSF.jpg', 'https://i.ibb.co/ThPStts/2a9279586018.jpg', 0, '759614738674c617a568ad3.94727813V5-1388702-100_FSF.jpg'),
+	(155, 241, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/154048008674c617d562a62.05959625V5-1388702-100_SIDEDET.jpg', 'https://i.ibb.co/4MWNSCW/337bf566c485.jpg', 0, '154048008674c617d562a62.05959625V5-1388702-100_SIDEDET.jpg'),
+	(156, 242, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/899434140674c620125c893.90562067PS1389281-464_HF.jpg', 'https://i.ibb.co/HHRZ8tB/d78b40b923d1.jpg', 1, '899434140674c620125c893.90562067PS1389281-464_HF.jpg'),
+	(157, 242, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/711977058674c6203d873f1.35245205PS1389281-464_HB.jpg', 'https://i.ibb.co/1dZZNQ7/38691855be5d.jpg', 0, '711977058674c6203d873f1.35245205PS1389281-464_HB.jpg'),
+	(158, 242, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/511805039674c6206a3f369.68028970PS1389281-001_HF.jpg', 'https://i.ibb.co/VmTCrTj/591e87e389c5.jpg', 0, '511805039674c6206a3f369.68028970PS1389281-001_HF.jpg'),
+	(159, 242, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/868906530674c62094c2de5.04203088PS1389281-001_HB.jpg', 'https://i.ibb.co/yS2jWhw/1d568a03e81f.jpg', 0, '868906530674c62094c2de5.04203088PS1389281-001_HB.jpg'),
+	(160, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/534581522674c629b9e6462.56247336PS1386706-001_HF.jpg', 'https://i.ibb.co/sKtCGd8/1613ca111c86.jpg', 1, '534581522674c629b9e6462.56247336PS1386706-001_HF.jpg'),
+	(161, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1755135461674c629e019ec5.57293536PS1386706-001_HB.jpg', 'https://i.ibb.co/z7CqgH7/668b5ddbda21.jpg', 0, '1755135461674c629e019ec5.57293536PS1386706-001_HB.jpg'),
+	(162, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/887432967674c62a0277281.80387242PS1386706-001_HS.jpg', 'https://i.ibb.co/Tg1dwgF/4a68a6ae604c.jpg', 0, '887432967674c62a0277281.80387242PS1386706-001_HS.jpg'),
+	(163, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1629428476674c62a2900df4.32423863PS1386706-432_HF.jpg', 'https://i.ibb.co/6YkHgbs/90314e742d65.jpg', 0, '1629428476674c62a2900df4.32423863PS1386706-432_HF.jpg'),
+	(164, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/442346730674c6334611813.667755163027000-001_PAIR.jpg', 'https://i.ibb.co/bJjHJmn/3c1d98a014b6.jpg', 1, '442346730674c6334611813.667755163027000-001_PAIR.jpg'),
+	(165, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1437066298674c63374a1256.217439883027000-001_TOE.jpg', 'https://i.ibb.co/FDDvV39/2979b094bbab.jpg', 0, '1437066298674c63374a1256.217439883027000-001_TOE.jpg'),
+	(166, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/255569404674c633ad0dad7.080307333027000-001_DEFAULT.jpg', 'https://i.ibb.co/PFJ75sT/9f2e119cc94b.jpg', 0, '255569404674c633ad0dad7.080307333027000-001_DEFAULT.jpg'),
+	(167, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/438715253674c633d8dbe73.633619413027000-001_A.jpg', 'https://i.ibb.co/6F7493Y/46d5be94b9a9.jpg', 0, '438715253674c633d8dbe73.633619413027000-001_A.jpg'),
+	(168, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1304836199674c63e9b2e898.177315493027595-111_A.jpg', 'https://i.ibb.co/HpfZPDm/92bfad3dc158.jpg', 1, '1304836199674c63e9b2e898.177315493027595-111_A.jpg'),
+	(169, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1425606572674c63ec897252.624629933027595-111_TOE.jpg', 'https://i.ibb.co/mcZv8h0/59f05d02419f.jpg', 0, '1425606572674c63ec897252.624629933027595-111_TOE.jpg'),
+	(170, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/365974521674c63efc7f234.197670093027595-111_PAIR.jpg', 'https://i.ibb.co/rHh3XDt/eb2be81ebef8.jpg', 0, '365974521674c63efc7f234.197670093027595-111_PAIR.jpg'),
+	(171, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/930003434674c63f292e1c5.645187453027000-001_PAIR.jpg', 'https://i.ibb.co/4V4h6xm/0de2fd3e9587.jpg', 0, '930003434674c63f292e1c5.645187453027000-001_PAIR.jpg');
 
 -- Dumping structure for table luna.reviews
 CREATE TABLE IF NOT EXISTS `reviews` (
@@ -297,6 +319,21 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 
 -- Dumping data for table luna.reviews: ~0 rows (approximately)
 
+-- Dumping structure for table luna.tables
+CREATE TABLE IF NOT EXISTS `tables` (
+  `table_number` int NOT NULL,
+  `is_occupied` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table luna.tables: ~6 rows (approximately)
+INSERT INTO `tables` (`table_number`, `is_occupied`) VALUES
+	(1, 0),
+	(2, 0),
+	(3, 0),
+	(4, 0),
+	(5, 0),
+	(6, 0);
+
 -- Dumping structure for table luna.users
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -311,33 +348,36 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.users: ~4 rows (approximately)
+-- Dumping data for table luna.users: ~6 rows (approximately)
 INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `country`, `user_type`, `created_at`) VALUES
 	(1, 'shimijallores35@gmail.com', 'shimi', 'Shimi', 'Jallores', '09561434976', 'Philippines', 'admin', '2024-10-11 09:31:59'),
 	(3, 'youanybluesky30@gmail.com', 'shimi', 'Patriarch', 'Cain', '09289287057', 'Philippines', 'customer', '2024-10-18 10:14:58'),
 	(7, 'shimijallores@gmail.com', '$2y$10$Aj8rpfhjRl4CyUm4GYNV9Oj9VHhhjb2AcuiKFarXvXh57j0j9RWsC', 'Shimi Uzziel', 'Jallores', '09561434976', 'Philippines', 'customer', '2024-10-18 11:54:36'),
-	(14, 'romandmitry99@gmail.com', 'roman', 'Roman', 'Dmitry', NULL, 'Philippines', 'admin', '2024-11-01 16:16:41');
+	(14, 'romandmitry99@gmail.com', 'roman', 'Roman', 'Dmitry', NULL, 'Philippines', 'admin', '2024-11-01 16:16:41'),
+	(26, '34shimijallores@gmail.com', NULL, 'Shimi Uzziel', 'Jallores', NULL, 'Philippines', 'customer', '2024-11-30 06:17:01'),
+	(27, 'solapparel99@gmail.com', NULL, 'sol and', 'luna', NULL, 'Philippines', 'customer', '2024-11-30 06:17:27');
 
 -- Dumping structure for table luna.user_images
 CREATE TABLE IF NOT EXISTS `user_images` (
   `image_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL DEFAULT '0',
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cloud_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`image_id`) USING BTREE,
   UNIQUE KEY `image_id` (`image_id`) USING BTREE,
   KEY `product_id` (`user_id`) USING BTREE,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table luna.user_images: ~4 rows (approximately)
-INSERT INTO `user_images` (`image_id`, `user_id`, `image_url`, `name`) VALUES
-	(72, 3, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/Kuromi.jpg', 'Kuromi.jpg'),
-	(74, 1, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/gues.png', 'gues.png'),
-	(75, 14, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/Roman.jpg', 'Roman.jpg'),
-	(78, 7, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/43840321067261300756395.08170808Profile-Picture-min.jpg', '43840321067261300756395.08170808Profile-Picture-min.jpg');
+INSERT INTO `user_images` (`image_id`, `user_id`, `image_url`, `cloud_url`, `name`) VALUES
+	(74, 1, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/gues.png', NULL, 'gues.png'),
+	(75, 14, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/Roman.jpg', NULL, 'Roman.jpg'),
+	(78, 7, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/43840321067261300756395.08170808Profile-Picture-min.jpg', NULL, '43840321067261300756395.08170808Profile-Picture-min.jpg'),
+	(83, 3, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1618797854674aa98b100273.12251574lowkey.jpg', 'https://i.ibb.co/4Rvt5LM/d07f18aee936.jpg', '1618797854674aa98b100273.12251574lowkey.jpg');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
