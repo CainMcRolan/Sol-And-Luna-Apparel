@@ -32,6 +32,8 @@ $admin = Core\Session::get('admin');
     <!--    Swiper-->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!--    Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--    Initialize Tailwind and AOS js-->
     <script src="/public/scripts/init.js"></script>
     <!--    Title-->

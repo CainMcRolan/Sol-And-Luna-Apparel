@@ -58,4 +58,6 @@ $router->get('/addresses', 'addresses/index.php')->only('user');
 
 //Wishlist
 $router->get('/wishlist', 'wishlist/index.php')->only('user');
+$router->post('/wishlist', 'wishlist/create.php')->only('user');
+$router->delete('/wishlist', 'wishlist/delete.php')->only('user');
 

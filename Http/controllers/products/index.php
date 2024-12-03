@@ -25,6 +25,11 @@ if ($path == 'new') {
 
 $categories = $product->get_categories();
 
+$wishlist = [];
+if ($_SESSION['user'] ?? false) {
+    $wishlist = array_column($product->wishlist($_SESSION['user']['user_id']), 'product_id');
+}
+
 function checkPage($count): bool
 {
     return ($_GET['page'] ?? 0) + 1 <= $count / 8;

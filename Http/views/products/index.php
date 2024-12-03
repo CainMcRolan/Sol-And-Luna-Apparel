@@ -41,15 +41,15 @@ require base_path("Http/views/partials/aside.php");
                     <?php if ($products) :?>
                         <div x-data class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
                                 <?php foreach ($products as $product) : ?>
-                                    <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                        <div class="w-full">
+                                    <div class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                        <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full">
                                             <img class="h-full w-full" src="<?= get_images($product)[0] ?>" alt=""/>
                                         </div>
                                         <div class="p-6 pt-0">
                                             <div class="mb-1 flex items-center justify-between gap-1">
                                                 <span class="rounded bg-primary-100 px-2 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300"> Up to 10% off </span>
                                                 <div class="flex items-center justify-end gap-1">
-                                                    <button type="button" data-tooltip-target="tooltip-quick-look"
+                                                    <button @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" type="button"
                                                             class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                                         <span class="sr-only"> Quick look </span>
                                                         <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -57,32 +57,26 @@ require base_path("Http/views/partials/aside.php");
                                                             <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                                         </svg>
                                                     </button>
-                                                    <div id="tooltip-quick-look" role="tooltip"
-                                                         class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                                                         data-popper-placement="top">
-                                                        Quick look
-                                                        <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                                    </div>
 
-                                                    <button type="button" data-tooltip-target="tooltip-add-to-favorites"
-                                                            class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                                        <span class="sr-only"> Add to Favorites </span>
-                                                        <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div id="tooltip-add-to-favorites" role="tooltip"
-                                                         class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                                                         data-popper-placement="top">
-                                                        Add to favorites
-                                                        <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                                    </div>
+                                                    <form action="/wishlist" method="POST">
+                                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                        <input type="hidden" name="_method" value="<?= in_array($product['product_id'], $wishlist) ? 'DELETE' : 'POST' ?>">
+                                                        <button
+                                                                type="submit"
+                                                                class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                                            <span class="sr-only"> Add to Favorites </span>
+                                                            <svg class="h-5 w-5 <?= in_array($product['product_id'], $wishlist) ? 'fill-current' : '' ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </div>
 
-                                            <a href="#" class="text-sm font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($product['name'] ?? 'Product Unavailable') ?></a>
+                                            <a href='/product?id=<?= $product['product_id'] ?>' class="text-sm font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($product['name'] ?? 'Product Unavailable') ?></a>
 
-                                            <div class="mt-1 flex items-center gap-2">
+                                            <div  @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="mt-1 flex items-center gap-2">
                                                 <div class="flex items-center">
                                                     <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                                         <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
@@ -109,7 +103,7 @@ require base_path("Http/views/partials/aside.php");
                                                 <p class="text-xs font-medium text-gray-500 dark:text-gray-400">(<?= htmlspecialchars($product['quantity_sold'] ?? 0) ?>)</p>
                                             </div>
 
-                                            <ul class="mt-2 flex items-center gap-4">
+                                            <ul  @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="mt-2 flex items-center gap-4">
                                                 <?php if (rand(0,1) == 0) : ?>
                                                     <li class="flex items-center gap-2">
                                                         <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -143,7 +137,7 @@ require base_path("Http/views/partials/aside.php");
                                                 </li>
                                             </ul>
 
-                                            <div class="mt-1 flex items-center justify-between gap-4">
+                                            <div  @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="mt-1 flex items-center justify-between gap-4">
                                                 <p class="text-md font-extrabold leading-tight text-gray-900 dark:text-white"><span class="font-medium">₱</span><?= htmlspecialchars(number_format($product['price'], 2) ?? 0) ?></p>
                                             </div>
                                         </div>

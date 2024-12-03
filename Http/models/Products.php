@@ -38,7 +38,7 @@ class Products
         ')->get());
     }
 
-    public function get_products($path): array
+    public function get_products(string $path): array
     {
         return $this->db->query("
             SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
@@ -59,7 +59,7 @@ class Products
         ", [':name' => $path])->get();
     }
 
-    public function get_product_count($path): int
+    public function get_product_count(string $path): int
     {
         return count($this->db->query("
             SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
@@ -82,5 +82,10 @@ class Products
     public function get_categories() : array
     {
         return $this->db->query("select * from categories where visibility != 0 and parent_category_id != 0")->get();
+    }
+
+    public function wishlist(int $user_id) : array
+    {
+        return $this->db->query("select product_id from wishlist where user_id = :user_id", ['user_id' => $user_id])->get();
     }
 }
