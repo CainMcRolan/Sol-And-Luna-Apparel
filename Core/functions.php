@@ -56,6 +56,11 @@ function url($url): bool
     return $_SERVER['REQUEST_URI'] === $url;
 }
 
+function get_path() : string
+{
+    return str_replace('/', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+}
+
 function view($path, $attributes = []): void
 {
     extract($attributes);
@@ -101,4 +106,9 @@ function generateUniqueId(): string
 function image_path(): string
 {
     return dirname(BASE_PATH, 3) . "/Luna-Dashboard/public/uploads/";
+}
+
+function get_images($product) : array
+{
+    return explode(',', $product['images']);
 }
