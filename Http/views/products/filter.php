@@ -54,7 +54,7 @@
                         <div id="myTabContent">
                             <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
                                 <div class="space-y-2">
-                                    <h5 class="text-lg font-medium uppercase text-black dark:text-white">A</h5>
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">Men</h5>
 
                                     <div class="flex items-center">
                                         <input id="apple" type="checkbox" value=""
@@ -62,19 +62,55 @@
 
                                         <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
                                     </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">Women</h5>
 
                                     <div class="flex items-center">
-                                        <input id="asus" type="checkbox" value="" checked
+                                        <input id="apple" type="checkbox" value=""
                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
 
-                                        <label for="asus" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Asus (97) </label>
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
                                     </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">Kids</h5>
 
                                     <div class="flex items-center">
-                                        <input id="acer" type="checkbox" value=""
+                                        <input id="apple" type="checkbox" value=""
                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
 
-                                        <label for="acer" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Acer (234) </label>
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">Gifts</h5>
+
+                                    <div class="flex items-center">
+                                        <input id="apple" type="checkbox" value=""
+                                               class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
+
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">Jewelry</h5>
+
+                                    <div class="flex items-center">
+                                        <input id="apple" type="checkbox" value=""
+                                               class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
+
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h5 class="text-sm font-semibold uppercase text-black dark:text-white">New</h5>
+
+                                    <div class="flex items-center">
+                                        <input id="apple" type="checkbox" value=""
+                                               class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
+
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Apple (56) </label>
                                     </div>
                                 </div>
                             </div>

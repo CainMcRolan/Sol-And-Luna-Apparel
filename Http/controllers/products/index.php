@@ -23,6 +23,8 @@ if ($path == 'new') {
     $product_count = $product->get_product_count($path);
 }
 
+$categories = $product->get_categories();
+
 function checkPage($count): bool
 {
     return ($_GET['page'] ?? 0) + 1 <= $count / 8;

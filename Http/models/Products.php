@@ -78,4 +78,9 @@ class Products
             GROUP BY p.product_id
         ", [':name' => $path])->get());
     }
+
+    public function get_categories() : array
+    {
+        return $this->db->query("select * from categories where visibility != 0 and parent_category_id != 0")->get();
+    }
 }
