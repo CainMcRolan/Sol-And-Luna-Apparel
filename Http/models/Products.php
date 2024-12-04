@@ -15,7 +15,7 @@ class Products
     {
         $this->db = App::resolve(Database::class);
         $this->page = $page ?? 0;
-        $this->offset = $this->page * 8;
+        $this->offset = max(0, $this->page * 8);
     }
 
     public function new_products(): array

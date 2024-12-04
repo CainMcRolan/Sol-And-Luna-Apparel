@@ -7,7 +7,7 @@ use Http\models\Products;
 
 $errors = Session::get('errors') ?? [];
 $success = Session::get('success') ?? '';
-
+$user = Session::fetch('user');
 $db = App::resolve(Database::class);
 $path = get_path();
 $page = intval($_GET['page'] ?? 0);

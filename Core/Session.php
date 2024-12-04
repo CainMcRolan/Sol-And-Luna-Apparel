@@ -14,6 +14,11 @@ class Session
         return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
 
+    public static function fetch($key, $default = null)
+    {
+        return $_SESSION[$key] ?? $default;
+    }
+
     public static function put($key, $value) {
         $_SESSION[$key] = $value;
     }
