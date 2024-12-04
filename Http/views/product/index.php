@@ -36,8 +36,8 @@ require base_path("Http/views/partials/aside.php");
 
                 <!-- Product Information-->
                 <div class="my-0 flex w-full items-center justify-center pr-0 max-lg:pb-10 data lg:my-5 lg:pr-8 xl:my-2 xl:justify-start">
-                    <div x-data="{ open: false, quantity : 1 }" class="w-full max-w-xl data">
-                        <p class="mb-4 text-lg font-medium leading-8 text-neutral-800"><a href="" class="hover:text-orange-600">Apparel</a>&nbsp; /&nbsp; <span>Clothing</span></p>
+                    <div x-data="{ open: false, sizes: ['S', 'M', 'L', 'XL', 'XXL'], quantity : 1, size: 'S' }" class="w-full max-w-xl data">
+                        <p class="mb-4 text-lg font-medium leading-8 text-neutral-800"><a href="/new" class="hover:text-orange-600">Apparel</a>&nbsp; /&nbsp; <span>Clothing</span></p>
                         <h2 class="mb-2 text-3xl font-bold capitalize leading-10 text-gray-900 font-manrope"><?= htmlspecialchars($current_product['name'] ?? 'Demo Product') ?></h2>
                         <div class="mb-6 flex flex-col sm:flex-row sm:items-center">
                             <h6 class="mr-5 border-gray-200 pr-5 text-2xl font-semibold leading-9 text-gray-900 font-manrope sm:border-r"><?= '₱' . htmlspecialchars(number_format($current_product['price'], 2)) ?></h6>
@@ -164,36 +164,21 @@ require base_path("Http/views/partials/aside.php");
                                 <span class="text-sm font-normal text-gray-900">All size is available</span>
                             </li>
                         </ul>
+
                         <p class="mb-4 text-base font-medium leading-8 text-gray-900">Size</p>
                         <div class="w-full flex-wrap border-b border-gray-100 pb-4">
                             <div class="grid max-w-md grid-cols-3 gap-3 min-[400px]:grid-cols-5">
-                                <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
-                                    S
-                                </button>
-                                <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
-                                    M
-                                </button>
-                                <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
-                                    L
-                                </button>
-                                <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
-                                    XL
-                                </button>
-                                <button
-                                        class="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100">
-                                    XXL
-                                </button>
-
+                                <template x-for="sz in sizes">
+                                    <button @click="size = sz" x-text="sz" :class="sz === size ? 'border-2 border-orange-500' : 'border border-gray-200'" class="flex w-full items-center justify-center rounded-full bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-gray-300 visited:bg-gray-50 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-100"> </button>
+                                </template>
                             </div>
-
                         </div>
 
                         <form action="/cart" method="POST" class="grid grid-cols-1 gap-3 py-6 sm:grid-cols-2">
                             <div x-data="{ max: <?= $current_product['quantity_sold'] ?> }" class="flex w-full sm:items-center sm:justify-center">
+                                <input type="hidden" name="quantity" :value="quantity" x-ref="quant">
+                                <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
+                                <input type="hidden" name="size" :value="size">
                                 <button @click="quantity = quantity > 1 ? parseInt(quantity) - 1 : quantity"
                                         type="button"
                                         :class="quantity <= 1 ? 'opacity-50 cursor-not-allowed' : ''"
@@ -214,8 +199,6 @@ require base_path("Http/views/partials/aside.php");
                                            :value="quantity > max ? max : quantity"
                                            class="w-full cursor-pointer border-y border-gray-400 bg-transparent px-6 text-center text-base font-semibold text-gray-900 placeholder:text-gray-900 outline-0 py-[13px] hover:bg-gray-50 sm:max-w-[118px]"
                                            placeholder="1">
-                                    <input type="hidden" name="quantity" :value="quantity" x-ref="quant">
-                                    <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
                                 </label>
                                 <button @click="quantity = quantity < max ? parseInt(quantity) + 1 : quantity"
                                         type="button"
@@ -260,6 +243,7 @@ require base_path("Http/views/partials/aside.php");
                             <form action="/cart" method="POST" class="w-full">
                                 <input type="hidden" name="quantity" :value="quantity">
                                 <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
+                                <input type="hidden" name="size" :value="size">
                                 <button type="submit"
                                         class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-base font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
                                     Buy Now
@@ -438,7 +422,7 @@ require base_path("Http/views/partials/aside.php");
         <div x-ref="scrollContainer" class="mt-4 grid w-full grid-flow-col gap-x-4 overflow-x-auto overflow-y-hidden scroll-smooth h-[50svh] sm:h-[40svh] lg:h-[50svh] 2xl:gap-x-8">
             <?php foreach ($hot_items as $item) : ?>
                 <div @click="window.location.href= '/product?id=<?= $item['product_id'] ?>'" class="grid h-full cursor-pointer min-w-56 grid-rows-[68%_30%] 2xl:min-w-72">
-                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif '?>" class="h-full w-full" alt="">
+                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif ' ?>" class="h-full w-full" alt="">
                     <div class="flex flex-col gap-y-1">
                         <p class="text-xs font-extrabold mt-1">TRENDING GIFT🔥</p>
                         <p class="text-sm font-semibold hover:underline"><?= htmlspecialchars($item['name'] ?? 'Product') ?></p>

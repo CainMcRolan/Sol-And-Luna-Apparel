@@ -32,7 +32,7 @@ if ($_SESSION['user'] ?? false) {
 
 function checkPage($count): bool
 {
-    return ($_GET['page'] ?? 0) + 1 <= $count / 8;
+    return ($_GET['page'] ?? 0) + 1 < $count / 8;
 }
 
 require base_path('Http/views/products/index.php');
