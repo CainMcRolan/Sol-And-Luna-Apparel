@@ -121,7 +121,7 @@ require base_path("Http/views/partials/aside.php");
                         <div x-cloak x-show="open" id="product-description">
                             <?= $current_product['description'] ?>
                         </div>
-                        <span @click="open = !open" x-text="open ? 'More...' : 'Less...'" class="inline-block cursor-pointer text-orange-600"></span>
+                        <span @click="open = !open" x-text="open ? 'Less...' : 'More...'" class="inline-block cursor-pointer text-orange-600"></span>
                         <ul class="mb-4 mt-4 grid gap-y-4">
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
