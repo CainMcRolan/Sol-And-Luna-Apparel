@@ -58,8 +58,15 @@
                 </button>
             </h1>
             <div x-cloak x-show="openAccordion===1" x-collapse id="accordion-color-body-1" class="" aria-labelledby="accordion-color-heading-1">
-                <div class="border border-b-0 border-gray-200 p-2">
-                    <p class="mb-2 text-sm text-black">Click the message button in the bottom right of the screen or send us an email!</p>
+                <div class="flex flex-col gap-y-2 m-3 text-xs text-neutral-700">
+                    <a href="" class="hover:underline">Help Center</a>
+                    <a href="" class="hover:underline">Size Guide</a>
+                    <a href="" class="hover:underline">Shipping & Delivery</a>
+                    <a href="" class="hover:underline">Returns and Exchanges</a>
+                    <a href="" class="hover:underline">Order and Tracking</a>
+                    <a href="" class="hover:underline">Gift Cards</a>
+                    <a href="" class="hover:underline">Sitemap</a>
+                    <a href="" class="hover:underline">Student Discount</a>
                 </div>
             </div>
             <h2 id="accordion-color-heading-3">
@@ -78,14 +85,14 @@
                 </button>
             </h2>
             <div x-cloak x-show="openAccordion===2" x-collapse id="accordion-color-body-3" class="" aria-labelledby="accordion-color-heading-2">
-                <div class="flex flex-col border border-b-0 border-gray-200 p-2">
+                <div class="flex flex-col  p-2">
                     <div class="flex gap-x-1 items-center">
                         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="16" height="16" color="currentColor">
                             <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" stroke="currentColor"></rect>
                             <circle cx="8" cy="8" r="3.5" stroke="currentColor"></circle>
                             <circle cx="12" cy="4" r="1" fill="currentColor"></circle>
                         </svg>
-                        <a href="" class="mb-2 text-sm text-black underline">Instagram</a>
+                        <a href="" class="mb-2 text-xs text-neutral-700 underline">Instagram</a>
                     </div>
                     <div class="flex gap-x-1 items-center">
                         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="16" height="16" color="currentColor">
@@ -93,7 +100,7 @@
                             <path d="M10.9194 10.168L11.252 8H9.17188V6.59375C9.17188 6.00063 9.4625 5.42188 10.3941 5.42188H11.3398V3.57617C11.3398 3.57617 10.4816 3.42969 9.66099 3.42969C7.94785 3.42969 6.82812 4.46797 6.82812 6.34766V8H4.92383V10.168H6.82812V15.4089C7.60465 15.5304 8.39535 15.5304 9.17188 15.4089V10.168H10.9194Z"
                                   fill="currentColor"></path>
                         </svg>
-                        <a href="" class="mb-2 text-sm text-black underline">Facebook</a>
+                        <a href="" class="mb-2 text-xs text-neutral-700 underline">Facebook</a>
                     </div>
                     <div class="flex gap-x-1 items-center">
                         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="16" height="16" color="currentColor">
@@ -101,7 +108,7 @@
                             <path d="M6.62709 11.9559C9.95259 11.9559 11.7713 9.20078 11.7713 6.81166C11.7713 6.73366 11.7696 6.65578 11.7661 6.57803C12.1199 6.3215 12.4253 6.00406 12.668 5.64053C12.3379 5.78658 11.988 5.88251 11.6296 5.92516C12.007 5.69916 12.2894 5.34373 12.4242 4.92503C12.0694 5.13557 11.6812 5.28395 11.2763 5.36378C10.7162 4.76632 9.82456 4.6197 9.1026 5.00634C8.38064 5.39298 8.00849 6.21641 8.19534 7.01378C6.74143 6.94118 5.38674 6.25457 4.46859 5.12491C3.9887 5.95096 4.23369 7.00777 5.02809 7.53841C4.741 7.53015 4.46011 7.45298 4.20909 7.31341C4.20909 7.32091 4.20909 7.32841 4.20909 7.33666C4.20954 8.19733 4.81633 8.93852 5.65997 9.10891C5.39369 9.18165 5.11426 9.1923 4.84322 9.14003C5.07999 9.87594 5.75782 10.3804 6.53072 10.3959C5.89053 10.8978 5.10022 11.17 4.28672 11.1688C4.14261 11.1689 3.99862 11.1606 3.85547 11.144C4.68229 11.675 5.64445 11.9569 6.62709 11.9559Z"
                                   fill="currentColor"></path>
                         </svg>
-                        <a href="" class="mb-2 text-sm text-black underline">Twitter</a>
+                        <a href="" class="mb-2 text-xs text-neutral-700 underline">Twitter</a>
                     </div>
                     <div class="flex gap-x-1 items-center">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +120,7 @@
                                       fill="#000000"></path>
                             </g>
                         </svg>
-                        <a href="" class="mb-2 text-sm text-black underline">Github</a>
+                        <a href="" class="mb-2 text-xs text-neutral-700 underline">Github</a>
                     </div>
                 </div>
             </div>
@@ -130,8 +137,19 @@
                 </button>
             </h3>
             <div x-cloak x-show="openAccordion===3" x-collapse id="accordion-color-body-2" class="" aria-labelledby="accordion-color-heading-2">
-                <div class="border border-b-0 border-gray-200 p-2">
-                    <a href="/about" class="mb-2 text-sm text-black underline">About Page</a>
+                <div class=" p-2">
+                    <div class="flex flex-col gap-y-2 m-3 text-xs text-neutral-700">
+                        <a href="" class="hover:underline">About Us/Our Story</a>
+                        <a href="" class="hover:underline">Size Guide</a>
+                        <a href="" class="hover:underline">Moon Rewards</a>
+                        <a href="" class="hover:underline">Careers</a>
+                        <a href="" class="hover:underline">Moon Community</a>
+                        <a href="" class="hover:underline">Moon Blog</a>
+                        <a href="" class="hover:underline">Do Not Sell or Share my Personal Information</a>
+                        <a href="" class="hover:underline">Product Recalls</a>
+                        <a href="" class="hover:underline">Innovation</a>
+                        <a href="" class="hover:underline">Moon Sports</a>
+                    </div>
                 </div>
             </div>
         </div>
