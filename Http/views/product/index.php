@@ -13,58 +13,34 @@ require base_path("Http/views/partials/aside.php");
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
                          class="mb-6 swiper product-prev">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1700471851.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1711514857.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1711514875.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1711514892.png"
-                                     alt="Yellow Travel Bag image" class="mx-auto object-cover">
-                            </div>
+                            <?php foreach (get_images($current_product) as $image) : ?>
+                                <div class="swiper-slide">
+                                    <img src="<?= $image ?>"
+                                         alt="product image" class="mx-auto object-cover">
+                                </div>
+                            <?php endforeach; ?>
                         </div>
 
                     </div>
                     <div thumbsSlider class="mx-auto overflow-auto swiper product-thumb max-w-[608px]">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1700471871.png" alt="Travel Bag image"
-                                     class="cursor-pointer border-2 border-gray-50 slide:border-orange-600 object-cover transition-all duration-500 hover:border-orange-600">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1711514930.png" alt="Travel Bag image"
-                                     class="cursor-pointer border-2 border-gray-50 slide:border-orange-600 object-cover transition-all duration-500 hover:border-orange-600">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1700471908.png" alt="Travel Bag image"
-                                     class="cursor-pointer border-2 border-gray-50 slide:border-orange-600 object-cover transition-all duration-500 hover:border-orange-600">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://pagedone.io/asset/uploads/1700471925.png" alt="Travel Bag image"
-                                     class="cursor-pointer border-2 border-gray-50 slide:border-orange-600 object-cover transition-all duration-500 hover:border-orange-600">
-                            </div>
+                            <?php foreach (get_images($current_product) as $image) : ?>
+                                <div class="swiper-slide">
+                                    <img src="<?= $image ?>" alt="Travel Bag image"
+                                         class="cursor-pointer border-2 border-gray-50 slide:border-orange-600 object-cover transition-all duration-500 hover:border-orange-600">
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
 
                 <!-- Product Information-->
                 <div class="my-0 flex w-full items-center justify-center pr-0 max-lg:pb-10 data lg:my-5 lg:pr-8 xl:my-2 xl:justify-start">
-                    <div class="w-full max-w-xl data">
-                        <p class="mb-4 text-lg font-medium leading-8 text-neutral-800"><a href="" class="hover:text-orange-600">Clothing</a>&nbsp; /&nbsp; <span>Menswear</span></p>
-                        <h2 class="mb-2 text-3xl font-bold capitalize leading-10 text-gray-900 font-manrope">Basic
-                            Yellow
-                            Tropical Printed Shirt</h2>
+                    <div x-data="{ open: false, quantity : 1 }" class="w-full max-w-xl data">
+                        <p class="mb-4 text-lg font-medium leading-8 text-neutral-800"><a href="" class="hover:text-orange-600">Apparel</a>&nbsp; /&nbsp; <span>Clothing</span></p>
+                        <h2 class="mb-2 text-3xl font-bold capitalize leading-10 text-gray-900 font-manrope"><?= htmlspecialchars($current_product['name'] ?? 'Demo Product') ?></h2>
                         <div class="mb-6 flex flex-col sm:flex-row sm:items-center">
-                            <h6
-                                    class="mr-5 border-gray-200 pr-5 text-2xl font-semibold leading-9 text-gray-900 font-manrope sm:border-r">
-                                ₱220</h6>
+                            <h6 class="mr-5 border-gray-200 pr-5 text-2xl font-semibold leading-9 text-gray-900 font-manrope sm:border-r"><?= '₱' . htmlspecialchars(number_format($current_product['price'], 2)) ?></h6>
                             <div class="flex items-center gap-2">
                                 <div class="flex items-center gap-1">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -134,17 +110,19 @@ require base_path("Http/views/partials/aside.php");
                                     </svg>
 
                                 </div>
-                                <span class="pl-2 text-sm font-normal leading-7 text-gray-500">1624 review</span>
+                                <span class="pl-2 text-sm font-normal leading-7 text-gray-500"><?= htmlspecialchars($current_product['quantity_sold'] ?? '0') ?></span>
                             </div>
 
                         </div>
-                        <p class="mb-5 text-sm font-normal text-gray-500">
-                            Introducing our vibrant Basic Yellow Tropical Printed Shirt - a celebration of style and
-                            sunshine! Embrace the essence of summer wherever you go with this eye-catching piece that
-                            effortlessly blends comfort and tropical flair. <a href="#"
-                                                                               class="text-orange-600">More....</a>
-                        </p>
-                        <ul class="mb-8 grid gap-y-4">
+                        <!--Product Description-->
+                        <div x-cloak x-show="!open" id="product-description">
+                            <?= substr(($current_product['description']), 0, 200) . ' ' ?>
+                        </div>
+                        <div x-cloak x-show="open" id="product-description">
+                            <?= $current_product['description'] ?>
+                        </div>
+                        <span @click="open = !open" x-text="open ? 'More...' : 'Less...'" class="inline-block cursor-pointer text-orange-600"></span>
+                        <ul class="mb-4 mt-4 grid gap-y-4">
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +131,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-sm font-normal text-gray-900">Branded shirt</span>
+                                <span class="text-sm font-normal text-gray-900">High Quality</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -163,7 +141,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-sm font-normal text-gray-900">3 color shirt</span>
+                                <span class="text-sm font-normal text-gray-900">Timeless Design</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -173,8 +151,7 @@ require base_path("Http/views/partials/aside.php");
                                             d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                             stroke="white" stroke-width="1.6" stroke-linecap="round"/>
                                 </svg>
-                                <span class="text-sm font-normal text-gray-900">Pure Cotton Shirt with 60% as
-                                    40%</span>
+                                <span class="text-sm font-normal text-gray-900">Comfortable Fit</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -215,9 +192,11 @@ require base_path("Http/views/partials/aside.php");
 
                         </div>
 
-                        <div class="grid grid-cols-1 gap-3 py-6 sm:grid-cols-2">
-                            <div class="flex w-full sm:items-center sm:justify-center">
-                                <button
+                        <form action="/cart" method="POST" class="grid grid-cols-1 gap-3 py-6 sm:grid-cols-2">
+                            <div x-data="{ max: <?= $current_product['quantity_sold'] ?> }" class="flex w-full sm:items-center sm:justify-center">
+                                <button @click="quantity = quantity > 1 ? parseInt(quantity) - 1 : quantity"
+                                        type="button"
+                                        :class="quantity <= 1 ? 'opacity-50 cursor-not-allowed' : ''"
                                         class="rounded-l-full border border-gray-400 bg-white px-6 py-[14px] transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
                                     <svg class="stroke-gray-900 group-hover:stroke-black" width="22" height="22"
                                          viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,10 +207,19 @@ require base_path("Http/views/partials/aside.php");
                                               stroke-linecap="round"/>
                                     </svg>
                                 </button>
-                                <input type="text"
-                                       class="w-full cursor-pointer border-y border-gray-400 bg-transparent px-6 text-center text-base font-semibold text-gray-900 placeholder:text-gray-900 outline-0 py-[13px] hover:bg-gray-50 sm:max-w-[118px]"
-                                       placeholder="1">
-                                <button
+                                <label>
+                                    <input type="text"
+                                           x-model="quantity"
+                                           disabled
+                                           :value="quantity > max ? max : quantity"
+                                           class="w-full cursor-pointer border-y border-gray-400 bg-transparent px-6 text-center text-base font-semibold text-gray-900 placeholder:text-gray-900 outline-0 py-[13px] hover:bg-gray-50 sm:max-w-[118px]"
+                                           placeholder="1">
+                                    <input type="hidden" name="quantity" :value="quantity" x-ref="quant">
+                                    <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
+                                </label>
+                                <button @click="quantity = quantity < max ? parseInt(quantity) + 1 : quantity"
+                                        type="button"
+                                        :class="quantity >= max ? 'opacity-50 cursor-not-allowed' : ''"
                                         class="rounded-r-full border border-gray-400 bg-white px-6 py-[14px] transition-all duration-300 group hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
                                     <svg class="stroke-gray-900 group-hover:stroke-black" width="22" height="22"
                                          viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -244,7 +232,8 @@ require base_path("Http/views/partials/aside.php");
                                     </svg>
                                 </button>
                             </div>
-                            <button @click="window.location.href = '/cart'"  class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-base font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
+                            <button type="submit"
+                                    class="flex w-full items-center justify-center gap-2 rounded-full bg-orange-50 px-5 py-4 text-base font-semibold text-orange-600 transition-all duration-500 group hover:bg-orange-100">
                                 <svg class="stroke-orange-600" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -253,23 +242,29 @@ require base_path("Http/views/partials/aside.php");
                                 </svg>
                                 Add to cart
                             </button>
-                        </div>
+                        </form>
                         <div class="flex items-center gap-3">
-                            <button
-                                    class="rounded-full bg-orange-50 p-4 transition-all duration-500 group hover:bg-orange-100 hover:shadow-sm hover:shadow-orange-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
-                                     fill="none">
-                                    <path
-                                            d="M4.47084 14.3196L13.0281 22.7501L21.9599 13.9506M13.0034 5.07888C15.4786 2.64037 19.5008 2.64037 21.976 5.07888C24.4511 7.5254 24.4511 11.4799 21.9841 13.9265M12.9956 5.07888C10.5204 2.64037 6.49824 2.64037 4.02307 5.07888C1.54789 7.51738 1.54789 11.4799 4.02307 13.9184M4.02307 13.9184L4.04407 13.939M4.02307 13.9184L4.46274 14.3115"
-                                            stroke="#ea580c" stroke-width="1.6" stroke-miterlimit="10"
-                                            stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                            </button>
-                            <button
-                                    class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-base font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
-                                Buy Now
-                            </button>
+                            <form action="/wishlist" method="POST">
+                                <input type="hidden" name="_method" value="<?= $in_wishlist ? 'DELETE' : 'POST' ?>">
+                                <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
+                                <button type="submit"
+                                        class="rounded-full bg-orange-50 p-4 transition-all duration-500 group hover:bg-orange-100 hover:shadow-sm hover:shadow-orange-300">
+                                    <svg class="<?= $in_wishlist ? 'fill-orange-500' : 'fill-none' ?>" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+                                        <path
+                                                d="M13 22S3 14 3 8C3 5 5 2 9 2C11 2 13 5 13 5C13 5 15 2 17 2C21 2 23 5 23 8C23 14 13 22 13 22Z"
+                                                fill="<?= $in_wishlist ? '#ea580c' : 'none' ?>" stroke="#ea580c" stroke-width="1.6" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </form>
+                            <form action="/cart" method="POST" class="w-full">
+                                <input type="hidden" name="quantity" :value="quantity">
+                                <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
+                                <button type="submit"
+                                        class="flex w-full items-center justify-center bg-orange-500 px-5 py-4 text-center text-base font-semibold text-white shadow-sm transition-all duration-500 rounded-[100px] hover:bg-orange-700 hover:shadow-orange-400">
+                                    Buy Now
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -431,22 +426,22 @@ require base_path("Http/views/partials/aside.php");
         </div>
     </section>
 
-    <!--    Shop Trending / Hot Apparel-->
-    <div x-data="{ scrollLeft: 0 }" class="relative mb-12 lg:mb-4 w-full bg-white px-4 lg:w-[70%] 2xl:w-[60%]">
+    <!--    You Might Like-->
+    <div x-data="{ scrollLeft: 0 }" class="relative mb-8 w-full bg-white px-4 lg:w-[90%] 2xl:w-[60%]">
         <button @click="$refs.scrollContainer.scrollLeft = Math.max(0, $refs.scrollContainer.scrollLeft + 200); scrollLeft = $refs.scrollContainer.scrollLeft"
                 class="absolute top-1/2 right-6 cursor-pointer rounded-full bg-white px-4 py-2 font-extrabold hover:bg-gray-300"> >
         </button>
         <button x-cloak x-show="scrollLeft > 0" @click="$refs.scrollContainer.scrollLeft = Math.max(0, $refs.scrollContainer.scrollLeft - 200); scrollLeft = $refs.scrollContainer.scrollLeft"
                 class="absolute top-1/2 left-6 cursor-pointer rounded-full bg-white px-4 py-2 font-extrabold hover:bg-gray-300"> <
         </button>
-        <h1 class="text-xl font-bold sm:text-2xl lg:mb-8">You Might Like</h1>
+        <h1 class="text-xl font-bold sm:text-3xl lg:mb-8"> You Might Also Like</h1>
         <div x-ref="scrollContainer" class="mt-4 grid w-full grid-flow-col gap-x-4 overflow-x-auto overflow-y-hidden scroll-smooth h-[50svh] sm:h-[40svh] lg:h-[50svh] 2xl:gap-x-8">
-            <template x-for="i in 10">
-                <div class="grid h-full cursor-pointer min-w-56 grid-rows-[68%_30%] 2xl:min-w-72">
-                    <img src="/public/images/demo.avif" class="h-full w-full" alt="">
+            <?php foreach ($hot_items as $item) : ?>
+                <div @click="window.location.href= '/product?id=<?= $item['product_id'] ?>'" class="grid h-full cursor-pointer min-w-56 grid-rows-[68%_30%] 2xl:min-w-72">
+                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif '?>" class="h-full w-full" alt="">
                     <div class="flex flex-col gap-y-1">
-                        <p class="text-xs font-extrabold">TOP GIFT</p>
-                        <p class="text-sm font-semibold hover:underline">Product Name</p>
+                        <p class="text-xs font-extrabold mt-1">TRENDING GIFT🔥</p>
+                        <p class="text-sm font-semibold hover:underline"><?= htmlspecialchars($item['name'] ?? 'Product') ?></p>
                         <div class="flex items-center">
                             <svg class="h-4 w-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
@@ -463,11 +458,12 @@ require base_path("Http/views/partials/aside.php");
                             <svg class="h-4 w-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                             </svg>
+                            <span class="text-sm text-neutral-600 ml-1 text-center">(<?= $item['quantity_sold'] ?? 0 ?>)</span>
                         </div>
-                        <p class="text-sm font-semibold text-gray-700">₱55</p>
+                        <p class="text-sm font-semibold text-neutral-700"><?= '₱' . htmlspecialchars(number_format($item['price'], 2) ?? '0') ?></p>
                     </div>
                 </div>
-            </template>
+            <?php endforeach; ?>
         </div>
     </div>
 

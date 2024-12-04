@@ -37,6 +37,7 @@ $router->get('/product', 'product/index.php')->params('home');
 
 //Shopping Cart - Subject to Change (Add User Authorization and Params)
 $router->get('/cart', 'cart/index.php')->only('user');
+$router->post('/cart', 'cart/create.php')->only('user');
 
 //Order Checkout - Subject to Change (Add User Authorization and Params)
 $router->get('/checkout', 'checkout/index.php')->only('user');
@@ -60,4 +61,3 @@ $router->get('/addresses', 'addresses/index.php')->only('user');
 $router->get('/wishlist', 'wishlist/index.php')->only('user');
 $router->post('/wishlist', 'wishlist/create.php')->only('user');
 $router->delete('/wishlist', 'wishlist/delete.php')->only('user');
-
