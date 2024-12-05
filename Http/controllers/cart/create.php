@@ -7,3 +7,5 @@ $success = Session::get('success') ?? '';
 $email = old('email');
 
 dd($_POST);
+
+redirect("/cart");
