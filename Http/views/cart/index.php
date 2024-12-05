@@ -12,12 +12,12 @@ require base_path("Http/views/partials/aside.php");
             <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                     <!-- Items -->
-                    <div class="space-y-6">
+                    <div class="products-div space-y-6">
                         <!--  Products-->
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Shopping Cart</h2>
                         <?php if ($cart ?? false): ?>
                             <?php foreach ($cart as $item) : ?>
-                                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                                <div class="product rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                                     <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                         <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>" class="shrink-0 md:order-1">
                                             <img class="w-28 h-28 rounded-md" src="<?= htmlspecialchars($item['cloud_url']) ?>" alt=""/>
@@ -25,18 +25,19 @@ require base_path("Http/views/partials/aside.php");
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
                                             <div class="flex items-center">
                                                 <label for=""></label>
-                                                <select name="quantity" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                                <select name="quantity" id="" class="product-select rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
                                                     <?php foreach (range(1, intval($item['stock_quantity'])) as $quantity) : ?>
                                                         <option value="<?= $quantity ?>" <?= $quantity === $item['quantity'] ? 'selected' : '' ?> class="cursor-pointer"><?= $quantity ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="text-end md:order-4 md:w-32">
-                                                <p class="text-base font-bold text-gray-900 dark:text-white">₱<?= htmlspecialchars(number_format($item['price'] ?? 0), 2) ?></p>
+                                                <p class="product-price text-base font-bold text-gray-900 dark:text-white">₱<?= htmlspecialchars(number_format($item['price'], 2)) ?></p>
                                             </div>
                                         </div>
                                         <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
-                                            <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>" class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?></a>
+                                            <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>"
+                                               class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?></a>
                                             <p class="text-neutral-500 text-xs"><?= htmlspecialchars(substr(strip_tags($item['description']), 0, 200) ?? 'Description') ?></p>
                                             <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
                                                 <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
@@ -50,7 +51,8 @@ require base_path("Http/views/partials/aside.php");
                                                 <?php if ($item['wishlist'] ?? false) : ?>
                                                     <button type="submit"
                                                             class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
-                                                        <svg class="me-1.5 h-5 w-5 fill-current" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <svg class="me-1.5 h-5 w-5 fill-current" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                             viewBox="0 0 24 24">
                                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                                   d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
                                                         </svg>
@@ -65,7 +67,7 @@ require base_path("Http/views/partials/aside.php");
                                                         </svg>
                                                         Add to Favorites
                                                     </button>
-                                                <?php endif;?>
+                                                <?php endif; ?>
 
                                                 <form action="/cart" method="POST" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                                                     <input type="hidden" name="_method" value="DELETE">
@@ -87,7 +89,7 @@ require base_path("Http/views/partials/aside.php");
                         <?php endif; ?>
 
                     </div>
-                    <!-- Payment Summary-->
+                    <!-- Recommendations -->
                     <div class="hidden xl:mt-8 xl:block">
                         <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
                         <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
@@ -386,7 +388,7 @@ require base_path("Http/views/partials/aside.php");
                         <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
                             <dl class="flex items-center justify-between gap-4 py-3">
                                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Subtotal</dt>
-                                <dd class="text-base font-medium text-gray-900 dark:text-white">₱8,094.00</dd>
+                                <dd class="subtotal text-base font-medium text-gray-900 dark:text-white">₱0</dd>
                             </dl>
 
                             <dl class="flex items-center justify-between gap-4 py-3">
@@ -396,30 +398,29 @@ require base_path("Http/views/partials/aside.php");
 
                             <dl class="flex items-center justify-between gap-4 py-3">
                                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Delivery Fee</dt>
-                                <dd class="text-base font-medium text-gray-900 dark:text-white">₱60</dd>
+                                <dd class="text-base font-medium text-gray-900 dark:text-white">₱150</dd>
                             </dl>
 
                             <dl class="flex items-center justify-between gap-4 py-3">
-                                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                                <dd class="text-base font-medium text-gray-900 dark:text-white">₱199</dd>
+                                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">VAT</dt>
+                                <dd class="tax text-base font-medium text-gray-900 dark:text-white">₱0</dd>
                             </dl>
 
                             <dl class="flex items-center justify-between gap-4 py-3">
                                 <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                                <dd class="text-base font-bold text-gray-900 dark:text-white">₱8,392.00</dd>
+                                <dd class="total text-base font-bold text-gray-900 dark:text-white">₱0</dd>
                             </dl>
                         </div>
                     </div>
 
                     <div class="space-y-3">
-                        <a href="/checkout"
-                           class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            Proceed to Checkout
-                        </a>
-
-                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in cart requires an account. <a href="/new" title=""
-                                                                                                                                          class="font-medium underline text-primary-700 hover:no-underline dark:text-primary-500">Continue
-                                Shopping.</a></p>
+                        <form action="/checkout" method="POST">
+                            <button type="submit"
+                               class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Proceed to Checkout
+                            </button>
+                        </form>
+                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in cart requires an account. <a href="/new" title="" class="font-medium underline text-primary-700 hover:no-underline dark:text-primary-500">Continue Shopping.</a></p>
                     </div>
 
                     <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -440,6 +441,64 @@ require base_path("Http/views/partials/aside.php");
             </div>
         </div>
     </section>
+    <script>
+        const selectContainer = document.querySelector('.products-div');
+        let subtotalElement = document.querySelector('.subtotal');
+        let taxElement = document.querySelector('.tax');
+        let totalElement = document.querySelector('.total');
+
+        selectContainer.addEventListener('change', function (event) {
+            if (event.target.classList.contains('product-select')) {
+                setValues();
+            }
+        });
+
+        setValues();
+
+        function setValues() {
+            let products = document.querySelectorAll('.product');
+            let subtotal = getSubtotal(products);
+            let deliveryFee = getDeliveryFee();
+            let tax = getTax(subtotal);
+            let total = getTotal(subtotal, tax, deliveryFee);
+
+            subtotalElement.textContent = `₱${subtotal.toLocaleString()}`;
+            taxElement.textContent = `₱${tax.toLocaleString()}`;
+            totalElement.textContent = `₱${total.toLocaleString()}`;
+        }
+
+        function getSubtotal(products) {
+            let subtotal = 0;
+            products.forEach((product) => {
+                let price = convertToNumber(product.querySelector('.product-price').textContent);
+                let quantity = parseInt(product.querySelector('.product-select').value);
+                let total = price * quantity;
+                subtotal += total;
+            });
+            return roundToTwo(subtotal);
+        }
+
+        function getTax(subtotal) {
+            return roundToTwo(subtotal * 0.12);
+        }
+
+        function getTotal(subtotal, tax, deliveryFee) {
+            return roundToTwo(subtotal + tax + deliveryFee);
+        }
+
+        function getDeliveryFee() {
+            return 150;
+        }
+
+        function convertToNumber(price) {
+            return parseFloat(price.replace('₱', '').replace(/,/g, ''));
+        }
+
+        function roundToTwo(num) {
+            return Math.round(num * 100) / 100;
+        }
+
+    </script>
 <?php
 require base_path("Http/views/partials/footer.php");
 ?>

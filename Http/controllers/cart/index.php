@@ -17,4 +17,5 @@ $cart = $db->query("
     where i.is_primary = 1 and c.user_id = :user_id
 ", [':user_id' => $_SESSION['user']['user_id']])->get();
 
+
 require base_path('Http/views/cart/index.php');
