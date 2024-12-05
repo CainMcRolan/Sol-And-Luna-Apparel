@@ -38,6 +38,7 @@ $router->get('/product', 'product/index.php')->params('home');
 //Shopping Cart - Subject to Change (Add User Authorization and Params)
 $router->get('/cart', 'cart/index.php')->only('user');
 $router->post('/cart', 'cart/create.php')->only('user');
+$router->delete('/cart', 'cart/delete.php')->only('user');
 
 //Order Checkout - Subject to Change (Add User Authorization and Params)
 $router->get('/checkout', 'checkout/index.php')->only('user');

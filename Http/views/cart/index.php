@@ -5,7 +5,7 @@ require base_path("Http/views/partials/nav.php");
 require base_path("Http/views/partials/aside.php");
 ?>
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <!-- Header-->
             <?php require base_path("Http/views/partials/progress.php") ?>
 
@@ -15,106 +15,77 @@ require base_path("Http/views/partials/aside.php");
                     <div class="space-y-6">
                         <!--  Products-->
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Shopping Cart</h2>
-                        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
-                            <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                                <a href="#" class="shrink-0 md:order-1">
-                                    <img class="w-28 h-28 rounded-md" src="/public/images/product-1.avif" alt="imac image"/>
-                                </a>
-                                <div class="flex items-center justify-between md:order-3 md:justify-end">
-                                    <div class="flex items-center">
-                                        <label for=""></label>
-                                        <select name="" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
-                                            <option value="" class="cursor-pointer">1</option>
-                                            <option value="" class="cursor-pointer">2</option>
-                                            <option value="" class="cursor-pointer">3</option>
-                                        </select>
-                                    </div>
-                                    <div class="text-end md:order-4 md:w-32">
-                                        <p class="text-base font-bold text-gray-900 dark:text-white">₱1,499</p>
-                                    </div>
-                                </div>
-                                <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
-                                    <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">Curry 12 'Wardell Mode' Basketball Shoes</a>
-                                    <p class="text-neutral-500 text-xs">What's Wardell Mode? It's that look in #30's eyes when he's going off. Curry 12 'Wardell Mode' combines UA Flow's grip with the
-                                        black and gray storm that his fierce competitiveness brings. Take cover—the daggers about to drop.</p>
-                                    <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
-                                        <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
-                                        </svg>
-                                        Delivery on 14 Nov 2024
-                                    </p>
-                                    <div class="flex items-center gap-4">
-                                        <button type="button"
-                                                class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
-                                            <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                                            </svg>
-                                            Add to Favorites
-                                        </button>
+                        <?php if ($cart ?? false): ?>
+                            <?php foreach ($cart as $item) : ?>
+                                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                                    <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                        <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>" class="shrink-0 md:order-1">
+                                            <img class="w-28 h-28 rounded-md" src="<?= htmlspecialchars($item['cloud_url']) ?>" alt=""/>
+                                        </a>
+                                        <div class="flex items-center justify-between md:order-3 md:justify-end">
+                                            <div class="flex items-center">
+                                                <label for=""></label>
+                                                <select name="quantity" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                                    <?php foreach (range(1, intval($item['stock_quantity'])) as $quantity) : ?>
+                                                        <option value="<?= $quantity ?>" <?= $quantity === $item['quantity'] ? 'selected' : '' ?> class="cursor-pointer"><?= $quantity ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="text-end md:order-4 md:w-32">
+                                                <p class="text-base font-bold text-gray-900 dark:text-white">₱<?= htmlspecialchars(number_format($item['price'] ?? 0), 2) ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                            <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>" class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?></a>
+                                            <p class="text-neutral-500 text-xs"><?= htmlspecialchars(substr(strip_tags($item['description']), 0, 200) ?? 'Description') ?></p>
+                                            <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
+                                                <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
+                                                     xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                          d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
+                                                </svg>
+                                                Delivery before <?= date('d M Y', strtotime('+7 days')) ?>
+                                            </p>
+                                            <div class="flex items-center gap-4">
+                                                <?php if ($item['wishlist'] ?? false) : ?>
+                                                    <button type="submit"
+                                                            class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                                        <svg class="me-1.5 h-5 w-5 fill-current" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                  d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+                                                        </svg>
+                                                        Remove from Favorites
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button type="button"
+                                                            class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                                        <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                  d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+                                                        </svg>
+                                                        Add to Favorites
+                                                    </button>
+                                                <?php endif;?>
 
-                                        <button type="button" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
-                                            <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
-                                            </svg>
-                                            Remove
-                                        </button>
+                                                <form action="/cart" method="POST" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['product_id']) ?>">
+                                                    <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                                                        <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                                                        </svg>
+                                                        Remove
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
-                            <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                                <a href="#" class="shrink-0 md:order-1">
-                                    <img class="w-28 h-28 rounded-md" src="/public/images/product-2.avif" alt="imac image"/>
-                                </a>
-                                <div class="flex items-center justify-between md:order-3 md:justify-end">
-                                    <div class="flex items-center">
-                                        <label for=""></label>
-                                        <select name="" id="" class="rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
-                                            <option value="" class="cursor-pointer">1</option>
-                                            <option value="" class="cursor-pointer">2</option>
-                                            <option value="" class="cursor-pointer">3</option>
-                                        </select>
-                                    </div>
-                                    <div class="text-end md:order-4 md:w-32">
-                                        <p class="text-base font-bold text-gray-900 dark:text-white">₱1,499</p>
-                                    </div>
-                                </div>
-                                <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
-                                    <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">Curry 12 'Wardell Mode' Basketball Shoes</a>
-                                    <p class="text-neutral-500 text-xs">What's Wardell Mode? It's that look in #30's eyes when he's going off. Curry 12 'Wardell Mode' combines UA Flow's grip with the
-                                        black and gray storm that his fierce competitiveness brings. Take cover—the daggers about to drop.</p>
-                                    <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
-                                        <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
-                                        </svg>
-                                        Delivery on 14 Nov 2024
-                                    </p>
-                                    <div class="flex items-center gap-4">
-                                        <button type="button"
-                                                class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
-                                            <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                                            </svg>
-                                            Add to Favorites
-                                        </button>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <h1 class="text-md">No Products in Cart</h1>
+                        <?php endif; ?>
 
-                                        <button type="button" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
-                                            <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
-                                            </svg>
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- Payment Summary-->
                     <div class="hidden xl:mt-8 xl:block">
@@ -241,7 +212,8 @@ require base_path("Http/views/partials/aside.php");
                                                     class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                                 <span class="sr-only"> Add to Favorites </span>
                                                 <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                          d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
                                                 </svg>
                                             </button>
                                             <div id="tooltip-add-to-favorites" role="tooltip"
@@ -441,7 +413,7 @@ require base_path("Http/views/partials/aside.php");
 
                     <div class="space-y-3">
                         <a href="/checkout"
-                                class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                           class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                             Proceed to Checkout
                         </a>
 
@@ -466,7 +438,7 @@ require base_path("Http/views/partials/aside.php");
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 <?php
 require base_path("Http/views/partials/footer.php");
