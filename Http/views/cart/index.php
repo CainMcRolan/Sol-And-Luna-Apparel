@@ -247,24 +247,24 @@ require base_path("Http/views/partials/aside.php");
                     </div>
 
                     <div class="space-y-3">
-                            <?php if ($cart ?? false) : ?>
-                                <a href="checkout"
-                                        class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Proceed to Checkout
-                                </a>
-                            <?php else: ?>
-                                <button data-tooltip-target="tooltip-default"
-                                        type="button"
-                                        disabled
-                                        class="cursor-not-allowed flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 opacity-25 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Proceed to Checkout
-                                </button>
-                                <div id="tooltip-default" role="tooltip"
-                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                    Add products to cart to proceed to checkout
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                </div>
-                            <?php endif; ?>
+                        <?php if ($cart ?? false) : ?>
+                            <a href="checkout"
+                               class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Proceed to Checkout
+                            </a>
+                        <?php else: ?>
+                            <button data-tooltip-target="tooltip-default"
+                                    type="button"
+                                    disabled
+                                    class="cursor-not-allowed flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 opacity-25 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Proceed to Checkout
+                            </button>
+                            <div id="tooltip-default" role="tooltip"
+                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Add products to cart to proceed to checkout
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        <?php endif; ?>
                         <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in cart requires an account. <a href="/new"
                                                                                                                                           class="font-medium underline text-primary-700 hover:no-underline dark:text-primary-500">Continue
                                 Shopping.</a></p>
@@ -301,7 +301,7 @@ require base_path("Http/views/partials/aside.php");
                 const selectedValue = event.target.value;
                 const productId = event.target.id;
 
-                axios.patch('/cart-update', {
+                axios.post('/cart-update', {
                     selected_value: selectedValue,
                     product_id: productId
                 })

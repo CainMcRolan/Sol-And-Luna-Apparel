@@ -51,19 +51,24 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 
 -- Dumping data for table luna.bookings: ~0 rows (approximately)
 
--- Dumping structure for table luna.cart_items
-CREATE TABLE IF NOT EXISTS `cart_items` (
+-- Dumping structure for table luna.cart
+CREATE TABLE IF NOT EXISTS `cart` (
   `cart_item_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `product_id` int DEFAULT NULL,
   `quantity` int NOT NULL,
+  `size` enum('S','M','L','XL','XXL') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `added_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cart_item_id`),
   UNIQUE KEY `cart_item_id` (`cart_item_id`),
   KEY `idx_cart_items_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.cart_items: ~0 rows (approximately)
+-- Dumping data for table luna.cart: ~3 rows (approximately)
+INSERT INTO `cart` (`cart_item_id`, `user_id`, `product_id`, `quantity`, `size`, `added_at`) VALUES
+	(3, 27, 236, 1, 'M', '2024-12-05 04:00:36'),
+	(5, 26, 244, 2, 'L', '2024-12-05 07:54:55'),
+	(6, 26, 245, 5, 'XXL', '2024-12-05 07:55:32');
 
 -- Dumping structure for table luna.categories
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -78,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.categories: ~36 rows (approximately)
+-- Dumping data for table luna.categories: ~35 rows (approximately)
 INSERT INTO `categories` (`category_id`, `name`, `description`, `visibility`, `parent_category_id`, `created_at`) VALUES
 	(1, 'unisex', 'Clothing for all kind of people.', 1, 0, '2024-11-27 06:51:41'),
 	(2, 'men', 'Discover stylish and versatile clothing for every occasion, from casual essentials to sharp, sophisticated looks. Our men’s collection has everything you need to stay comfortable and confident.', 1, 0, '2024-11-01 02:20:38'),
@@ -210,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Dumping data for table luna.products: ~10 rows (approximately)
 INSERT INTO `products` (`product_id`, `name`, `description`, `visibility`, `price`, `stock_quantity`, `quantity_sold`, `created_at`) VALUES
-	(236, 'Women\'s Rival Fleece Crop Full-Zip', '<p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p>Key Features:</p><p>Soft Fleece Fabric: Provides warmth and comfort for all-day wear.</p><p>Cropped Design: Modern, flattering fit that pairs well with high-waisted pants.</p><p>Full-Zip Closure: Easy to wear and adjust for comfort.</p><p>Adjustable Hood: Extra coverage for cooler days.</p><p>Ribbed Cuffs: Secure fit that keeps sleeves in place.</p><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>', 1, 3524.28, 100, 82, '2024-11-30 05:54:53'),
+	(236, 'Women\'s Rival Fleece Crop Full-Zip', '<p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p>Key Features:</p><p>Soft Fleece Fabric: Provides warmth and comfort for all-day wear.</p><p>Cropped Design: Modern, flattering fit that pairs well with high-waisted pants.</p><p>Full-Zip Closure: Easy to wear and adjust for comfort.</p><p>Adjustable Hood: Extra coverage for cooler days.</p><p>Ribbed Cuffs: Secure fit that keeps sleeves in place.</p><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>', 1, 3524.28, 100, 5, '2024-11-30 05:54:53'),
 	(237, 'Men\'s Unstoppable Insulated Bomber Jacket', '<p>Stay warm and stylish in any weather with the Men\'s Unstoppable Insulated Bomber Jacket. Designed for both comfort and durability, this jacket features advanced insulation technology to keep you cozy in cold temperatures, while its sleek bomber style adds a touch of modern flair to your winter wardrobe.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium insulation for superior warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable water-resistant fabric</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic bomber silhouette with ribbed cuffs and hem</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front closure for easy layering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Multiple pockets for storage and convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Windproof design for protection in harsh conditions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight yet incredibly warm</li></ol>', 1, 9376.24, 100, 48, '2024-12-01 13:03:13'),
 	(238, 'Men\'s Fast Left Chest T-Shirt', '<p>The Men\'s Fast Left Chest T-Shirt combines casual comfort with a sleek, athletic look. Featuring a subtle logo on the left chest, this tee is perfect for both everyday wear and active moments. Made from soft, breathable fabric, it ensures all-day comfort whether you\'re working out or hanging out.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable cotton blend for comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Left chest logo for a minimalist, athletic touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight and versatile for layering or wearing alone</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Machine washable for easy care</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple color options</li></ol><p><br></p>', 1, 1054.83, 100, 25, '2024-12-01 13:06:46'),
 	(239, 'Men\'s Command Warm-Up Full-Zip', '<p>The Men\'s Command Warm-Up Full-Zip is the ultimate blend of comfort and performance. Perfect for pre-game warm-ups or casual wear, this jacket features a full-zip front and adjustable design, ensuring flexibility and ease of movement. Its soft, warm fabric keeps you cozy while you stay active.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front for easy on and off</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, warm fabric for enhanced comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Athletic fit for freedom of movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for storage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing alone during warm-ups or workouts</li></ol><p><br></p>', 1, 2344.06, 100, 353, '2024-12-01 13:10:49'),
@@ -231,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
   CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.product_categories: ~3 rows (approximately)
+-- Dumping data for table luna.product_categories: ~12 rows (approximately)
 INSERT INTO `product_categories` (`product_id`, `category_id`) VALUES
 	(236, 30),
 	(237, 30),
@@ -262,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.product_images: ~12 rows (approximately)
+-- Dumping data for table luna.product_images: ~39 rows (approximately)
 INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `cloud_url`, `is_primary`, `name`) VALUES
 	(132, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg', 'https://i.ibb.co/mScbCQZ/450025f52536.jpg', 1, '1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg'),
 	(133, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg', 'https://i.ibb.co/7QH12Y0/a8abe0a162d8.jpg', 0, '601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg'),
@@ -296,10 +301,10 @@ INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `cloud_url`
 	(161, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1755135461674c629e019ec5.57293536PS1386706-001_HB.jpg', 'https://i.ibb.co/z7CqgH7/668b5ddbda21.jpg', 0, '1755135461674c629e019ec5.57293536PS1386706-001_HB.jpg'),
 	(162, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/887432967674c62a0277281.80387242PS1386706-001_HS.jpg', 'https://i.ibb.co/Tg1dwgF/4a68a6ae604c.jpg', 0, '887432967674c62a0277281.80387242PS1386706-001_HS.jpg'),
 	(163, 243, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1629428476674c62a2900df4.32423863PS1386706-432_HF.jpg', 'https://i.ibb.co/6YkHgbs/90314e742d65.jpg', 0, '1629428476674c62a2900df4.32423863PS1386706-432_HF.jpg'),
-	(164, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/442346730674c6334611813.667755163027000-001_PAIR.jpg', 'https://i.ibb.co/bJjHJmn/3c1d98a014b6.jpg', 1, '442346730674c6334611813.667755163027000-001_PAIR.jpg'),
+	(164, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/442346730674c6334611813.667755163027000-001_PAIR.jpg', 'https://i.ibb.co/bJjHJmn/3c1d98a014b6.jpg', 0, '442346730674c6334611813.667755163027000-001_PAIR.jpg'),
 	(165, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1437066298674c63374a1256.217439883027000-001_TOE.jpg', 'https://i.ibb.co/FDDvV39/2979b094bbab.jpg', 0, '1437066298674c63374a1256.217439883027000-001_TOE.jpg'),
 	(166, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/255569404674c633ad0dad7.080307333027000-001_DEFAULT.jpg', 'https://i.ibb.co/PFJ75sT/9f2e119cc94b.jpg', 0, '255569404674c633ad0dad7.080307333027000-001_DEFAULT.jpg'),
-	(167, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/438715253674c633d8dbe73.633619413027000-001_A.jpg', 'https://i.ibb.co/6F7493Y/46d5be94b9a9.jpg', 0, '438715253674c633d8dbe73.633619413027000-001_A.jpg'),
+	(167, 244, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/438715253674c633d8dbe73.633619413027000-001_A.jpg', 'https://i.ibb.co/6F7493Y/46d5be94b9a9.jpg', 1, '438715253674c633d8dbe73.633619413027000-001_A.jpg'),
 	(168, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1304836199674c63e9b2e898.177315493027595-111_A.jpg', 'https://i.ibb.co/HpfZPDm/92bfad3dc158.jpg', 1, '1304836199674c63e9b2e898.177315493027595-111_A.jpg'),
 	(169, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1425606572674c63ec897252.624629933027595-111_TOE.jpg', 'https://i.ibb.co/mcZv8h0/59f05d02419f.jpg', 0, '1425606572674c63ec897252.624629933027595-111_TOE.jpg'),
 	(170, 245, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/365974521674c63efc7f234.197670093027595-111_PAIR.jpg', 'https://i.ibb.co/rHh3XDt/eb2be81ebef8.jpg', 0, '365974521674c63efc7f234.197670093027595-111_PAIR.jpg'),
@@ -349,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table luna.users: ~6 rows (approximately)
 INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `country`, `user_type`, `created_at`) VALUES
@@ -358,7 +363,8 @@ INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_na
 	(7, 'shimijallores@gmail.com', '$2y$10$Aj8rpfhjRl4CyUm4GYNV9Oj9VHhhjb2AcuiKFarXvXh57j0j9RWsC', 'Shimi Uzziel', 'Jallores', '09561434976', 'Philippines', 'customer', '2024-10-18 11:54:36'),
 	(14, 'romandmitry99@gmail.com', 'roman', 'Roman', 'Dmitry', NULL, 'Philippines', 'admin', '2024-11-01 16:16:41'),
 	(26, '34shimijallores@gmail.com', NULL, 'Shimi Uzziel', 'Jallores', NULL, 'Philippines', 'customer', '2024-11-30 06:17:01'),
-	(27, 'solapparel99@gmail.com', NULL, 'sol and', 'luna', NULL, 'Philippines', 'customer', '2024-11-30 06:17:27');
+	(27, 'solapparel99@gmail.com', NULL, 'sol and', 'luna', NULL, 'Philippines', 'customer', '2024-11-30 06:17:27'),
+	(28, 'demodemo@gmail.com', '$2y$10$ZQzqwb1srlX/OTULUbySI.gw.C7AHQmJiFgtgwKcKdQ/34Ul1.242', 'john', 'doe', NULL, 'Philippines', 'customer', '2024-12-03 16:53:05');
 
 -- Dumping structure for table luna.user_images
 CREATE TABLE IF NOT EXISTS `user_images` (
@@ -379,6 +385,26 @@ INSERT INTO `user_images` (`image_id`, `user_id`, `image_url`, `cloud_url`, `nam
 	(75, 14, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/Roman.jpg', NULL, 'Roman.jpg'),
 	(78, 7, 'C:\\laragon\\projects\\Luna\\public/../public/uploads/43840321067261300756395.08170808Profile-Picture-min.jpg', NULL, '43840321067261300756395.08170808Profile-Picture-min.jpg'),
 	(83, 3, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1618797854674aa98b100273.12251574lowkey.jpg', 'https://i.ibb.co/4Rvt5LM/d07f18aee936.jpg', '1618797854674aa98b100273.12251574lowkey.jpg');
+
+-- Dumping structure for table luna.wishlist
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `wishlist_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `added_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`wishlist_id`) USING BTREE,
+  UNIQUE KEY `cart_item_id` (`wishlist_id`) USING BTREE,
+  KEY `idx_cart_items_user` (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table luna.wishlist: ~4 rows (approximately)
+INSERT INTO `wishlist` (`wishlist_id`, `user_id`, `product_id`, `added_at`) VALUES
+	(5, 28, 242, '2024-12-03 16:53:32'),
+	(6, 26, 239, '2024-12-03 16:54:44'),
+	(11, 26, 243, '2024-12-04 02:24:42'),
+	(12, 26, 236, '2024-12-04 04:17:39'),
+	(14, 26, 0, '2024-12-05 07:47:50'),
+	(16, 26, 244, '2024-12-05 07:48:59');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
