@@ -24,8 +24,7 @@ require base_path("Http/views/partials/aside.php");
                                         </a>
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
                                             <div class="flex items-center">
-                                                <label for=""></label>
-                                                <select name="quantity" id="" class="product-select rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                                <select name="quantity" id="<?= $item['product_id'] ?>" class="product-select rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
                                                     <?php foreach (range(1, intval($item['stock_quantity'])) as $quantity) : ?>
                                                         <option value="<?= $quantity ?>" <?= $quantity === $item['quantity'] ? 'selected' : '' ?> class="cursor-pointer"><?= $quantity ?></option>
                                                     <?php endforeach; ?>
@@ -416,11 +415,13 @@ require base_path("Http/views/partials/aside.php");
                     <div class="space-y-3">
                         <form action="/checkout" method="POST">
                             <button type="submit"
-                               class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                    class="flex w-full items-center justify-center rounded-lg px-5 text-sm font-medium text-white bg-primary-700 py-2.5 hover:bg-primary-800 focus:ring-primary-300 focus:outline-none focus:ring-4 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                 Proceed to Checkout
                             </button>
                         </form>
-                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in cart requires an account. <a href="/new" title="" class="font-medium underline text-primary-700 hover:no-underline dark:text-primary-500">Continue Shopping.</a></p>
+                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in cart requires an account. <a href="/new" title=""
+                                                                                                                                          class="font-medium underline text-primary-700 hover:no-underline dark:text-primary-500">Continue
+                                Shopping.</a></p>
                     </div>
 
                     <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -450,6 +451,20 @@ require base_path("Http/views/partials/aside.php");
         selectContainer.addEventListener('change', function (event) {
             if (event.target.classList.contains('product-select')) {
                 setValues();
+
+                const selectedValue = event.target.value;
+                const productId = event.target.id;
+
+                axios.patch('/cart-update', {
+                    selected_value: selectedValue,
+                    product_id: productId
+                })
+                    .then(function (response) {
+                        console.log('Cart Updated Successfully:');
+                    })
+                    .catch(function (error) {
+                        console.error('Cart Update Failed:', error);
+                    });
             }
         });
 
