@@ -87,6 +87,7 @@ class FacebookAuth
         }
         //If user exists, just add session and redirect to home.
         $_SESSION['user'] = $fetched_user;
+        $_SESSION['user']['socials'] = true;
         Session::flash('success', 'Welcome Back');
     }
 }

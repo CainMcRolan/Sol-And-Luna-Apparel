@@ -49,6 +49,7 @@ $router->get('/summary', 'summary/index.php')->only('user');
 
 //User Profile
 $router->get('/profile', 'profile/index.php')->only('user');
+$router->patch('/profile', 'profile/update.php')->only('user');
 
 //Order History
 $router->get('/order-history', 'orders/index.php')->only('user');
@@ -63,7 +64,6 @@ $router->get('/addresses', 'addresses/index.php')->only('user');
 $router->get('/wishlist', 'wishlist/index.php')->only('user');
 $router->post('/wishlist', 'wishlist/create.php')->only('user');
 $router->delete('/wishlist', 'wishlist/delete.php')->only('user');
-
 
 #Helpers
 //Auth Redirect
