@@ -88,4 +88,9 @@ class Products
     {
         return $this->db->query("select product_id from wishlist where user_id = :user_id", ['user_id' => $user_id])->get();
     }
+
+    public function find(int $product_id) : bool
+    {
+        return (bool) $this->db->query("select * from products where product_id = :product_id", ['product_id' => $product_id])->find();
+    }
 }

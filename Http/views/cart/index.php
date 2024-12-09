@@ -93,11 +93,11 @@ require base_path("Http/views/partials/aside.php");
 
                     </div>
                     <!-- Recommendations -->
-                    <div class="hidden xl:mt-8 xl:block ">
+                    <div x-data class="hidden xl:mt-8 xl:block ">
                         <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
                         <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
                             <?php foreach ($products as $product) : ?>
-                                <div @click="window.location.href = '/product?id=1'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                                     <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full">
                                         <img @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="h-full w-full" src="<?= get_images($product)[0] ?>" alt=""/>
                                     </div>

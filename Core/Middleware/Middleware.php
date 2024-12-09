@@ -2,6 +2,8 @@
 
 namespace Core\Middleware;
 
+use Http\models\Products;
+
 class Middleware
 {
     const MAP = [
@@ -30,8 +32,13 @@ class Middleware
             return;
         }
 
-        if (!$_GET['id'] ?? false) {
+        if (!$_GET['id'] || !self::product_exists($_GET['id'])) {
             redirect("/$key");
         }
+    }
+
+    public static function product_exists($product_id) : bool
+    {
+        return (new Products(0))->find(intval($product_id));
     }
 }
