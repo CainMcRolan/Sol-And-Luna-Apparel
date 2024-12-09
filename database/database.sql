@@ -33,24 +33,6 @@ INSERT INTO `addresses` (`address_id`, `user_id`, `street_address`, `city`, `pro
 	(1, 7, '163 Rizal Street', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1),
 	(2, 10, 'Calingatan', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1);
 
--- Dumping structure for table luna.bookings
-CREATE TABLE IF NOT EXISTS `bookings` (
-  `booking_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `table_number` int NOT NULL,
-  `menu_id` bigint NOT NULL,
-  `first_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `last_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `booking_date` date NOT NULL,
-  `booking_time` time NOT NULL,
-  `additional_notes` text COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table luna.bookings: ~0 rows (approximately)
-
 -- Dumping structure for table luna.cart
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_item_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -62,13 +44,12 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`cart_item_id`),
   UNIQUE KEY `cart_item_id` (`cart_item_id`),
   KEY `idx_cart_items_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.cart: ~3 rows (approximately)
+-- Dumping data for table luna.cart: ~1 rows (approximately)
 INSERT INTO `cart` (`cart_item_id`, `user_id`, `product_id`, `quantity`, `size`, `added_at`) VALUES
 	(3, 27, 236, 1, 'M', '2024-12-05 04:00:36'),
-	(5, 26, 244, 2, 'L', '2024-12-05 07:54:55'),
-	(6, 26, 245, 5, 'XXL', '2024-12-05 07:55:32');
+	(7, 26, 245, 1, 'L', '2024-12-08 15:04:27');
 
 -- Dumping structure for table luna.categories
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -267,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.product_images: ~39 rows (approximately)
+-- Dumping data for table luna.product_images: ~40 rows (approximately)
 INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `cloud_url`, `is_primary`, `name`) VALUES
 	(132, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg', 'https://i.ibb.co/mScbCQZ/450025f52536.jpg', 1, '1801454837674aa8ad0d0207.02608459V5-1385890-001_FC.jpg'),
 	(133, 236, 'C:\\laragon\\projects\\Luna-Dashboard\\public/../public/uploads/601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg', 'https://i.ibb.co/7QH12Y0/a8abe0a162d8.jpg', 0, '601319000674aa8af3bb9c7.41122866V5-1385890-001_BC.jpg'),
@@ -354,17 +335,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.users: ~6 rows (approximately)
+-- Dumping data for table luna.users: ~9 rows (approximately)
 INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `country`, `user_type`, `created_at`) VALUES
 	(1, 'shimijallores35@gmail.com', 'shimi', 'Shimi', 'Jallores', '09561434976', 'Philippines', 'admin', '2024-10-11 09:31:59'),
 	(3, 'youanybluesky30@gmail.com', 'shimi', 'Patriarch', 'Cain', '09289287057', 'Philippines', 'customer', '2024-10-18 10:14:58'),
-	(7, 'shimijallores@gmail.com', '$2y$10$Aj8rpfhjRl4CyUm4GYNV9Oj9VHhhjb2AcuiKFarXvXh57j0j9RWsC', 'Shimi Uzziel', 'Jallores', '09561434976', 'Philippines', 'customer', '2024-10-18 11:54:36'),
+	(7, 'shimijallores@gmail.com', '$2y$10$Aj8rpfhjRl4CyUm4GYNV9Oj9VHhhjb2AcuiKFarXvXh57j0j9RWsC', 'Shimi Uzziel', 'Jallores', '091234567891', 'Philippines', 'customer', '2024-10-18 11:54:36'),
 	(14, 'romandmitry99@gmail.com', 'roman', 'Roman', 'Dmitry', NULL, 'Philippines', 'admin', '2024-11-01 16:16:41'),
-	(26, '34shimijallores@gmail.com', NULL, 'Shimi Uzziel', 'Jallores', NULL, 'Philippines', 'customer', '2024-11-30 06:17:01'),
-	(27, 'solapparel99@gmail.com', NULL, 'sol and', 'luna', NULL, 'Philippines', 'customer', '2024-11-30 06:17:27'),
-	(28, 'demodemo@gmail.com', '$2y$10$ZQzqwb1srlX/OTULUbySI.gw.C7AHQmJiFgtgwKcKdQ/34Ul1.242', 'john', 'doe', NULL, 'Philippines', 'customer', '2024-12-03 16:53:05');
+	(26, '34shimijallores@gmail.com', NULL, 'Shimi Uzziel', 'Jallores', '09397160615', 'Philippines', 'customer', '2024-11-30 06:17:01'),
+	(27, 'solapparel99@gmail.com', NULL, 'Sol and', 'Luna', '09457160613', 'Philippines', 'customer', '2024-11-30 06:17:27'),
+	(29, 'youanybluesky10@gmail.com', NULL, 'cain', 'bro', '09561434987', 'Philippines', 'customer', '2024-12-08 15:34:59'),
+	(30, 'demodemo2@gmail.com', '$2y$10$9TjHDfq3R/7XD7G9zYba4ui3bmwMG2xwj30OyD7clc6VbJz1pN8/a', 'john', 'doe', '09111111111', 'Philippines', 'customer', '2024-12-08 16:17:25'),
+	(31, 'demodemo@gmail.com', '$2y$10$vDInGDR8sA0pI7T8kjN3xesjBv.C7y8JvVqQUVjXMF.ay2wHtRxlC', 'john', 'doe', '09561434333', 'Philippines', 'customer', '2024-12-08 16:39:59');
 
 -- Dumping structure for table luna.user_images
 CREATE TABLE IF NOT EXISTS `user_images` (
@@ -395,16 +378,14 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   PRIMARY KEY (`wishlist_id`) USING BTREE,
   UNIQUE KEY `cart_item_id` (`wishlist_id`) USING BTREE,
   KEY `idx_cart_items_user` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table luna.wishlist: ~4 rows (approximately)
+-- Dumping data for table luna.wishlist: ~5 rows (approximately)
 INSERT INTO `wishlist` (`wishlist_id`, `user_id`, `product_id`, `added_at`) VALUES
 	(5, 28, 242, '2024-12-03 16:53:32'),
-	(6, 26, 239, '2024-12-03 16:54:44'),
-	(11, 26, 243, '2024-12-04 02:24:42'),
-	(12, 26, 236, '2024-12-04 04:17:39'),
 	(14, 26, 0, '2024-12-05 07:47:50'),
-	(16, 26, 244, '2024-12-05 07:48:59');
+	(20, 26, 244, '2024-12-09 01:16:50'),
+	(21, 26, 243, '2024-12-09 01:17:02');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

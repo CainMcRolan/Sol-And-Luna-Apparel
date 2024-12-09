@@ -59,6 +59,8 @@ $router->get('/payment-methods', 'payment/index.php')->only('user');
 
 //Addresses
 $router->get('/addresses', 'addresses/index.php')->only('user');
+$router->post('/addresses', 'addresses/create.php')->only('user');
+$router->delete('/addresses', 'addresses/destroy.php')->only('user');
 
 //Wishlist
 $router->get('/wishlist', 'wishlist/index.php')->only('user');
