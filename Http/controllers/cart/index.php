@@ -21,11 +21,19 @@ $cart = $db->query("
 ", [':user_id' => $_SESSION['user']['user_id']])->get();
 
 $product = new Products(0);
-$products = array_slice($product->new_products(),0,3);
+$products = array_slice($product->new_products(), 0, 3);
 
 $wishlist = [];
 if ($_SESSION['user'] ?? false) {
     $wishlist = array_column($product->wishlist($_SESSION['user']['user_id']), 'product_id');
 }
+
+$sizes = [
+    'S' => 'small_quantity',
+    'M' => 'medium_quantity',
+    'L' => 'large_quantity',
+    'XL' => 'xl_quantity',
+    'XXL' => 'xxl_quantity'
+];
 
 require base_path('Http/views/cart/index.php');

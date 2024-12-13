@@ -24,9 +24,15 @@ require base_path("Http/views/partials/aside.php");
                                         </a>
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
                                             <div class="flex items-center">
-                                                <select name="quantity" id="<?= $item['product_id'] ?>" class="product-select rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
-                                                    <?php foreach (range(1, intval($item['stock_quantity'])) as $quantity) : ?>
-                                                        <option value="<?= $quantity ?>" <?= $quantity === $item['quantity'] ? 'selected' : '' ?> class="cursor-pointer"><?= $quantity ?></option>
+                                                <?php
+                                                $size = $item['size'];
+                                                if (array_key_exists($size, $sizes)) {
+                                                    $size = $sizes[$size];
+                                                }
+                                                ?>
+                                                <select name="quantity" id="<?= $item['product_id'] ?>" data-size="<?= $item['size'] ?>" class="product-select rounded-md p-1 px-4 cursor-pointer text-sm border border-gray-300">
+                                                    <?php foreach (range(1, intval($item[$size])) as $quantity) : ?>
+                                                        <option value="<?= min($quantity, $item[$size]) ?>" <?= $quantity === $item['quantity'] ? 'selected' : '' ?> class="cursor-pointer"><?= min($quantity, $item[$size]) ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -36,7 +42,7 @@ require base_path("Http/views/partials/aside.php");
                                         </div>
                                         <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
                                             <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>"
-                                               class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?></a>
+                                               class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?> (<span><?= htmlspecialchars($item['size'] ?? 'S') ?></span>)</a>
                                             <p class="text-neutral-500 text-xs"><?= htmlspecialchars(substr(strip_tags($item['description']), 0, 200) ?? 'Description') ?></p>
                                             <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
                                                 <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
@@ -75,6 +81,7 @@ require base_path("Http/views/partials/aside.php");
                                                 <form action="/cart" method="POST" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['product_id']) ?>">
+                                                    <input type="hidden" name="product_size" value="<?= htmlspecialchars($item['size']) ?>">
                                                     <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                                                         <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
@@ -97,7 +104,8 @@ require base_path("Http/views/partials/aside.php");
                         <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
                         <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
                             <?php foreach ($products as $product) : ?>
-                                <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'"
+                                     class="w-full cursor-pointer bg-white border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                                     <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="w-full">
                                         <img @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="h-full w-full" src="<?= get_images($product)[0] ?>" alt=""/>
                                     </div>
@@ -304,13 +312,15 @@ require base_path("Http/views/partials/aside.php");
 
                 const selectedValue = event.target.value;
                 const productId = event.target.id;
+                const size = event.target.getAttribute("data-size");
 
                 axios.post('/cart-update', {
                     selected_value: selectedValue,
-                    product_id: productId
+                    product_id: productId,
+                    size: size
                 })
                     .then(function (response) {
-                        console.log('Cart Updated Successfully:');
+                        console.log('Cart Updated Successfully:', response);
                     })
                     .catch(function (error) {
                         console.error('Cart Update Failed:', error);
