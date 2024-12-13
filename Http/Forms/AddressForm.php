@@ -22,12 +22,12 @@ class AddressForm extends Form
             $this->errors['zip_code'] = "zip_code";
         }
 
-        if (!Validator::string($this->attributes['province'], 3, 50)) {
+        if (!Validator::string($this->attributes['province'], 0, 50)) {
             $this->errors['province'] = "province";
         }
 
         if (!Validator::string($this->attributes['country'], 3, 50)) {
-            $this->errors['province'] = "province";
+            $this->errors['country'] = "country";
         }
 
         if (!Validator::number($this->attributes['is_default'], 0, 1)) {

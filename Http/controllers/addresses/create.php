@@ -3,7 +3,6 @@
 use Http\models\Addresses;
 use Http\Forms\AddressForm;
 
-
 $form = AddressForm::validate($attributes = [
     'user_id' => $_POST['user_id'],
     'street_address' => $_POST['street_address'],
@@ -16,4 +15,4 @@ $form = AddressForm::validate($attributes = [
 
 (new Addresses)->store($attributes);
 
-redirect('/addresses');
+redirect($_SERVER['HTTP_REFERER']);

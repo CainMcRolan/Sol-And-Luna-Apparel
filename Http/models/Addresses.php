@@ -35,4 +35,10 @@ class Addresses
         $this->db->query('delete from addresses where address_id = :address_id', ['address_id' => $address_id]);
         Session::flash('success', 'Address  removed successfully!');
     }
+
+    public function get_shipping_id(int $user_id): int
+    {
+        $last_address = $this->db->query('select address_id from addresses where user_id = :user_id order by address_id desc', [':user_id' => $user_id])->find();
+        return $last_address['address_id'];
+    }
 }

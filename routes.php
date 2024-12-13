@@ -43,6 +43,8 @@ $router->post('/cart-update', 'cart/update.php')->only('user');
 
 //Order Checkout - Subject to Change (Add User Authorization and Params)
 $router->get('/checkout', 'checkout/index.php')->only('user');
+$router->post('/checkout', 'checkout/confirm.php')->only('user');
+$router->get('/payment', 'checkout/payment.php')->only('user');
 
 //Order Summary - Subject to Change (Add User Authorization and Params)
 $router->get('/summary', 'summary/index.php')->only('user');
