@@ -36,7 +36,23 @@ require base_path("Http/views/partials/aside.php");
 
                 <!-- Product Information-->
                 <div class="my-0 flex w-full items-center justify-center pr-0 max-lg:pb-10 data lg:my-5 lg:pr-8 xl:my-2 xl:justify-start">
-                    <div x-data="{ open: false, sizes: ['S', 'M', 'L', 'XL', 'XXL'], quantity : 1, size: 'S' }" class="w-full max-w-xl data">
+                    <div x-data="{
+                        open: false,
+                        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                        quantity : 1,
+                        size: 'S',
+                        max: <?= $current_product['small_quantity'] ?>,
+                        sizeReference: {
+                            'S': <?= $current_product['small_quantity'] ?>,
+                            'M': <?= $current_product['medium_quantity'] ?>,
+                            'L': '<?= $current_product['large_quantity'] ?>',
+                            'XL': '<?= $current_product['xl_quantity'] ?>',
+                            'XXL': '<?= $current_product['xxl_quantity'] ?>'
+                        },
+                        changeMax() {
+                            this.max = this.sizeReference[this.size];
+                        }
+                        }" class="w-full max-w-xl data">
                         <p class="mb-4 text-lg font-medium leading-8 text-neutral-800"><a href="/new" class="hover:text-orange-600">Apparel</a>&nbsp; /&nbsp; <span>Clothing</span></p>
                         <h2 class="mb-2 text-3xl font-bold capitalize leading-10 text-gray-900 font-manrope"><?= htmlspecialchars($current_product['name'] ?? 'Demo Product') ?></h2>
                         <div class="mb-6 flex flex-col sm:flex-row sm:items-center">
@@ -164,19 +180,79 @@ require base_path("Http/views/partials/aside.php");
                                 <span class="text-sm font-normal text-gray-900">All size is available</span>
                             </li>
                         </ul>
-
-                        <p class="mb-4 text-base font-medium leading-8 text-gray-900">Size</p>
+                        <p class="mb-4 text-base font-medium leading-8 text-gray-900">Available Sizes<span data-tooltip-target="tooltip-default"
+                                                                                                           class="inline-block mx-2 bg-neutral-300 rounded-full px-3 cursor-pointer">?</span></p>
+                        <div id="tooltip-default" role="tooltip"
+                             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            <table border="1">
+                                <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Chest (cm)</th>
+                                    <th>Waist (cm)</th>
+                                    <th>Hips (cm)</th>
+                                    <th>Shoe Size</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Small (S)</td>
+                                    <td>86-91</td>
+                                    <td>71-76</td>
+                                    <td>86-91</td>
+                                    <td>5-6 (US)</td>
+                                </tr>
+                                <tr>
+                                    <td>Medium (M)</td>
+                                    <td>96-101</td>
+                                    <td>81-86</td>
+                                    <td>96-101</td>
+                                    <td>7-8 (US)</td>
+                                </tr>
+                                <tr>
+                                    <td>Large (L)</td>
+                                    <td>106-111</td>
+                                    <td>91-97</td>
+                                    <td>106-111</td>
+                                    <td>9-10 (US)</td>
+                                </tr>
+                                <tr>
+                                    <td>Extra Large (XL)</td>
+                                    <td>116-121</td>
+                                    <td>102-107</td>
+                                    <td>116-121</td>
+                                    <td>11-12 (US)</td>
+                                </tr>
+                                <tr>
+                                    <td>2X Large (2XL)</td>
+                                    <td>127-132</td>
+                                    <td>112-117</td>
+                                    <td>127-132</td>
+                                    <td>13-14 (US)</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                        <!-- Size Button-->
                         <div class="w-full flex-wrap border-b border-gray-100 pb-4">
                             <div class="grid max-w-md grid-cols-3 gap-3 min-[400px]:grid-cols-5">
                                 <template x-for="sz in sizes">
-                                    <button @click="size = sz" x-text="sz" :class="sz === size ? 'border-2 border-orange-500' : 'border border-gray-200'"
-                                            class="flex w-full items-center justify-center rounded-full bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-orange-300 visited:bg-orange-50 hover:border-orange-300 hover:bg-orange-50 hover:shadow-sm hover:shadow-orange-100"></button>
+                                    <template x-if="sizeReference[sz] != 0">
+                                        <button @click="size = sz; changeMax()"
+                                                x-text="sz"
+                                                :class="{
+                                                      'border-2 border-orange-500': sz === size,
+                                                      'border border-gray-200': sz !== size,
+                                                 }"
+                                                class="flex w-full items-center justify-center rounded-full bg-white px-6 text-center text-base font-semibold leading-8 text-gray-900 transition-all duration-300 py-1 visited:border-orange-300 visited:bg-orange-50 hover:border-orange-300 hover:bg-orange-50 hover:shadow-sm hover:shadow-orange-100"></button>
+                                    </template>
                                 </template>
                             </div>
                         </div>
 
                         <form action="/cart" method="POST" class="grid grid-cols-1 gap-3 py-6 sm:grid-cols-2">
-                            <div x-data="{ max: <?= $current_product['quantity_sold'] ?> }" class="flex w-full sm:items-center sm:justify-center">
+                            <div class="flex w-full sm:items-center sm:justify-center">
                                 <input type="hidden" name="quantity" :value="quantity" x-ref="quant">
                                 <input type="hidden" name="product_id" value="<?= $current_product['product_id'] ?>">
                                 <input type="hidden" name="size" :value="size">
