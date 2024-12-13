@@ -1,10 +1,13 @@
 <?php
 
+use Core\App;
+use Core\Database;
+
 if (!$_SESSION['order']) {
     redirect('/cart');
 }
 
-$db = \Core\App::resolve(\Core\Database::class);
+$db = App::resolve(Database::class);
 
 $order_details = $_SESSION['order'];
 

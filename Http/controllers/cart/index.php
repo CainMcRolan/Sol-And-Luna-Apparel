@@ -1,5 +1,7 @@
 <?php
 
+use Core\App;
+use Core\Database;
 use Core\Session;
 use Http\models\Products;
 
@@ -7,7 +9,7 @@ $errors = Session::get('errors') ?? [];
 $success = Session::get('success') ?? '';
 $email = old('email');
 
-$db = \Core\App::resolve(\Core\Database::class);
+$db = App::resolve(Database::class);
 
 $user = $_SESSION['user'] ?? false;
 

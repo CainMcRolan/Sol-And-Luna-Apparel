@@ -1,11 +1,13 @@
 <?php
 
+use Core\App;
+use Core\Database;
 use Core\Session;
 
 $errors = Session::get('errors') ?? [];
 $success = Session::get('success') ?? '';
 
-$db = \Core\App::resolve(\Core\Database::class);
+$db = App::resolve(Database::class);
 
 $cart = $db->query("
     SELECT 

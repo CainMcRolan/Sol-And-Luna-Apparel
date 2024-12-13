@@ -1,10 +1,13 @@
 <?php
 
+use Core\App;
+use Core\Database;
+
 if (!$_SESSION['order']) {
     redirect('/cart');
 }
 
-$db = \Core\App::resolve(\Core\Database::class);
+$db = App::resolve(Database::class);
 
 $cart = $db->query("
     select c.*, p.*, i.cloud_url, IF(w.product_id IS NOT NULL, 1, 0) as wishlist
