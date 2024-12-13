@@ -98,9 +98,8 @@ function previous_url(): string
     return $prev['path'] . '?' . $prev['query'];
 }
 
-function generateUniqueId(): string
-{
-    return uniqid(rand(), true);
+function generateUniqueId() {
+    return random_int(1000000000, 9999999999);
 }
 
 function image_path(): string

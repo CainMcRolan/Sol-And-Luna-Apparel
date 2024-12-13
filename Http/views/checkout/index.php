@@ -108,7 +108,7 @@ require base_path("Http/views/partials/aside.php");
                             <!-- Customer Notes-->
                             <div class="col-span-2">
                                 <label for="" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Your Notes</label>
-                                <textarea name="note" id="" cols="30" rows="5"
+                                <textarea name="notes" id="" cols="30" rows="5"
                                           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
                                 </textarea>
                             </div>
@@ -148,28 +148,6 @@ require base_path("Http/views/partials/aside.php");
                                     <div class="h-3 w-px shrink-0 bg-gray-200 dark:bg-gray-700"></div>
 
                                     <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Mastercard</button>
-                                </div>
-                            </div>
-                            <!-- Gcash -->
-                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-                                <div class="flex items-start">
-                                    <div class="flex h-5 items-center">
-                                        <input id="pay-on-delivery" aria-describedby="pay-on-delivery-text" type="radio" name="payment-method" value="gcash"
-                                               class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"/>
-                                    </div>
-
-                                    <div class="ms-4 text-sm">
-                                        <label for="pay-on-delivery" class="font-medium leading-none text-gray-900 dark:text-white"> E-wallet - GCASH</label>
-                                        <p id="pay-on-delivery-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">+₱15 payment processing fee</p>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 flex items-center gap-2">
-                                    <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">GCASH</button>
-
-                                    <div class="h-3 w-px shrink-0 bg-gray-200 dark:bg-gray-700"></div>
-
-                                    <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Payment</button>
                                 </div>
                             </div>
                             <!-- Cash on Delivery-->

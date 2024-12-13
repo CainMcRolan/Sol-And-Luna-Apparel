@@ -20,7 +20,12 @@ if (empty($_POST['shipping_address_id'])) {
 $_SESSION['order'] = [
     'payment_method' => $_POST['payment-method'],
     'total' => $_POST['total'],
+    'notes' => $_POST['notes'],
     'shipping_address_id' => intval($_POST['shipping_address_id']) == 0 ? (new Addresses())->get_shipping_id($attributes['user_id']) : intval($_POST['shipping_address_id']),
 ];
 
-redirect('/payment');
+if ($_POST['payment-method'] == 'credit_card') {
+    redirect('/payment');
+}
+
+redirect('/process-order');

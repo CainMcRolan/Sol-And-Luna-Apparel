@@ -72,3 +72,5 @@ $router->delete('/wishlist', 'wishlist/delete.php')->only('user');
 #Helpers
 //Auth Redirect
 $router->get('/auth-redirect', 'auth-redirect.php');
+//Order Processing (Removing from cart, adding to orders etc)
+$router->get('/process-order', 'checkout/process-order.php');
