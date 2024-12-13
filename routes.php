@@ -55,6 +55,7 @@ $router->patch('/profile', 'profile/update.php')->only('user');
 
 //Order History
 $router->get('/order-history', 'orders/index.php')->only('user');
+$router->get('/order-details', 'orders/show.php')->only('user');
 
 //Payment Methods
 $router->get('/payment-methods', 'payment/index.php')->only('user');

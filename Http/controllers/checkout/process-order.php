@@ -30,6 +30,14 @@ $db->query('insert into orders (order_id, user_id, email, status, notes, total_a
 
 $order_id = $db->query('select order_id from orders where user_id = :user_id order by order_id desc', [':user_id' => $_SESSION['user']['user_id']])->find();
 
+$sizes = [
+    'S' => 'small_quantity',
+    'M' => 'medium_quantity',
+    'L' => 'large_quantity',
+    'XL' => 'xl_quantity',
+    'XXL' => 'xxl_quantity',
+];
+
 foreach ($cart as $item) {
     $db->query('insert into order_items (order_id, product_id, size, quantity, price_at_time) values (:order_id, :product_id, :size, :quantity, :price_at_time)', [
         ':order_id' => $order_id['order_id'],
@@ -38,6 +46,8 @@ foreach ($cart as $item) {
         ':quantity' => $item['quantity'],
         ':price_at_time' => $item['price'],
     ]);
+
+    $db->query("update products set {$sizes[$item['size']]} = :size, quantity_sold = :quantity_sold where product_id = :product_id", [':size' => $item[$sizes[$item['size']]] - intval($item['quantity']), ':quantity_sold' => $item['quantity_sold'] + intval($item['quantity']), ':product_id' => $item['product_id']]);
 }
 
 redirect('/summary');
