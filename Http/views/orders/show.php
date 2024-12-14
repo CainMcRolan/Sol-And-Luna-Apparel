@@ -12,9 +12,69 @@ require base_path("Http/views/partials/aside.php");
             </aside>
             <section class="w-full antialiased dark:bg-gray-900">
                 <div class="mx-auto w-full px-4 2xl:px-0">
-                    <h1 class="hidden text-2xl font-semibold lg:block">Order Details (#<?= $_GET['id'] ?>)</h1>
+                    <h1 class="hidden text-2xl font-semibold lg:flex lg:items-center">Order Details (#<?= $_GET['id'] ?>)</h1>
                     <div class="mx-auto mt-6 space-y-4">
-                        <h1>Hello Lola!</h1>
+                        <a href="/order-history" class="lg:hidden self-center inline-block text-xs cursor-pointer underline text-neutral-600">Return to History</a>
+                        <?php foreach ($order_items as $item) : ?>
+                            <div x-data class="product rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                                <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                    <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>" class="shrink-0 md:order-1">
+                                        <img class="w-28 h-28 rounded-md" src="<?= htmlspecialchars($item['cloud_url']) ?>" alt=""/>
+                                    </a>
+                                    <div class="flex items-center justify-between md:order-3 md:justify-end">
+                                        <div class="flex items-center">
+                                            <label for="quantity>"></label>
+                                            <select disabled name="quantity" id="quantity>" class="opacity-0 cursor-not-allowed product-select rounded-md p-1 px-4 text-sm border border-gray-300">
+                                                <option value="1" selected>1</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-end md:order-4 md:w-32">
+                                            <p class="product-price text-base font-bold text-gray-900 dark:text-white">₱<?= htmlspecialchars(number_format($item['price'], 2)) ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                        <a href="<?= '/product?id=' . htmlspecialchars($item['product_id']) ?>"
+                                           class="text-base font-medium text-gray-900 hover:underline dark:text-white"><?= htmlspecialchars($item['name'] ?? 'Product') ?></a>
+                                        <p class="text-neutral-500 text-xs"><?= htmlspecialchars(substr(strip_tags($item['description']), 0, 200) ?? 'Description') ?></p>
+                                        <p class="text-neutral-500 text-xs flex gap-x-1 items-center">
+                                            <svg class="eVNhx7m5tjSVbfYQzDdT kbeH5ty3CtPKxXm5TXph zujhCQXfQfsYXApYjSOW K1PPCJwslha8GUIvV_Cr eCx_6PNzncAD5yo7Qcic" aria-hidden="true"
+                                                 xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
+                                            </svg>
+                                            <?php if ($order['status'] == 'delivered') : ?>
+                                                Delivered on <?= (new DateTime($order['delivered_on']))->format('M d, Y') ?>
+                                            <?php elseif ($order['status'] == 'cancelled') : ?>
+                                                Order Cancelled
+                                            <?php elseif ($order['status'] == 'pending') : ?>
+                                                Waiting for Order to be accepted
+                                            <?php else: ?>
+                                                Expected delivery on <?= (new DateTime($order['created_at']))->modify('+7 days')->format('M d, Y') ?>
+                                            <?php endif; ?>
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                                <p type="button"
+                                                   class="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700">
+                                                    Size: <?= htmlspecialchars($item['size'] ?? '') ?>
+                                                </p>
+                                            </div>
+                                            <div class="inline-flex items-center text-sm font-medium dark:text-red-500">
+                                                <p class="inline-flex items-center text-sm font-medium text-neutral-700 group hover:text-green-700">
+                                                    Quantity: <?= htmlspecialchars($item['quantity'] ?? '') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div>
+                            <p class="font-bold text-lg">Order Details</p>
+                            <p class="text-sm text-neutral-800 font-semibold">Subtotal: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['subtotal'] ?? 0, 2)) ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Tax: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['tax'] ?? 0, 2)) ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Total: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['total'] ?? 0, 2)) ?></span></p>
+                        </div>
                     </div>
                 </div>
                 <!-- Recommendations -->

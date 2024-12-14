@@ -20,6 +20,27 @@ $order = $db->query("
     ':order_id' => $_GET['id'] ?? '',
 ])->find_or_fail();
 
+
+$order_items = $db->query("
+    select o.*, p.*, i.cloud_url
+    from order_items o  
+    join products p on o.product_id = p.product_id
+    left join product_images i on p.product_id = i.product_id
+    where i.is_primary = 1
+    and o.order_id = :order_id
+", [
+    ':order_id' => $_GET['id'] ?? '',
+])->get();
+
+$order_items_total = $db->query("
+    SELECT 
+        SUM(quantity * price_at_time) AS subtotal,
+        SUM(quantity * price_at_time) * 0.12 AS tax,
+        SUM(quantity * price_at_time) + ((SUM(quantity * price_at_time) * 0.12) + 150) AS total
+    FROM order_items 
+    WHERE order_id = :order_id
+", [':order_id' => $_GET['id']])->find();
+
 $product = new Products(0);
 $products = array_slice($product->new_products(),0,3);
 

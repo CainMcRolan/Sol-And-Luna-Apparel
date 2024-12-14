@@ -51,7 +51,8 @@ require base_path("Http/views/partials/aside.php");
                         </div>
 
                         <!-- Order Cards -->
-                        <div class="space-y-4">
+                        <div x-data="{isOpen:false, currentItem:0}" class="space-y-4">
+                            <?php require base_path('Http/views/orders/delete.php')?>
                             <?php foreach ($orders as $order) : ?>
                                 <!-- Pre-order Card -->
                                 <div class="rounded-lg border bg-white p-4 space-y-4">
@@ -82,9 +83,9 @@ require base_path("Http/views/partials/aside.php");
                                                 Tracking Number: <span class="text-black"><?= htmlspecialchars($order['tracking_number']) ?></span>
                                             </p>
                                         </div>
-                                        <div x-data class="flex h-12 gap-2 lg:h-10">
+                                        <div class="flex h-12 gap-2 lg:h-10">
                                             <?php if ($order['status'] == 'pending' || $order['status'] == 'new' || $order['status'] == 'processing') : ?>
-                                                <button class="rounded bg-red-600 px-4 py-1 text-sm text-white hover:bg-red-800">Cancel order</button>
+                                                <button @click="isOpen = !isOpen; currentItem = <?= $order['order_id'] ?>; console.log(currentItem)" class="rounded bg-red-600 px-4 py-1 text-sm text-white hover:bg-red-800">Cancel order</button>
                                             <?php elseif ($order['status'] == 'shipped') : ?>
                                                 <a href="https://www.lbcexpress.com/track/" target="_blank" class="flex cursor-pointer items-center rounded border px-4 py-1 text-sm hover:bg-gray-50">Track
                                                     order</a>
