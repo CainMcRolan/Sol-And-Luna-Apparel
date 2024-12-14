@@ -14,6 +14,8 @@ $orders = $db->query("
     select * 
     from orders 
     where user_id = :user_id
+    order by created_at
+    desc
 ", [
     ':user_id' => $_SESSION['user']['user_id']
 ])->get();

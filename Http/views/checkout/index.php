@@ -17,6 +17,7 @@ require base_path("Http/views/partials/aside.php");
                         <input type="hidden" name="primary" value="0">
                         <input type="hidden" name="shipping_address_id" value="<?= $selected_address['address_id'] ?? 0 ?>">
                         <input type="hidden" name="total" value="<?= round($cart['total'], 2) ?>">
+                        <input type="hidden" name="tax" value="<?= round($cart['tax'], 2) ?>">
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Details
                             <?php if ($success ?? false) : ?>
                                 <span class="text-green-600 text-xs">(Address successfully modified)</span>

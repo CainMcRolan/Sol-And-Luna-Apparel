@@ -111,3 +111,8 @@ function get_images($product) : array
 {
     return explode(',', $product['images']);
 }
+
+function return_url(string $path) : string
+{
+    return 'http://' . $_SERVER['HTTP_HOST'] . $path;
+}

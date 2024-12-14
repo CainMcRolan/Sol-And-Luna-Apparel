@@ -20,7 +20,7 @@ $cart = $db->query("
 
 $order_id = generateUniqueId();
 
-$db->query('insert into orders (order_id, user_id, email, status, notes, total_amount, shipping_address_id) values (:order_id, :user_id, :email, :status, :notes, :total_amount, :shipping_address_id)', [
+$db->query('insert into orders (order_id, user_id, email, status, notes, total_amount, shipping_address_id, payment, payment_status) values (:order_id, :user_id, :email, :status, :notes, :total_amount, :shipping_address_id, :payment, :payment_status)', [
     ':order_id' => $order_id,
     ':user_id' => $_SESSION['user']['user_id'],
     ':email' => $_SESSION['user']['email'],
@@ -28,7 +28,10 @@ $db->query('insert into orders (order_id, user_id, email, status, notes, total_a
     ':notes' => $_SESSION['order']['notes'],
     ':total_amount' => $_SESSION['order']['total'],
     ':shipping_address_id' => $_SESSION['order']['shipping_address_id'],
+    ':payment' => 'Card',
+    ':payment_status' => 'paid',
 ]);
+
 
 $sizes = [
     'S' => 'small_quantity',

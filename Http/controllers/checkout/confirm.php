@@ -21,6 +21,7 @@ $_SESSION['order'] = [
     'payment_method' => $_POST['payment-method'],
     'total' => $_POST['total'],
     'notes' => $_POST['notes'],
+    'tax' => $_POST['tax'],
     'shipping_address_id' => intval($_POST['shipping_address_id']) == 0 ? (new Addresses())->get_shipping_id($attributes['user_id']) : intval($_POST['shipping_address_id']),
 ];
 
