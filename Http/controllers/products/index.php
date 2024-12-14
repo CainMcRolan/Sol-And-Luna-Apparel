@@ -11,11 +11,15 @@ $user = Session::fetch('user');
 $db = App::resolve(Database::class);
 $path = get_path();
 $page = intval($_GET['page'] ?? 0);
+$search = $_GET['item'] ?? '';
 
 $product = new Products($page);
 $products = 0;
 $product_count = 0;
-if ($path == 'new') {
+if ($path == 'new' and $search) {
+    $products = $product->search_products($search);
+    $product_count = $product->search_product_count($search);
+} elseif ($path == 'new') {
     $products = $product->new_products();
     $product_count = $product->new_product_count();
 } else {

@@ -61,6 +61,15 @@ tailwind.config = {
                     "950": "#451a03"
                 }
             },
+            animation: {
+                'bounce-once': 'bounceOnce 1s ease-in-out 1',
+            },
+            keyframes: {
+                bounceOnce: {
+                    '0%': { transform: 'translateX(-100vh)' },
+                    '100%': { transform: 'translateX(0)' },
+                },
+            },
         },
     },
 };

@@ -38,6 +38,32 @@ class Products
         ')->get());
     }
 
+    public function search_products(string $search): array
+    {
+        $search = '%' . $search . '%';
+
+        return $this->db->query("
+        SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
+        FROM products p
+        JOIN product_images pi ON p.product_id = pi.product_id
+        WHERE p.name LIKE :search
+        GROUP BY p.product_id
+        ORDER BY p.product_id DESC
+        LIMIT 8 OFFSET $this->offset
+    ", ['search' => $search])->get();
+    }
+
+    public function search_product_count(string $search): int
+    {
+        $search = '%' . $search . '%';
+
+        return count($this->db->query('
+        SELECT p.*
+        FROM products p
+        WHERE p.name LIKE :search
+    ', ['search' => $search])->get());
+    }
+
     public function get_products(string $path): array
     {
         return $this->db->query("
@@ -79,18 +105,18 @@ class Products
         ", [':name' => $path])->get());
     }
 
-    public function get_categories() : array
+    public function get_categories(): array
     {
         return $this->db->query("select * from categories where visibility != 0 and parent_category_id != 0")->get();
     }
 
-    public function wishlist(int $user_id) : array
+    public function wishlist(int $user_id): array
     {
         return $this->db->query("select product_id from wishlist where user_id = :user_id", ['user_id' => $user_id])->get();
     }
 
-    public function find(int $product_id) : bool
+    public function find(int $product_id): bool
     {
-        return (bool) $this->db->query("select * from products where product_id = :product_id", ['product_id' => $product_id])->find();
+        return (bool)$this->db->query("select * from products where product_id = :product_id", ['product_id' => $product_id])->find();
     }
 }

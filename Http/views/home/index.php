@@ -6,7 +6,7 @@ require base_path("Http/views/partials/aside.php");
 ?>
     <!--    Section 1 - Introduction-->
     <?php if ($_SESSION['_flash']['success'] ?? false) : ?>
-        <h1 class="text-xs bg-[#1d1d1d] py-1 text-white w-full text-center"><?= "Welcome Back " . $_SESSION['user']['first_name'] ?></h1>
+        <?php require base_path('Http/views/home/welcome.php') ?>
     <?php endif; ?>
     <div class="w-full h-[calc(100svh-100px)] sm:h-fit mb-8 sm:mb-16">
         <img src="/public/images/homepage.avif" alt="" class="sm:hidden">
@@ -71,7 +71,7 @@ require base_path("Http/views/partials/aside.php");
         <div x-ref="scrollContainer" class="mt-4 grid w-full grid-flow-col gap-x-4 overflow-x-auto overflow-y-hidden scroll-smooth h-[50svh] sm:h-[40svh] lg:h-[50svh] 2xl:gap-x-8">
             <?php foreach ($hot_items as $item) : ?>
                 <div @click="window.location.href= '/product?id=<?= $item['product_id'] ?>'" class="grid h-full cursor-pointer min-w-56 grid-rows-[68%_30%] 2xl:min-w-72">
-                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif '?>" class="h-full w-full" alt="">
+                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif ' ?>" class="h-full w-full" alt="">
                     <div class="flex flex-col gap-y-1">
                         <p class="text-xs font-extrabold mt-1">TRENDING GIFT🔥</p>
                         <p class="text-sm font-semibold hover:underline"><?= htmlspecialchars($item['name'] ?? 'Product') ?></p>
@@ -126,7 +126,7 @@ require base_path("Http/views/partials/aside.php");
         <div x-ref="scrollContainer" class="mt-4 grid w-full grid-flow-col gap-x-4 overflow-x-auto overflow-y-hidden scroll-smooth h-[50svh] sm:h-[40svh] lg:h-[50svh] 2xl:gap-x-8">
             <?php foreach ($top_gifts as $item) : ?>
                 <div @click="window.location.href= '/product?id=<?= $item['product_id'] ?>'" class="grid h-full cursor-pointer min-w-56 grid-rows-[68%_30%] 2xl:min-w-72">
-                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif '?>" class="h-full w-full" alt="">
+                    <img src="<?= $item['cloud_url'] ?? '/public/images/demo.avif ' ?>" class="h-full w-full" alt="">
                     <div class="flex flex-col gap-y-1">
                         <p class="text-xs font-extrabold mt-1">HOT GIFT🔥</p>
                         <p class="text-sm font-semibold hover:underline"><?= htmlspecialchars($item['name'] ?? 'Product') ?></p>

@@ -31,11 +31,16 @@ require base_path("Http/views/partials/aside.php");
                                     <p class="text-sm italic"><?= htmlspecialchars($address['zip_code']) ?? '' ?></p>
                                     <p class="text-sm"><?= htmlspecialchars($address['country']) ?? '' ?></p>
                                     <p class="<?= $address['is_default'] ? 'text-orange-500' : 'opacity-75' ?> text-sm"><?= htmlspecialchars($address['is_default'] ? 'Default Address' : 'Not Default Address') ?? '' ?></p>
-                                    <form action="/addresses" method="POST" class="">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="address_id" value="<?= htmlspecialchars($address['address_id']) ?>">
-                                        <button type="submit" class="underline text-sm text-red-500 hover:text-red-700">Delete</button>
-                                    </form>
+                                    <?php if ($address['order_count'] == 0) : ?>
+                                        <form action="/addresses" method="POST" class="">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="address_id" value="<?= htmlspecialchars($address['address_id']) ?>">
+                                            <button type="submit" class="underline text-sm text-red-500 hover:text-red-700">Delete</button>
+                                        </form>
+                                    <?php else: ?>
+                                        <h1 class="text-xs text-neutral-600">Address in use</h1>
+                                    <?php endif; ?>
+
                                 </div>
                             <?php endforeach; ?>
                             <?php if (count($addresses) < 3) : ?>
