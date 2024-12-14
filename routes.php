@@ -77,4 +77,7 @@ $router->get('/auth-redirect', 'auth-redirect.php');
 //Order Processing (Removing from cart, adding to orders etc)
 $router->get('/process-order', 'checkout/process-order.php');
 $router->get('/process-card-order', 'checkout/process-card-order.php');
+$router->get('/privacy', 'privacy/privacy.php');
+$router->get('/tos', 'privacy/tos.php');
+
 

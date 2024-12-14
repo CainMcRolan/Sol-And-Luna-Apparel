@@ -22,18 +22,21 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `city` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `province` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `country` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `country` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Philippines',
   `is_default` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`address_id`),
   UNIQUE KEY `address_id` (`address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.addresses: ~4 rows (approximately)
+-- Dumping data for table luna.addresses: ~7 rows (approximately)
 INSERT INTO `addresses` (`address_id`, `user_id`, `street_address`, `city`, `province`, `zip_code`, `country`, `is_default`) VALUES
 	(1, 7, '163 Rizal Street', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1),
 	(2, 10, 'Calingatan', 'Mataasnakahoy', 'Batangas', '4223', 'Philippines', 1),
 	(7, 26, '163 Rizal Street', 'M-kahoy', 'Batangas', '4223', 'Philippines', 1),
-	(11, 26, 'demodemo2', 'demodemo2', 'demodemo2', '4223', 'Philippines', 0);
+	(12, 26, 'taga dyan', 'taga dyan', 'taga dyan', '4223', 'Philippines', 0),
+	(33, 27, 'wala address', 'wala address', 'wala address', '4223', 'Philippines', 0),
+	(34, 32, '281 Apolinario Street, Baluyan', 'quezon city', 'quezon', '4814', 'Philippines', 0),
+	(35, 26, 'sa gedli', 'sa gedli', 'sa gedli', '1234', 'Philippines', 0);
 
 -- Dumping structure for table luna.cart
 CREATE TABLE IF NOT EXISTS `cart` (
@@ -46,12 +49,9 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`cart_item_id`),
   UNIQUE KEY `cart_item_id` (`cart_item_id`),
   KEY `idx_cart_items_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.cart: ~2 rows (approximately)
-INSERT INTO `cart` (`cart_item_id`, `user_id`, `product_id`, `quantity`, `size`, `added_at`) VALUES
-	(3, 27, 236, 1, 'M', '2024-12-05 04:00:36'),
-	(7, 26, 245, 3, 'L', '2024-12-08 15:04:27');
+-- Dumping data for table luna.cart: ~0 rows (approximately)
 
 -- Dumping structure for table luna.categories
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.categories: ~36 rows (approximately)
+-- Dumping data for table luna.categories: ~35 rows (approximately)
 INSERT INTO `categories` (`category_id`, `name`, `description`, `visibility`, `parent_category_id`, `created_at`) VALUES
 	(1, 'unisex', 'Clothing for all kind of people.', 1, 0, '2024-11-27 06:51:41'),
 	(2, 'men', 'Discover stylish and versatile clothing for every occasion, from casual essentials to sharp, sophisticated looks. Our men’s collection has everything you need to stay comfortable and confident.', 1, 0, '2024-11-01 02:20:38'),
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `recipient_id` (`recipient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.messages: ~11 rows (approximately)
+-- Dumping data for table luna.messages: ~10 rows (approximately)
 INSERT INTO `messages` (`message_id`, `sender_id`, `recipient_id`, `message_text`, `sent_at`, `is_read`) VALUES
 	(93, 14, 1, 'bro', '2024-11-02 20:08:17', 0),
 	(94, 1, 14, 'why bro', '2024-11-02 20:08:42', 0),
@@ -134,7 +134,7 @@ INSERT INTO `messages` (`message_id`, `sender_id`, `recipient_id`, `message_text
 
 -- Dumping structure for table luna.orders
 CREATE TABLE IF NOT EXISTS `orders` (
-  `order_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint unsigned NOT NULL DEFAULT '0',
   `user_id` int DEFAULT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` enum('pending','new','processing','shipped','delivered','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
@@ -145,22 +145,31 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `payment` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'Cash On Delivery',
   `payment_status` enum('paid','not paid') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'not paid',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `delivered_on` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `order_id` (`order_id`),
   KEY `idx_orders_user` (`user_id`),
   KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.orders: ~3 rows (approximately)
-INSERT INTO `orders` (`order_id`, `user_id`, `email`, `status`, `notes`, `total_amount`, `shipping_address_id`, `tracking_number`, `payment`, `payment_status`, `created_at`) VALUES
-	(1, 7, 'shimijallores@gmail.com', 'pending', 'I love cats', 32423.00, 1, 'sd6gfd78s', 'Cash On Delivery', 'not paid', '2024-10-12 12:35:36'),
-	(2, 10, 'shimijallores@gmail.com', 'shipped', 'I love cats but im allergic', 4321.00, 2, '234hjvhv23', 'Cash On Delivery', 'not paid', '2024-10-11 13:23:31'),
-	(3, 3, 'youanybluesky30@gmail.com', 'new', 'tyler at the top!', 4321.00, 3, '6543vgh5j23', 'Cash On Delivery', 'not paid', '2024-10-11 13:23:31');
+-- Dumping data for table luna.orders: ~11 rows (approximately)
+INSERT INTO `orders` (`order_id`, `user_id`, `email`, `status`, `notes`, `total_amount`, `shipping_address_id`, `tracking_number`, `payment`, `payment_status`, `created_at`, `delivered_on`) VALUES
+	(1, 7, 'shimijallores@gmail.com', 'pending', 'I love cats', 32423.00, 1, 'sd6gfd78s', 'Cash On Delivery', 'not paid', '2024-10-12 12:35:36', NULL),
+	(2, 10, 'shimijallores@gmail.com', 'shipped', 'I love cats but im allergic', 4321.00, 2, '234hjvhv23', 'Cash On Delivery', 'not paid', '2024-10-11 13:23:31', NULL),
+	(3, 3, 'youanybluesky30@gmail.com', 'new', 'tyler at the top!', 4321.00, 3, '6543vgh5j23', 'Cash On Delivery', 'not paid', '2024-10-11 13:23:31', NULL),
+	(2282569516, 26, '34shimijallores@gmail.com', 'pending', '                                ', 2775.35, 12, 'will be issued soon', 'Card', 'paid', '2024-12-14 02:27:08', NULL),
+	(2484265864, 26, '34shimijallores@gmail.com', 'delivered', '                                ', 7369.70, 7, '#dsf5sd6f5sd7f', 'Cash On Delivery', 'not paid', '2024-12-13 13:05:42', '2024-12-13 13:10:42'),
+	(2648872358, 32, 'demodemo3@gmail.com', 'pending', 'please give me rest', 39530.23, 34, 'will be issued soon', 'Cash On Delivery', 'not paid', '2024-12-13 16:38:54', NULL),
+	(4627708181, 26, '34shimijallores@gmail.com', 'pending', 'demo for cod', 4744.35, 35, 'will be issued soon', 'Cash On Delivery', 'not paid', '2024-12-14 02:31:34', NULL),
+	(4769399513, 27, 'solapparel99@gmail.com', 'pending', 'wala address', 4097.19, 33, 'will be issued soon', 'Cash On Delivery', 'not paid', '2024-12-13 14:53:40', NULL),
+	(6212598011, 26, '34shimijallores@gmail.com', 'processing', '                                ', 37597.87, 12, 'will be issued soon', 'Cash On Delivery', 'not paid', '2024-12-13 13:46:45', '2024-12-13 13:10:42'),
+	(8273997164, 26, '34shimijallores@gmail.com', 'pending', '                                ', 3694.23, 7, 'will be issued soon', 'Card', 'paid', '2024-12-14 04:23:24', NULL),
+	(8534162377, 26, '34shimijallores@gmail.com', 'cancelled', '                                ', 7369.70, 7, 'will be issued soon', 'Cash On Delivery', 'not paid', '2024-12-13 14:04:55', NULL);
 
 -- Dumping structure for table luna.order_items
 CREATE TABLE IF NOT EXISTS `order_items` (
   `order_item_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` int unsigned NOT NULL,
+  `order_id` bigint unsigned NOT NULL DEFAULT '0',
   `product_id` int DEFAULT NULL,
   `size` enum('S','M','L','XL','XXL') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'S',
   `quantity` int NOT NULL,
@@ -169,9 +178,9 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   UNIQUE KEY `order_item_id` (`order_item_id`),
   KEY `idx_order_items_order` (`order_id`),
   CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table luna.order_items: ~12 rows (approximately)
+-- Dumping data for table luna.order_items: ~25 rows (approximately)
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `size`, `quantity`, `price_at_time`) VALUES
 	(1, 1, 236, 'S', 3, 4992.73),
 	(2, 1, 236, 'M', 25, 4992.73),
@@ -184,7 +193,20 @@ INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `size`, `q
 	(35, 3, 236, 'S', 10, 4992.73),
 	(36, 3, 236, 'S', 9, 4992.73),
 	(37, 3, 236, 'S', 2, 4992.73),
-	(38, 1, 236, 'S', 1, 4992.73);
+	(38, 1, 236, 'S', 1, 4992.73),
+	(90, 2484265864, 245, 'S', 1, 6446.16),
+	(91, 6212598011, 245, 'S', 3, 6446.16),
+	(92, 6212598011, 236, 'XXL', 4, 3524.28),
+	(93, 8534162377, 245, 'XXL', 1, 6446.16),
+	(94, 4769399513, 236, 'M', 1, 3524.28),
+	(95, 2648872358, 241, 'S', 3, 8790.23),
+	(96, 2648872358, 241, 'M', 1, 8790.23),
+	(97, 8534162377, 243, 'M', 1, 2637.07),
+	(98, 8534162377, 239, 'S', 2, 2344.06),
+	(99, 8534162377, 237, 'S', 1, 9376.24),
+	(100, 2282569516, 239, 'M', 1, 2344.06),
+	(101, 4627708181, 242, 'S', 2, 2051.05),
+	(102, 8273997164, 238, 'S', 3, 1054.83);
 
 -- Dumping structure for table luna.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -206,16 +228,16 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Dumping data for table luna.products: ~10 rows (approximately)
 INSERT INTO `products` (`product_id`, `name`, `description`, `visibility`, `price`, `small_quantity`, `medium_quantity`, `large_quantity`, `xl_quantity`, `xxl_quantity`, `quantity_sold`, `created_at`) VALUES
-	(236, 'Women\'s Rival Fleece Crop Full-Zip', '                            <p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p>Key Features:</p><p>Soft Fleece Fabric: Provides warmth and comfort for all-day wear.</p><p>Cropped Design: Modern, flattering fit that pairs well with high-waisted pants.</p><p>Full-Zip Closure: Easy to wear and adjust for comfort.</p><p>Adjustable Hood: Extra coverage for cooler days.</p><p>Ribbed Cuffs: Secure fit that keeps sleeves in place.</p><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>                ', 1, 3524.28, 4, 0, 1, 2, 3, 5, '2024-11-30 05:54:53'),
-	(237, 'Men\'s Unstoppable Insulated Bomber Jacket', '<p>Stay warm and stylish in any weather with the Men\'s Unstoppable Insulated Bomber Jacket. Designed for both comfort and durability, this jacket features advanced insulation technology to keep you cozy in cold temperatures, while its sleek bomber style adds a touch of modern flair to your winter wardrobe.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium insulation for superior warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable water-resistant fabric</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic bomber silhouette with ribbed cuffs and hem</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front closure for easy layering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Multiple pockets for storage and convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Windproof design for protection in harsh conditions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight yet incredibly warm</li></ol>', 1, 9376.24, 100, 1, 0, 1, 1, 48, '2024-12-01 13:03:13'),
-	(238, 'Men\'s Fast Left Chest T-Shirt', '<p>The Men\'s Fast Left Chest T-Shirt combines casual comfort with a sleek, athletic look. Featuring a subtle logo on the left chest, this tee is perfect for both everyday wear and active moments. Made from soft, breathable fabric, it ensures all-day comfort whether you\'re working out or hanging out.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable cotton blend for comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Left chest logo for a minimalist, athletic touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight and versatile for layering or wearing alone</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Machine washable for easy care</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple color options</li></ol><p><br></p>', 1, 1054.83, 100, 1, 1, 1, 0, 25, '2024-12-01 13:06:46'),
-	(239, 'Men\'s Command Warm-Up Full-Zip', '<p>The Men\'s Command Warm-Up Full-Zip is the ultimate blend of comfort and performance. Perfect for pre-game warm-ups or casual wear, this jacket features a full-zip front and adjustable design, ensuring flexibility and ease of movement. Its soft, warm fabric keeps you cozy while you stay active.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front for easy on and off</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, warm fabric for enhanced comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Athletic fit for freedom of movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for storage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing alone during warm-ups or workouts</li></ol><p><br></p>', 1, 2344.06, 100, 0, 1, 1, 0, 353, '2024-12-01 13:10:49'),
-	(240, 'Women\'s Icon Heavyweight Fleece Oversized Crew', '<p>The Women\'s Icon Heavyweight Fleece Oversized Crew is your go-to for cozy, laid-back style. Made with thick, plush fleece, this oversized crewneck sweater offers warmth and comfort in a relaxed fit. Perfect for layering or lounging, it’s a versatile wardrobe staple with a stylish, casual look.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, heavyweight fleece for warmth and comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Relaxed, oversized fit for ultimate coziness</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Iconic branding for a bold, stylish touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo on chilly days</li></ol><p><br></p>', 1, 6446.16, 100, 1, 1, 1, 0, 234, '2024-12-01 13:13:26'),
-	(241, 'Women\'s Premier Pleated Dress', '<p>The Women\'s Premier Pleated Dress is an elegant and timeless piece, designed to elevate your wardrobe. With its flowing pleats and flattering silhouette, this dress offers both sophistication and comfort. Perfect for special occasions or a stylish day out, it adds a touch of class to any event.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, flowing fabric for a graceful drape</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Pleated design for a flattering, feminine look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic round neckline</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flattering fit-and-flare silhouette</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for both casual and formal occasions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple colors for varied styling options</li></ol><p><br></p>', 1, 8790.23, 100, 1, 1, 1, 0, 34, '2024-12-01 13:15:29'),
-	(242, 'Girls Rival Fleece Oversized Crew', '<p>The Girls Rival Fleece Oversized Crew combines comfort and style in one cozy package. Made from soft fleece, this relaxed-fit crewneck sweater is perfect for everyday wear. Whether she\'s lounging at home or out with friends, it offers warmth and a trendy look that’s both comfortable and fashionable.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, cozy fleece fabric for warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Oversized, relaxed fit for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a snug fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stylish and versatile for casual outfits</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors and sizes</li></ol><p><br></p>', 1, 2051.05, 100, 0, 1, 1, 1, 75, '2024-12-01 13:17:53'),
-	(243, 'Boys\' Armour Fleece® Pro Joggers', '<p>The Boys\' Armour Fleece® Pro Joggers are built for active kids who need comfort and performance. Made from lightweight, breathable Armour Fleece® fabric, these joggers offer warmth and flexibility, perfect for sports, outdoor activities, or everyday wear. The stretchy waistband ensures a secure fit, while the tapered leg design adds a modern touch.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Armour Fleece® fabric for lightweight warmth and flexibility</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stretchy waistband with internal drawcord for an adjustable fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Tapered leg design for a modern, athletic look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable material for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for active use or casual wear</li></ol><p><br></p>', 1, 2637.07, 100, 1, 1, 0, 1, 122, '2024-12-01 13:20:27'),
-	(244, 'Men\'s Surge 4 Running Shoes', '<p>The Men\'s Surge 4 Running Shoes are designed for optimal performance and comfort on every run. Featuring a lightweight, breathable mesh upper and responsive cushioning, these shoes provide support and flexibility for all types of runners. Whether you\'re hitting the pavement or the trails, the Surge 4 offers a sleek, high-performance design.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight, breathable mesh upper for enhanced ventilation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Responsive cushioning for added comfort and support</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and stability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flexible design for natural movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, modern look with a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for running, training, and everyday wear</li></ol><p><br></p>', 1, 3809.10, 100, 0, 1, 1, 1, 321, '2024-12-01 13:23:00'),
-	(245, 'Unisex Apparition Shoes', '<p>The Unisex Apparition Shoes offer a stylish and versatile design for any occasion. Featuring a sleek, minimalist silhouette, these shoes are crafted with premium materials for comfort and durability. Whether you\'re dressing up or down, the Apparition shoes provide both a modern aesthetic and reliable performance.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, minimalist design for a stylish look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium materials for enhanced comfort and durability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for casual or semi-formal wear</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cushioned insole for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and grip</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors for easy styling</li></ol><p><br></p>', 1, 6446.16, 100, 1, 1, 0, 1, 83, '2024-12-01 13:26:01');
+	(236, 'Women\'s Rival Fleece Crop Full-Zip', '                            <p>The Women\'s Rival Fleece Crop Full-Zip is the perfect blend of comfort, warmth, and style. Made from soft, cozy fleece, this jacket provides lightweight warmth while the cropped design offers a modern, trendy look. The full-zip front allows for easy on-and-off, while the adjustable hood adds extra coverage when you need it. With ribbed cuffs and a relaxed fit, this versatile jacket is ideal for layering over your favorite workout gear or pairing with casual outfits.</p><p>Key Features:</p><p>Soft Fleece Fabric: Provides warmth and comfort for all-day wear.</p><p>Cropped Design: Modern, flattering fit that pairs well with high-waisted pants.</p><p>Full-Zip Closure: Easy to wear and adjust for comfort.</p><p>Adjustable Hood: Extra coverage for cooler days.</p><p>Ribbed Cuffs: Secure fit that keeps sleeves in place.</p><p>Elevate your casual style and stay cozy with the Women\'s Rival Fleece Crop Full-Zip, the perfect addition to your wardrobe for effortless comfort.</p>                ', 1, 3524.28, 20, 19, 2, 3, 8, 73, '2024-11-30 05:54:53'),
+	(237, 'Men\'s Unstoppable Insulated Bomber Jacket', '<p>Stay warm and stylish in any weather with the Men\'s Unstoppable Insulated Bomber Jacket. Designed for both comfort and durability, this jacket features advanced insulation technology to keep you cozy in cold temperatures, while its sleek bomber style adds a touch of modern flair to your winter wardrobe.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium insulation for superior warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable water-resistant fabric</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic bomber silhouette with ribbed cuffs and hem</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front closure for easy layering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Multiple pockets for storage and convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Windproof design for protection in harsh conditions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight yet incredibly warm</li></ol>', 1, 9376.24, 19, 20, 0, 1, 1, 49, '2024-12-01 13:03:13'),
+	(238, 'Men\'s Fast Left Chest T-Shirt', '<p>The Men\'s Fast Left Chest T-Shirt combines casual comfort with a sleek, athletic look. Featuring a subtle logo on the left chest, this tee is perfect for both everyday wear and active moments. Made from soft, breathable fabric, it ensures all-day comfort whether you\'re working out or hanging out.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable cotton blend for comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Left chest logo for a minimalist, athletic touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight and versatile for layering or wearing alone</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Machine washable for easy care</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple color options</li></ol><p><br></p>', 1, 1054.83, 17, 20, 1, 1, 0, 28, '2024-12-01 13:06:46'),
+	(239, 'Men\'s Command Warm-Up Full-Zip', '<p>The Men\'s Command Warm-Up Full-Zip is the ultimate blend of comfort and performance. Perfect for pre-game warm-ups or casual wear, this jacket features a full-zip front and adjustable design, ensuring flexibility and ease of movement. Its soft, warm fabric keeps you cozy while you stay active.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Full-zip front for easy on and off</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, warm fabric for enhanced comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Athletic fit for freedom of movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for storage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing alone during warm-ups or workouts</li></ol><p><br></p>', 1, 2344.06, 18, 19, 1, 1, 0, 356, '2024-12-01 13:10:49'),
+	(240, 'Women\'s Icon Heavyweight Fleece Oversized Crew', '<p>The Women\'s Icon Heavyweight Fleece Oversized Crew is your go-to for cozy, laid-back style. Made with thick, plush fleece, this oversized crewneck sweater offers warmth and comfort in a relaxed fit. Perfect for layering or lounging, it’s a versatile wardrobe staple with a stylish, casual look.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, heavyweight fleece for warmth and comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Relaxed, oversized fit for ultimate coziness</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Iconic branding for a bold, stylish touch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo on chilly days</li></ol><p><br></p>', 1, 6446.16, 20, 20, 1, 1, 0, 234, '2024-12-01 13:13:26'),
+	(241, 'Women\'s Premier Pleated Dress', '<p>The Women\'s Premier Pleated Dress is an elegant and timeless piece, designed to elevate your wardrobe. With its flowing pleats and flattering silhouette, this dress offers both sophistication and comfort. Perfect for special occasions or a stylish day out, it adds a touch of class to any event.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, flowing fabric for a graceful drape</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Pleated design for a flattering, feminine look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic round neckline</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flattering fit-and-flare silhouette</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for both casual and formal occasions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in multiple colors for varied styling options</li></ol><p><br></p>', 1, 8790.23, 17, 19, 1, 1, 0, 35, '2024-12-01 13:15:29'),
+	(242, 'Girls Rival Fleece Oversized Crew', '<p>The Girls Rival Fleece Oversized Crew combines comfort and style in one cozy package. Made from soft fleece, this relaxed-fit crewneck sweater is perfect for everyday wear. Whether she\'s lounging at home or out with friends, it offers warmth and a trendy look that’s both comfortable and fashionable.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, cozy fleece fabric for warmth</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Oversized, relaxed fit for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Classic crewneck design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ribbed cuffs and hem for a snug fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for layering or wearing solo</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stylish and versatile for casual outfits</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors and sizes</li></ol><p><br></p>', 1, 2051.05, 18, 20, 0, 0, 0, 77, '2024-12-01 13:17:53'),
+	(243, 'Boys\' Armour Fleece® Pro Joggers', '<p>The Boys\' Armour Fleece® Pro Joggers are built for active kids who need comfort and performance. Made from lightweight, breathable Armour Fleece® fabric, these joggers offer warmth and flexibility, perfect for sports, outdoor activities, or everyday wear. The stretchy waistband ensures a secure fit, while the tapered leg design adds a modern touch.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Armour Fleece® fabric for lightweight warmth and flexibility</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stretchy waistband with internal drawcord for an adjustable fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Tapered leg design for a modern, athletic look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Side pockets for convenience</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Soft, breathable material for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for active use or casual wear</li></ol><p><br></p>', 1, 2637.07, 20, 19, 1, 0, 1, 123, '2024-12-01 13:20:27'),
+	(244, 'Men\'s Surge 4 Running Shoes', '<p>The Men\'s Surge 4 Running Shoes are designed for optimal performance and comfort on every run. Featuring a lightweight, breathable mesh upper and responsive cushioning, these shoes provide support and flexibility for all types of runners. Whether you\'re hitting the pavement or the trails, the Surge 4 offers a sleek, high-performance design.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lightweight, breathable mesh upper for enhanced ventilation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Responsive cushioning for added comfort and support</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and stability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Flexible design for natural movement</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, modern look with a secure fit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ideal for running, training, and everyday wear</li></ol><p><br></p>', 1, 3809.10, 20, 20, 1, 1, 1, 321, '2024-12-01 13:23:00'),
+	(245, 'Unisex Apparition Shoes', '<p>The Unisex Apparition Shoes offer a stylish and versatile design for any occasion. Featuring a sleek, minimalist silhouette, these shoes are crafted with premium materials for comfort and durability. Whether you\'re dressing up or down, the Apparition shoes provide both a modern aesthetic and reliable performance.</p><p><strong>Key Features:</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sleek, minimalist design for a stylish look</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Premium materials for enhanced comfort and durability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Versatile style suitable for casual or semi-formal wear</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cushioned insole for all-day comfort</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Durable rubber outsole for traction and grip</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Available in a variety of colors for easy styling</li></ol><p><br></p>', 1, 6446.16, 23, 20, 1, 0, 0, 84, '2024-12-01 13:26:01');
 
 -- Dumping structure for table luna.product_categories
 CREATE TABLE IF NOT EXISTS `product_categories` (
@@ -345,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table luna.users: ~8 rows (approximately)
 INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `country`, `user_type`, `created_at`) VALUES
@@ -357,7 +379,8 @@ INSERT INTO `users` (`user_id`, `email`, `password_hash`, `first_name`, `last_na
 	(27, 'solapparel99@gmail.com', NULL, 'Sol and', 'Luna', '09457160613', 'Philippines', 'customer', '2024-11-30 06:17:27'),
 	(29, 'youanybluesky10@gmail.com', NULL, 'cain', 'bro', '09561434987', 'Philippines', 'customer', '2024-12-08 15:34:59'),
 	(30, 'demodemo2@gmail.com', '$2y$10$9TjHDfq3R/7XD7G9zYba4ui3bmwMG2xwj30OyD7clc6VbJz1pN8/a', 'john', 'doe', '09111111111', 'Philippines', 'customer', '2024-12-08 16:17:25'),
-	(31, 'demodemo@gmail.com', '$2y$10$vDInGDR8sA0pI7T8kjN3xesjBv.C7y8JvVqQUVjXMF.ay2wHtRxlC', 'john', 'doe', '09561434333', 'Philippines', 'customer', '2024-12-08 16:39:59');
+	(31, 'demodemo@gmail.com', '$2y$10$vDInGDR8sA0pI7T8kjN3xesjBv.C7y8JvVqQUVjXMF.ay2wHtRxlC', 'john', 'doe', '09561434333', 'Philippines', 'customer', '2024-12-08 16:39:59'),
+	(32, 'demodemo3@gmail.com', '$2y$10$I/LFROMYTzoRHjh8vXrAgev/DZWlulyB/sxIF2SZkNrlLEhwcWS6.', 'john', 'doe', NULL, 'Philippines', 'customer', '2024-12-13 16:33:22');
 
 -- Dumping structure for table luna.user_images
 CREATE TABLE IF NOT EXISTS `user_images` (
@@ -388,14 +411,15 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   PRIMARY KEY (`wishlist_id`) USING BTREE,
   UNIQUE KEY `cart_item_id` (`wishlist_id`) USING BTREE,
   KEY `idx_cart_items_user` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table luna.wishlist: ~4 rows (approximately)
 INSERT INTO `wishlist` (`wishlist_id`, `user_id`, `product_id`, `added_at`) VALUES
 	(5, 28, 242, '2024-12-03 16:53:32'),
 	(14, 26, 0, '2024-12-05 07:47:50'),
-	(20, 26, 244, '2024-12-09 01:16:50'),
-	(21, 26, 243, '2024-12-09 01:17:02');
+	(21, 26, 243, '2024-12-09 01:17:02'),
+	(23, 26, 245, '2024-12-13 13:44:22'),
+	(24, 32, 241, '2024-12-13 16:35:33');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
