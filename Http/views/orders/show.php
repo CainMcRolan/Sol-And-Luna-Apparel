@@ -71,6 +71,7 @@ require base_path("Http/views/partials/aside.php");
                         <?php endforeach; ?>
                         <div>
                             <p class="font-bold text-lg">Order Details</p>
+                            <p class="text-sm text-neutral-800 font-semibold">Tracking Number: <span class="font-medium text-neutral-600"><?= htmlspecialchars($order['tracking_number'] ?? '') ?></span></p>
                             <p class="text-sm text-neutral-800 font-semibold">Subtotal: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['subtotal'] ?? 0, 2)) ?></span></p>
                             <p class="text-sm text-neutral-800 font-semibold">Tax: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['tax'] ?? 0, 2)) ?></span></p>
                             <p class="text-sm text-neutral-800 font-semibold">Total: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['total'] ?? 0, 2)) ?></span></p>

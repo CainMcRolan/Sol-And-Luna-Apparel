@@ -14,7 +14,7 @@ require base_path("Http/views/partials/aside.php");
                 <div class="mx-auto w-full  px-4 2xl:px-0">
                     <h1 class="hidden lg:block font-semibold text-2xl"><?= get_page_title() ?></h1>
                     <div class="mx-auto mt-6 space-y-4">
-                        <h1>You don't have any saved payment methods.</h1>
+                        <h1 class="mb-10">You don't have any saved payment methods.</h1>
                     </div>
                 </div>
             </section>
