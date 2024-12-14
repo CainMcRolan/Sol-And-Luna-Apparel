@@ -15,7 +15,7 @@
                 </label>
                 <button class="rounded-md bg-black px-6 font-semibold text-white hover:bg-gray-950">Submit</button>
             </div>
-            <p class="text-justify text-xs text-gray-500">By providing your email, you agree to the <a href="" class="underline">Terms & Conditions</a> and <a href="" class="underline">Privacy
+            <p class="text-justify text-xs text-gray-500">By providing your email, you agree to the <a href="/tos" class="underline">Terms & Conditions</a> and <a href="/privacy" class="underline">Privacy
                     Policy</a>.
                 You
                 may unsubscribe later.</p>

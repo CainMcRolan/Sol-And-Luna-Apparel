@@ -25,7 +25,7 @@
          class="relative rounded-lg overflow-hidden  transform transition-all sm:max-w-lg sm:w-full"
          @click.away="isOpen = false">
 
-        <div @click="window.location.href = '/new'" class="cursor-pointer w-full h-full">
+        <div @click="window.location.href = '/home'" class="cursor-pointer w-full h-full">
             <img class="animate-bounce-once object-cover w-full h-full rounded-md"
                  src="/public/images/promo.png"
                  alt="">
