@@ -59,74 +59,24 @@ require base_path("Http/views/partials/aside.php");
                             <h6 class="mr-5 border-gray-200 pr-5 text-2xl font-semibold leading-9 text-gray-900 font-manrope sm:border-r"><?= '₱' . htmlspecialchars(number_format($current_product['price'], 2)) ?></h6>
                             <div class="flex items-center gap-2">
                                 <div class="flex items-center gap-1">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_12029_1640)">
-                                            <path
-                                                    d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                                                    fill="#FBBF24"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_12029_1640">
-                                                <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_12029_1640)">
-                                            <path
-                                                    d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                                                    fill="#FBBF24"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_12029_1640">
-                                                <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_12029_1640)">
-                                            <path
-                                                    d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                                                    fill="#FBBF24"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_12029_1640">
-                                                <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_12029_1640)">
-                                            <path
-                                                    d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                                                    fill="#FBBF24"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_12029_1640">
-                                                <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_8480_66029)">
-                                            <path
-                                                    d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                                                    fill="#F3F4F6"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_8480_66029">
-                                                <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
+                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                        <svg class="<?= $i <= round($average_rating['average_rating']) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_12029_1640)">
+                                                <path
+                                                        d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                                        fill="#"/>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_12029_1640">
+                                                    <rect width="20" height="20" fill="white"/>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    <?php } ?>
+                                    <span class="text-neutral-800"><?= round($average_rating['average_rating'] ?? 0) . '.0' ?></span>
                                 </div>
-                                <span class="pl-2 text-sm font-normal leading-7 text-gray-500"><?= htmlspecialchars($current_product['quantity_sold'] ?? '0') ?></span>
+                                <span class="pl-2 text-sm font-normal leading-7 text-gray-500"><?= htmlspecialchars($current_product['quantity_sold'] ?? '0') ?> sold</span>
                             </div>
 
                         </div>
@@ -374,150 +324,92 @@ require base_path("Http/views/partials/aside.php");
         <!--        Ratings List-->
         <div class="grid lg:flex lg:justify-center lg:gap-x-8 items-center gap-">
             <div class="flex flex-col items-center justify-center max-sm:mb-2 my-4">
-                <h3 class="font-extrabold text-4xl">3.0</h3>
+                <h3 class="font-extrabold text-4xl"><?= round($average_rating['average_rating'] ?? 0) . '.0' ?></h3>
                 <div class="mt-4 text-center">
                     <div class="flex items-center gap-1">
-                        <svg class="w-3 fill-[#facc15] shrink-0" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                        </svg>
-                        <svg class="w-3 fill-[#facc15] shrink-0" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                        </svg>
-                        <svg class="w-3 fill-[#facc15] shrink-0" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                        </svg>
-                        <svg class="w-3 fill-[#facc15] shrink-0" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                        </svg>
-                        <svg class="w-3 fill-[#facc15] shrink-0" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                        </svg>
+                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                            <svg class="w-3 <?= $i <= round($average_rating['average_rating']) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>  shrink-0" viewBox="0 0 14 13" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
+                            </svg>
+                        <?php } ?>
                     </div>
-                    <p class="mt-1.5 text-gray-500 text-xs">1,624</p>
+                    <p class="mt-1.5 text-gray-500 text-xs"><?= number_format(count($reviews_reference ?? [])) ?></p>
                 </div>
             </div>
             <div class="space-y-1 lg:w-[50%]">
                 <div class="flex items-center">
                     <p class="text-sm text-gray-500 font-bold">5.0</p>
                     <div class="bg-gray-300 rounded w-full h-3 ml-3">
-                        <div class="w-2/3 h-full rounded bg-[#facc15]"></div>
+                        <div class="w-[<?= htmlspecialchars(round($rating_percentage['five'] ?? 0) . '%') ?>] h-full rounded bg-[#facc15]"></div>
                     </div>
-                    <p class="text-sm font-bold ml-3">66%</p>
+                    <p class="text-sm font-bold ml-3"><?= htmlspecialchars(round($rating_percentage['five'] ?? 0)) ?>%</p>
                 </div>
                 <div class="flex items-center">
                     <p class="text-sm text-gray-500 font-bold">4.0</p>
                     <div class="bg-gray-300 rounded w-full h-3 ml-3">
-                        <div class="w-1/3 h-full rounded bg-[#facc15]"></div>
+                        <div class="w-[<?= htmlspecialchars(round($rating_percentage['four'] ?? 0) . '%') ?>] h-full rounded bg-[#facc15]"></div>
                     </div>
-                    <p class="text-sm font-bold ml-3">33%</p>
+                    <p class="text-sm font-bold ml-3"><?= htmlspecialchars(round($rating_percentage['four'] ?? 0)) ?>%</p>
                 </div>
                 <div class="flex items-center">
                     <p class="text-sm text-gray-500 font-bold">3.0</p>
                     <div class="bg-gray-300 rounded w-full h-3 ml-3">
-                        <div class="w-1/6 h-full rounded bg-[#facc15]"></div>
+                        <div class="w-[<?= htmlspecialchars(round($rating_percentage['three'] ?? 0) . '%') ?>] h-full rounded bg-[#facc15]"></div>
                     </div>
-                    <p class="text-sm font-bold ml-3">16%</p>
+                    <p class="text-sm font-bold ml-3"><?= htmlspecialchars(round($rating_percentage['three'] ?? 0)) ?>%</p>
                 </div>
                 <div class="flex items-center">
                     <p class="text-sm text-gray-500 font-bold">2.0</p>
                     <div class="bg-gray-300 rounded w-full h-3 ml-3">
-                        <div class="w-1/12 h-full rounded bg-[#facc15]"></div>
+                        <div class="w-[<?= htmlspecialchars(round($rating_percentage['two'] ?? 0) . '%') ?>] h-full rounded bg-[#facc15]"></div>
                     </div>
-                    <p class="text-sm font-bold ml-3">8%</p>
+                    <p class="text-sm font-bold ml-3"><?= htmlspecialchars(round($rating_percentage['two'] ?? 0)) ?>%</p>
                 </div>
                 <div class="flex items-center">
                     <p class="text-sm text-gray-500 font-bold">1.0</p>
                     <div class="bg-gray-300 rounded w-full h-3 ml-3">
-                        <div class="w-[6%] h-full rounded bg-[#facc15]"></div>
+                        <div class="w-[<?= htmlspecialchars(round($rating_percentage['one'] ?? 0) . '%') ?>] h-full rounded bg-[#facc15]"></div>
                     </div>
-                    <p class="text-sm font-bold ml-3">6%</p>
+                    <p class="text-sm font-bold ml-3"><?= htmlspecialchars(round($rating_percentage['one'] ?? 0)) ?>%</p>
                 </div>
             </div>
         </div>
         <hr class="border my-6"/>
         <!--        Reviews List-->
         <div class="">
-            <h3 class="font-bold text-base">All Reviews(2)</h3>
+            <h3 class="font-bold text-base">All Reviews(<?= count($reviews_reference ?? []) ?>)</h3>
             <div class="mt-6 space-y-8">
-                <div class="flex items-start">
-                    <img src="https://readymadeui.com/team-2.webp" class="w-12 h-12 rounded-full border-2 border-white"/>
-                    <div class="ml-3">
-                        <h4 class="text-gray-800 text-sm font-bold">John Doe</h4>
-                        <div class="flex space-x-1 mt-1">
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <p class="text-gray-500 text-xs !ml-2 font-semibold">2 mins ago</p>
+                <?php if ($reviews ?? false) : ?>
+                    <?php foreach ($reviews as $review): ?>
+                        <div class="flex items-start">
+                            <img src="/public/images/default-profile.jpg" class="w-12 h-12 rounded-full border-2 border-white" alt=""/>
+                            <div class="ml-3">
+                                <h4 class="text-gray-800 text-sm font-bold"><?= htmlspecialchars(ucfirst($review['first_name'] ?? '')) . ' ' . htmlspecialchars(ucfirst($review['last_name'] ?? '')) ?>
+                                    <span>(<?= $_SESSION['user']['user_id'] == htmlspecialchars($review['user_id'] ?? '') ? 'me' : '' ?>)</span></h4>
+                                <div class="flex space-x-1 mt-1">
+                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                        <svg class="w-3 <?= $i <= $review['rating'] ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" viewBox="0 0 14 13" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
+                                        </svg>
+                                    <?php } ?>
+                                    <span class="text-gray-500 text-xs !ml-2 font-semibold">(<?= htmlspecialchars($review['rating'] ?? 1) ?>)</span>
+                                    <p class="text-gray-500 text-xs !ml-2 font-semibold"><?= htmlspecialchars((new DateTime($review['created_at']))->format('M d, Y | g:i a')) ?></p>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans"><?= htmlspecialchars($review['comment'] ?? '') ?></p>
+                            </div>
                         </div>
-                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the
-                            delivery was
-                            impressively prompt.</p>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <img src="https://readymadeui.com/team-1.webp" class="w-12 h-12 rounded-full border-2 border-white"/>
-                    <div class="ml-3">
-                        <h4 class="text-gray-800 text-sm font-bold">Jane Doe</h4>
-                        <div class="flex space-x-1 mt-1">
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <svg class="w-3 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>
-                            </svg>
-                            <p class="text-gray-500 text-xs !ml-2 font-semibold">30 mins ago</p>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-3 lg:text-md font-sans">The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the
-                            delivery was
-                            impressively prompt.</p>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-sm text-neutral-700">No Reviews Available</p>
+                <?php endif; ?>
+                <hr class="w-full bg-neutral-600 my-1">
+                <?php if ($reviews) : ?>
+                    <a href="/reviews?id=<?= $_GET['id'] ?>" class="block mt-3 w-fit text-sm font-semibold text-neutral-700 border-b border-neutral-300 hover:text-neutral-900">Read all reviews ➥</a>
+                <?php endif; ?>
             </div>
         </div>
     </section>

@@ -36,4 +36,21 @@ $hot_items = $db->query("
     LIMIT 7
 ")->get();
 
+// Reviews
+$reviews = $db->query("select r.*, u.first_name, u.last_name from reviews r join users u on u.user_id = r.user_id where product_id = :id LIMIT 3", [':id' => $_GET['id']])->get();
+
+$reviews_reference = $db->query("select r.*, u.first_name, u.last_name from reviews r join users u on u.user_id = r.user_id where product_id = :id", [':id' => $_GET['id']])->get();
+
+$average_rating = $db->query("select avg(rating) as average_rating from reviews where product_id = :id;", [':id' => $_GET['id']])->find();
+
+$rating_percentage = $db->query("
+    select (count(case when rating = 5 then 1 end) * 100.0) / count(*) as five,
+    (count(case when rating = 4 then 1 end) * 100.0) / count(*) as four,
+    (count(case when rating = 3 then 1 end) * 100.0) / count(*) as three,
+    (count(case when rating = 2 then 1 end) * 100.0) / count(*) as two,
+    (count(case when rating = 1 then 1 end) * 100.0) / count(*) as one
+    from reviews 
+    where product_id = :id;
+", [':id' => $_GET['id']])->find();
+
 require base_path('Http/views/product/index.php');
