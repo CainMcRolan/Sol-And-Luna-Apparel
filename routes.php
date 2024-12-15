@@ -71,6 +71,9 @@ $router->get('/wishlist', 'wishlist/index.php')->only('user');
 $router->post('/wishlist', 'wishlist/create.php')->only('user');
 $router->delete('/wishlist', 'wishlist/delete.php')->only('user');
 
+//Reviews
+$router->get('/reviews', 'reviews/index.php');
+
 #Helpers
 //Auth Redirect
 $router->get('/auth-redirect', 'auth-redirect.php');

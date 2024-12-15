@@ -386,8 +386,8 @@ require base_path("Http/views/partials/aside.php");
                         <div class="flex items-start">
                             <img src="/public/images/default-profile.jpg" class="w-12 h-12 rounded-full border-2 border-white" alt=""/>
                             <div class="ml-3">
-                                <h4 class="text-gray-800 text-sm font-bold"><?= htmlspecialchars(ucfirst($review['first_name'] ?? '')) . ' ' . htmlspecialchars(ucfirst($review['last_name'] ?? '')) ?>
-                                    <span>(<?= $_SESSION['user']['user_id'] == htmlspecialchars($review['user_id'] ?? '') ? 'me' : '' ?>)</span></h4>
+                                <h4 class="text-gray-800 text-sm font-bold"><?= htmlspecialchars(ucfirst(explode('@',$review['email'] ?? '')[0])) ?>
+                                    <span><?= ($_SESSION['user']['user_id'] ?? '') == htmlspecialchars($review['user_id'] ?? '') ? '(me)' : '' ?></span></h4>
                                 <div class="flex space-x-1 mt-1">
                                     <?php for ($i = 1; $i <= 5; $i++) { ?>
                                         <svg class="w-3 <?= $i <= $review['rating'] ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" viewBox="0 0 14 13" fill="none"

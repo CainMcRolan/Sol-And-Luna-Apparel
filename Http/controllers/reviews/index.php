@@ -19,25 +19,12 @@ $current_product = $db->query("
     GROUP BY p.product_id
 ", [':product_id' => $_GET['id']])->find();
 
-if ($user) {
-    (bool)$in_wishlist = $db->query("
-    select * 
-    from wishlist 
-    where product_id = ? 
-    and user_id = ?
-", [$_GET['id'], $_SESSION['user']['user_id']])->find();
+if (!$current_product) {
+    redirect('/new');
 }
 
-$hot_items = $db->query("
-    SELECT p.*, pi.cloud_url
-    FROM products p 
-    JOIN product_images pi ON p.product_id = pi.product_id AND pi.is_primary = 1
-    ORDER BY RAND()
-    LIMIT 7
-")->get();
-
 // Reviews
-$reviews = $db->query("select r.*, u.email from reviews r join users u on u.user_id = r.user_id where product_id = :id LIMIT 3", [':id' => $_GET['id']])->get();
+$reviews = $db->query("select r.*, u.email from reviews r join users u on u.user_id = r.user_id where product_id = :id", [':id' => $_GET['id']])->get();
 
 $reviews_reference = $db->query("select r.*, u.first_name, u.last_name from reviews r join users u on u.user_id = r.user_id where product_id = :id", [':id' => $_GET['id']])->get();
 
@@ -53,4 +40,4 @@ $rating_percentage = $db->query("
     where product_id = :id;
 ", [':id' => $_GET['id']])->find();
 
-require base_path('Http/views/product/index.php');
+require base_path('Http/views/reviews/index.php');
