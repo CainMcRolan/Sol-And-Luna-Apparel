@@ -21,9 +21,10 @@ class Products
     public function new_products(): array
     {
         return $this->db->query("
-            SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
+            SELECT p.*, AVG(r.rating) as average_rating, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
             FROM products p
             JOIN product_images pi ON p.product_id = pi.product_id
+            LEFT JOIN reviews r on p.product_id = r.product_id
             GROUP BY p.product_id
             ORDER BY p.product_id DESC
             LIMIT 8 OFFSET $this->offset
@@ -43,13 +44,14 @@ class Products
         $search = '%' . $search . '%';
 
         return $this->db->query("
-        SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
-        FROM products p
-        JOIN product_images pi ON p.product_id = pi.product_id
-        WHERE p.name LIKE :search
-        GROUP BY p.product_id
-        ORDER BY p.product_id DESC
-        LIMIT 8 OFFSET $this->offset
+            SELECT p.*, AVG(r.rating) as average_rating, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
+            FROM products p
+            JOIN product_images pi ON p.product_id = pi.product_id
+            LEFT JOIN reviews r on p.product_id = r.product_id
+            WHERE p.name LIKE :search
+            GROUP BY p.product_id
+            ORDER BY p.product_id DESC
+            LIMIT 8 OFFSET $this->offset
     ", ['search' => $search])->get();
     }
 
@@ -67,10 +69,11 @@ class Products
     public function get_products(string $path): array
     {
         return $this->db->query("
-            SELECT p.*, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
+            SELECT p.*, AVG(r.rating) as average_rating, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
             FROM products p
             JOIN product_categories pc ON p.product_id = pc.product_id
             JOIN product_images pi ON p.product_id = pi.product_id
+            LEFT JOIN reviews r on p.product_id = r.product_id
             WHERE pc.category_id IN (
                 SELECT c.category_id
                 FROM categories c
