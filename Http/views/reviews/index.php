@@ -11,11 +11,11 @@ require base_path("Http/views/partials/aside.php");
         <!--        Ratings List-->
         <div class="grid lg:flex lg:justify-center lg:gap-x-8 items-center gap-">
             <div class="flex flex-col items-center justify-center max-sm:mb-2 my-4">
-                <h3 class="font-extrabold text-4xl"><?= round($average_rating['average_rating'] ?? 0) . '.0' ?></h3>
+                <h3 class="font-extrabold text-4xl"><?= round($average_rating['average_rating'] ?? 0, 1) ?></h3>
                 <div class="mt-4 text-center">
                     <div class="flex items-center gap-1">
                         <?php for ($i = 1; $i <= 5; $i++) { ?>
-                            <svg class="w-3 <?= $i <= round($average_rating['average_rating']) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>  shrink-0" viewBox="0 0 14 13" fill="none"
+                            <svg class="w-3 <?= $i <= floor($average_rating['average_rating']) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>  shrink-0" viewBox="0 0 14 13" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z"/>

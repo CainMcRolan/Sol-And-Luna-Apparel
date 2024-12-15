@@ -73,6 +73,7 @@ $router->delete('/wishlist', 'wishlist/delete.php')->only('user');
 
 //Reviews
 $router->get('/reviews', 'reviews/index.php');
+$router->post('/reviews', 'reviews/create.php');
 
 #Helpers
 //Auth Redirect

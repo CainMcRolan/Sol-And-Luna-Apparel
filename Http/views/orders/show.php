@@ -10,9 +10,12 @@ require base_path("Http/views/partials/aside.php");
             <aside class="hidden pt-16 lg:block">
                 <?php require base_path('Http/views/partials/profile/aside.php') ?>
             </aside>
-            <section class="w-full antialiased dark:bg-gray-900">
+            <section x-data="{isOpen:false, currentProduct:'Default', productName:'Default', orderId:'Default',  hoverIndex: null, selectedIndex: null, totalStars: 5}"
+                     class="w-full antialiased dark:bg-gray-900">
+                <?php require base_path("Http/views/orders/review.php"); ?>
                 <div class="mx-auto w-full px-4 2xl:px-0">
-                    <h1 class="hidden text-2xl font-semibold lg:flex lg:items-center">Order Details (#<?= $_GET['id'] ?>)</h1>
+                    <h1 class="hidden text-2xl font-semibold lg:flex lg:items-center">Order Details (#<?= $_GET['id'] ?>) <span class="text-red-600 ml-3 text-sm"><?= $errors ? 'Invalid Review' : '' ?><span
+                                    class="text-green-600 ml-3 text-sm"><?= $success ? 'Review Added' : '' ?></span></h1>
                     <div class="mx-auto mt-6 space-y-4">
                         <a href="/order-history" class="lg:hidden self-center inline-block text-xs cursor-pointer underline text-neutral-600">Return to History</a>
                         <?php foreach ($order_items as $item) : ?>
@@ -24,9 +27,17 @@ require base_path("Http/views/partials/aside.php");
                                     <div class="flex items-center justify-between md:order-3 md:justify-end">
                                         <div class="flex items-center">
                                             <label for="quantity>"></label>
-                                            <select disabled name="quantity" id="quantity>" class="opacity-0 cursor-not-allowed product-select rounded-md p-1 px-4 text-sm border border-gray-300">
-                                                <option value="1" selected>1</option>
-                                            </select>
+                                            <?php if ($order['status'] == 'delivered') : ?>
+                                                <?php if (htmlspecialchars($item['reviewed'] ?? 1) == 0) : ?>
+                                                    <button @click="isOpen = true; currentProduct = <?= $item['product_id'] ?>; orderId = <?= $item['order_item_id'] ?>"
+                                                            class="text-xs text-white bg-neutral-800 hover:bg-black p-2 rounded-sm">Add Review
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button class="text-xs text-white bg-neutral-800 opacity-50 cursor-not-allowed p-2 rounded-sm">Reviewed</button>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <button class="text-xs opacity-0 text-white bg-neutral-800 cursor-default p-2 rounded-sm">Not Reviewed</button>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="text-end md:order-4 md:w-32">
                                             <p class="product-price text-base font-bold text-gray-900 dark:text-white">₱<?= htmlspecialchars(number_format($item['price'], 2)) ?></p>
@@ -70,11 +81,19 @@ require base_path("Http/views/partials/aside.php");
                             </div>
                         <?php endforeach; ?>
                         <div>
-                            <p class="font-bold text-lg">Order Details</p>
-                            <p class="text-sm text-neutral-800 font-semibold">Tracking Number: <span class="font-medium text-neutral-600"><?= htmlspecialchars($order['tracking_number'] ?? '') ?></span></p>
-                            <p class="text-sm text-neutral-800 font-semibold">Subtotal: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['subtotal'] ?? 0, 2)) ?></span></p>
-                            <p class="text-sm text-neutral-800 font-semibold">Tax: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['tax'] ?? 0, 2)) ?></span></p>
-                            <p class="text-sm text-neutral-800 font-semibold">Total: <span class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['total'] ?? 0, 2)) ?></span></p>
+                            <p class="font-bold text-lg">Order Details </p>
+                            <p class="text-sm text-neutral-800 font-semibold">Email: <span class="font-medium text-neutral-600"><?= htmlspecialchars($order['email'] ?? '') ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Address: <span
+                                        class="font-medium text-neutral-600"><?= htmlspecialchars($order['street_address'] ?? '') . ', ' . htmlspecialchars($order['city'] ?? '') . ', ' . htmlspecialchars($order['province'] ?? '') . ', Philippines' ?></span>
+                            </p>
+                            <p class="text-sm text-neutral-800 font-semibold">Tracking Number: <span
+                                        class="font-medium text-neutral-600"><?= htmlspecialchars($order['tracking_number'] ?? '') ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Subtotal: <span
+                                        class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['subtotal'] ?? 0, 2)) ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Tax: <span
+                                        class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['tax'] ?? 0, 2)) ?></span></p>
+                            <p class="text-sm text-neutral-800 font-semibold">Total: <span
+                                        class="font-medium text-neutral-600">₱<?= htmlspecialchars(number_format($order_items_total['total'] ?? 0, 2)) ?></span></p>
                         </div>
                     </div>
                 </div>
@@ -136,28 +155,14 @@ require base_path("Http/views/partials/aside.php");
 
                                     <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="mt-1 flex items-center gap-2">
                                         <div class="flex items-center">
-                                            <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                            </svg>
-
-                                            <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                            </svg>
-
-                                            <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                            </svg>
-
-                                            <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                            </svg>
-
-                                            <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
-                                            </svg>
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <svg class="h-4 w-4 text-yellow-400 <?= $i <= floor($product['average_rating'] ?? 0) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" aria-hidden="true"
+                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                                </svg>
+                                            <?php } ?>
                                         </div>
-
-                                        <p class="text-xs font-medium text-gray-900 dark:text-white">5.0</p>
+                                        <p class="text-xs font-medium text-gray-900 dark:text-white"><?= round($product['average_rating'] ?? 0, 1) ?></p>
                                         <p class="text-xs font-medium text-gray-500 dark:text-gray-400">(<?= htmlspecialchars($product['quantity_sold'] ?? 0) ?>)</p>
                                     </div>
 

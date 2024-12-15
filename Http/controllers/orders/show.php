@@ -11,15 +11,15 @@ $success = Session::get('success') ?? '';
 $db = App::resolve(Database::class);
 
 $order = $db->query("
-    select * 
-    from orders 
-    where user_id = :user_id
-    and order_id = :order_id
+    select o.*, a.* 
+    from orders o 
+    left join addresses a on o.shipping_address_id = a.address_id
+    where o.user_id = :user_id
+    and o.order_id = :order_id
 ", [
     ':user_id' => $_SESSION['user']['user_id'],
     ':order_id' => $_GET['id'] ?? '',
 ])->find_or_fail();
-
 
 $order_items = $db->query("
     select o.*, p.*, i.cloud_url

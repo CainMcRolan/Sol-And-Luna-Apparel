@@ -116,7 +116,7 @@ require base_path("Http/views/partials/aside.php");
                                             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                             </svg>
-                                            Delivered on <?= (new DateTime($order['delivered_on']))->format('M d, Y') ?>
+                                            Delivered on <?= (new DateTime($order['delivered_on'] ?? ''))->format('M d, Y') ?>
                                         </div>
                                     <?php elseif ($order['status'] == 'cancelled') : ?>
                                         <div class="flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm text-red-700">
@@ -213,12 +213,12 @@ require base_path("Http/views/partials/aside.php");
                                     <div @click="window.location.href = '/product?id=<?= $product['product_id'] ?>'" class="mt-1 flex items-center gap-2">
                                         <div class="flex items-center">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                <svg class="h-4 w-4 text-yellow-400 <?= $i <= round($product['average_rating'] ?? 0) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+                                                <svg class="h-4 w-4 text-yellow-400 <?= $i <= floor($product['average_rating'] ?? 0) ? 'fill-[#facc15]' : 'fill-[#CED5D8]' ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
                                                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
                                                 </svg>
                                             <?php } ?>
                                         </div>
-                                        <p class="text-xs font-medium text-gray-900 dark:text-white"><?= round($product['average_rating'] ?? 0) . '.0' ?></p>
+                                        <p class="text-xs font-medium text-gray-900 dark:text-white"><?= round($product['average_rating'] ?? 0, 1) ?></p>
                                         <p class="text-xs font-medium text-gray-500 dark:text-gray-400">(<?= htmlspecialchars($product['quantity_sold'] ?? 0) ?>)</p>
                                     </div>
 
