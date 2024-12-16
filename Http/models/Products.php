@@ -18,17 +18,40 @@ class Products
         $this->offset = max(0, $this->page * 8);
     }
 
-    public function new_products(): array
+    public function new_products(string $sort = null): array
     {
-        return $this->db->query("
+        $query = "
             SELECT p.*, AVG(r.rating) as average_rating, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
             FROM products p
             JOIN product_images pi ON p.product_id = pi.product_id
             LEFT JOIN reviews r on p.product_id = r.product_id
-            GROUP BY p.product_id
-            ORDER BY p.product_id DESC
-            LIMIT 8 OFFSET $this->offset
-        ")->get();
+            GROUP BY p.product_id";
+
+        if ($sort) {
+            switch ($sort) {
+                case "popular":
+                    $query .= " ORDER BY p.quantity_sold DESC ";
+                    break;
+                case "newest":
+                    $query .= " ORDER BY p.created_at DESC ";
+                    break;
+                case "increase":
+                    $query .= " ORDER BY p.price ASC ";
+                    break;
+                case "decrease":
+                    $query .= " ORDER BY p.price DESC ";
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            $query .= " ORDER BY p.product_id DESC ";
+        }
+
+        $query .= " LIMIT 8 OFFSET $this->offset";
+
+
+        return $this->db->query($query)->get();
     }
 
     public function new_product_count(): int
@@ -66,9 +89,9 @@ class Products
     ', ['search' => $search])->get());
     }
 
-    public function get_products(string $path): array
+    public function get_products(string $path, string $sort = null): array
     {
-        return $this->db->query("
+        $query = "
             SELECT p.*, AVG(r.rating) as average_rating, GROUP_CONCAT(pi.cloud_url ORDER BY pi.is_primary DESC) AS images
             FROM products p
             JOIN product_categories pc ON p.product_id = pc.product_id
@@ -84,8 +107,30 @@ class Products
                 )
             ) AND p.visibility != 0
             GROUP BY p.product_id
-            LIMIT 8 OFFSET $this->offset
-        ", [':name' => $path])->get();
+        ";
+
+        if ($sort) {
+            switch ($sort) {
+                case "popular":
+                    $query .= " ORDER BY p.quantity_sold DESC ";
+                    break;
+                case "newest":
+                    $query .= " ORDER BY p.created_at DESC ";
+                    break;
+                case "increase":
+                    $query .= " ORDER BY p.price ASC ";
+                    break;
+                case "decrease":
+                    $query .= " ORDER BY p.price DESC ";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $query .= " LIMIT 8 OFFSET $this->offset";
+
+        return $this->db->query($query, [':name' => $path])->get();
     }
 
     public function get_product_count(string $path): int

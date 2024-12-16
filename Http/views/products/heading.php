@@ -13,22 +13,22 @@
         <div @click.away="sortExpanded=false" x-cloak x-show="sortExpanded" x-anchor.bottom-end="$refs.sortButton" x-collapse class="z-50 w-40 mt-3 divide-gray-100 bg-white shadow dark:bg-gray-700" >
             <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400" aria-labelledby="sortDropdownButton">
                 <li>
-                    <a href="#"
+                    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?sort=popular"
                        class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                         The most popular </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?sort=newest"
                        class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                         Newest </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?sort=increase"
                        class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                         Increasing price </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?sort=decrease"
                        class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                         Decreasing price </a>
                 </li>

@@ -13,17 +13,20 @@ $path = get_path();
 $page = intval($_GET['page'] ?? 0);
 $search = $_GET['item'] ?? '';
 
+$sort = $_GET['sort'] ?? false;
+
 $product = new Products($page);
 $products = 0;
 $product_count = 0;
+
 if ($path == 'new' and $search) {
     $products = $product->search_products($search);
     $product_count = $product->search_product_count($search);
 } elseif ($path == 'new') {
-    $products = $product->new_products();
+    $products = $product->new_products($sort);
     $product_count = $product->new_product_count();
 } else {
-    $products = $product->get_products($path);
+    $products = $product->get_products($path, $sort);
     $product_count = $product->get_product_count($path);
 }
 
@@ -36,7 +39,7 @@ if ($_SESSION['user'] ?? false) {
 
 function checkPage($count): bool
 {
-    return ($_GET['page'] ?? 0) + 1 < $count / 8;
+    return (intval($_GET['page'] ?? 0)) + 1 < $count / 8;
 }
 
 require base_path('Http/views/products/index.php');
